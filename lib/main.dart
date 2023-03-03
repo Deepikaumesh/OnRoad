@@ -10,7 +10,8 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp( // -> changed the material app to GetMaterialApp for using Get keyword for navigation
+    return const GetMaterialApp(
+      debugShowCheckedModeBanner: false,// -> changed the material app to GetMaterialApp for using Get keyword for navigation
       home: Main_screen(),
     );
   }

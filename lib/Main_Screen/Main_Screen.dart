@@ -26,10 +26,10 @@ class _Main_screenState extends State<Main_screen> {
           child: Column(
             children: [
               Container(
-                  margin: EdgeInsets.only(left: 95, top: 20, right: 95),
-                  padding: EdgeInsets.all(15),
-                  height: 77,
-                  width: 200,
+               // color:Colors.red,
+                 margin: EdgeInsets.symmetric(vertical: 20),
+                 padding:EdgeInsets.symmetric(horizontal: 20),
+                  height: MediaQuery.of(context).size.height/14,
                   child: Text("ORBVA",
                       style: GoogleFonts.sourceSerifPro(
                           fontSize: 50, color: Colors.red.shade900))),
@@ -40,64 +40,70 @@ class _Main_screenState extends State<Main_screen> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 200,
-                width: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  //  color: Colors.teal,
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          "https://img.freepik.com/premium-vector/"
-                          "car-breakdown-road-assistance-cartoon-illustration-businessman-need-car-repair-service_80590-7724.jpg"),
-                      fit: BoxFit.cover),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Container(
+                  height: 200,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    //  color: Colors.teal,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://img.freepik.com/premium-vector/"
+                            "car-breakdown-road-assistance-cartoon-illustration-businessman-need-car-repair-service_80590-7724.jpg"),
+                        fit: BoxFit.cover),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 40,
               ),
-              SizedBox(
-                width: 330.0,
-                height: 70.0,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    //  shape: StadiumBorder(),
-                    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                    backgroundColor: Colors.cyan.shade300,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height:MediaQuery.of(context).size.height/2,
-                        width: MediaQuery.of(context).size.width/7,
-                        child: Container(
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: SizedBox(
+                  width: 330.0,
+                  height: 70.0,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      //  shape: StadiumBorder(),
+                      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      backgroundColor: Colors.cyan.shade300,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
                           height:MediaQuery.of(context).size.height/2,
                           width: MediaQuery.of(context).size.width/7,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            // color: Colors.teal,
-                            image: DecorationImage(
-                                image: AssetImage("assets/images/user (2).png"),
-                                fit: BoxFit.contain),
+                          child: Container(
+                            height:MediaQuery.of(context).size.height/2,
+                            width: MediaQuery.of(context).size.width/7,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              // color: Colors.teal,
+                              image: DecorationImage(
+                                  image: AssetImage("assets/images/user (2).png"),
+                                  fit: BoxFit.contain),
+                            ),
                           ),
                         ),
-                      ),
-                      Spacer(),
-                    //  Text("--------------------------------------"),
-                      Text(
-                        'USER',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                        Spacer(),
+                      //  Text("--------------------------------------"),
+                        Text(
+                          'USER',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+                    onPressed: () {
+                      Get.to(User_Login());
+                    },
                   ),
-                  onPressed: () {
-                    Get.to(User_Login());
-                  },
                 ),
               ),
               SizedBox(
@@ -195,6 +201,7 @@ class _Main_screenState extends State<Main_screen> {
                   },
                 ),
               ),
+              SizedBox(height: 20,),
             ],
           ),
         ),

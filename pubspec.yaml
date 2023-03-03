@@ -40,6 +40,7 @@ dependencies:
   shared_preferences:
   get:
   google_fonts:
+  form_field_validator:
 
 dev_dependencies:
   flutter_test:
