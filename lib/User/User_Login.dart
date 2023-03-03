@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-import 'Admin_SignUp.dart';
-
+import 'package:untitled/User/User_SignUp.dart';
 
 
-class Admin_Login extends StatefulWidget {
+
+class User_Login extends StatefulWidget {
   @override
-  _Admin_LoginState createState() => _Admin_LoginState();
+  _User_LoginState createState() => _User_LoginState();
 }
 
-class _Admin_LoginState extends State<Admin_Login> {
+class _User_LoginState extends State<User_Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +28,7 @@ class _Admin_LoginState extends State<Admin_Login> {
                 child: Container(
                     width: 200,
                     height: 150,
-                    child: Image.asset('assets/images/Admin_login.png')),
+                    child: Image.asset('assets/images/user_login.png')),
               ),
             ),
             Padding(
@@ -62,12 +61,10 @@ class _Admin_LoginState extends State<Admin_Login> {
               width: MediaQuery.of(context).size.width/1.3,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.teal.shade300,
+                  primary: Colors.cyan.shade400,
                 ),
                 onPressed: () {
                   Get.back();
-                //   Navigator.push(
-                //       context, MaterialPageRoute(builder: (_) => HomePage()));
                  },
                 child: Text(
                   'Login',
@@ -84,7 +81,7 @@ class _Admin_LoginState extends State<Admin_Login> {
 
               Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
               TextButton(onPressed: (){
-                Get.to(Admin_SignupPage());
+                Get.to(User_SignupPage());
               }, child: Text("Create Account"))
     ],)
           ],

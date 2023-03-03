@@ -1,6 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/Service/User_Login.dart';
+import 'package:untitled/User/User_Login.dart';
+
+import '../Admin/Admin_Login.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class Main_screen extends StatefulWidget {
   const Main_screen({Key? key}) : super(key: key);
@@ -88,7 +95,9 @@ class _Main_screenState extends State<Main_screen> {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(User_Login());
+                  },
                 ),
               ),
               SizedBox(
@@ -133,7 +142,9 @@ class _Main_screenState extends State<Main_screen> {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(Service_Login());
+                  },
                 ),
               ),
               SizedBox(
@@ -178,7 +189,10 @@ class _Main_screenState extends State<Main_screen> {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                 Get.to(Admin_Login());
+                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>Admin_Login()));
+                  },
                 ),
               ),
             ],

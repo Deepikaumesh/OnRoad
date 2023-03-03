@@ -37,8 +37,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   http:
-  #shared_preferences:
-  #get:
+  shared_preferences:
+  get:
   google_fonts:
 
 dev_dependencies:
