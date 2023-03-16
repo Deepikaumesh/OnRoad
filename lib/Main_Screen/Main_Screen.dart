@@ -2,21 +2,52 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:untitled/Service/User_Login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/Service/Service_Login.dart';
+import 'package:untitled/Service/Service_SignUp.dart';
 import 'package:untitled/User/User_Login.dart';
 
 import '../Admin/Admin_Login.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../User/User_Dashboard.dart';
+import '../main.dart';
+import '../test/frstscreen.dart';
+
 class Main_screen extends StatefulWidget {
+
   const Main_screen({Key? key}) : super(key: key);
 
   @override
+
   _Main_screenState createState() => _Main_screenState();
 }
 
 class _Main_screenState extends State<Main_screen> {
+
+
+ // String  em ;
+
+
+  get()async{
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    em =preferences.getString('email');
+  }
+
+
+
+@override
+void initState() {
+  get();
+  print(em);
+
+    // TODO: implement initState
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -101,7 +132,16 @@ class _Main_screenState extends State<Main_screen> {
                       ],
                     ),
                     onPressed: () {
-                      Get.to(User_Login());
+                     // Get.to(User_Login());
+                      setState(() {
+                        print("emtest");
+                        print(em);
+                     //   Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login()));
+                         em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
+                         Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
+                      });
+
+
                     },
                   ),
                 ),
@@ -149,7 +189,8 @@ class _Main_screenState extends State<Main_screen> {
                     ],
                   ),
                   onPressed: () {
-                    Get.to(Service_Login());
+                   Get.to(Service_Login());
+                   // em == null ? Service_Login() : Service_SignupPage();
                   },
                 ),
               ),
@@ -202,6 +243,10 @@ class _Main_screenState extends State<Main_screen> {
                 ),
               ),
               SizedBox(height: 20,),
+              // ElevatedButton(onPressed: (){
+              //   Navigator.push(context, MaterialPageRoute(builder: (context)=>frst()));
+              // },
+              // child: Text("test")),
             ],
           ),
         ),

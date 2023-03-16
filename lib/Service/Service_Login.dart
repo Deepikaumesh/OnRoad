@@ -1,53 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/User/User_SignUp.dart';
 
-import '../main.dart';
-import 'User_Dashboard.dart';
 
 
-
-class User_Login extends StatefulWidget {
+class Service_Login extends StatefulWidget {
   @override
-  _User_LoginState createState() => _User_LoginState();
+  _Service_LoginState createState() => _Service_LoginState();
 }
 
-class _User_LoginState extends State<User_Login> {
+class _Service_LoginState extends State<Service_Login> {
 
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
-
-
-  Future checkLogin() async {
-    if (email.text ==  password.text ) {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      em =preferences.setString('email', email.text);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => User_Dashboard(name: email.text,)));
-      email_text = email.text;
-      print("availability of email.text" + email_text);
-      Fluttertoast.showToast(
-          msg: 'Login successfull',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green);
-    }else{
-      Fluttertoast.showToast(
-          msg: 'invalid email & password ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green);
-
-    }
-  }
-
 
 
   @override
@@ -67,7 +34,7 @@ class _User_LoginState extends State<User_Login> {
                 child: Container(
                     width: 200,
                     height: 150,
-                    child: Image.asset('assets/images/user_login.png')),
+                    child: Image.asset('assets/images/mech_login.png')),
               ),
             ),
             Form(
@@ -87,11 +54,11 @@ class _User_LoginState extends State<User_Login> {
                         return null;
                       },
                       onSaved: (username) {},
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email',
-                        hintText: 'Enter valid email id as abc@gmail.com'),
-                ),
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                          hintText: 'Enter valid email id as abc@gmail.com'),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
@@ -116,7 +83,7 @@ class _User_LoginState extends State<User_Login> {
                           hintText: 'Enter secure password'),
                     ),
                   ),
-             ], ),
+                ], ),
             ),
 
             SizedBox(height: 30,),
@@ -129,20 +96,18 @@ class _User_LoginState extends State<User_Login> {
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: () {
-                 // Get.back();
+                  // Get.back();
                   setState(() {
 
                   });
 
-                  checkLogin();
-
                   if (formkey.currentState!.validate()) {
                     print("Successfully  logged");
-                    // email.clear();
-                    // password.clear();
+                    email.clear();
+                    password.clear();
                   }
 
-                 },
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 35),
@@ -156,11 +121,11 @@ class _User_LoginState extends State<User_Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children:[
 
-              Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
-              TextButton(onPressed: (){
-                Get.to(User_SignupPage());
-              }, child: Text("Create Account"))
-    ],)
+                Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
+                TextButton(onPressed: (){
+                  Get.to(User_SignupPage());
+                }, child: Text("Create Account"))
+              ],)
           ],
         ),
       ),

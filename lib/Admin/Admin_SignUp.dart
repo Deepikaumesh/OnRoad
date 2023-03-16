@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:untitled/Admin/Admin_Login.dart';
 
-import 'package:form_field_validator/form_field_validator.dart';
+import 'package:http/http.dart' as http;
+import 'package:untitled/main.dart';
 
 class Admin_SignupPage extends StatefulWidget {
   @override
@@ -79,7 +83,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("username"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -88,8 +92,74 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
+                      ),
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 40,
+                    ),
+                    child: TextFormField(
+                      controller: _email,
+                      keyboardType: TextInputType.text,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Please enter  email";
+                        }
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                            .hasMatch(value)) {
+                          return "Please enter a valid email";
+                        }
+                        return null;
+                      },
+                      onSaved: (email) {},
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        label: Text("email"),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            // color: Colors.grey[400],
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.grey.shade500,
+                        )),
+                      ),
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 40,
+                    ),
+                    child: TextFormField(
+                      controller: _phone,
+                      keyboardType: TextInputType.phone,
+                      validator: (value) {
+                        if (value!.isEmpty && value!.length == 10) {
+                          return "Please enter phone number";
+                        }
+                        return null;
+                      },
+                      onSaved: (name) {},
+                      obscureText: false,
+                      decoration: InputDecoration(
+                        label: Text("phone"),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            // color: Colors.grey[400],
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -128,56 +198,23 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       horizontal: 40,
                     ),
                     child: TextFormField(
-                      controller: _email,
+                      controller: _confirmpassword,
                       keyboardType: TextInputType.text,
+                      obscureText: true,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Please enter  email";
+                          return "Please enter re-password";
                         }
-                        if (!RegExp(
-                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                            .hasMatch(value)) {
-                          return "Please enter a valid email";
-                        }
-                        return null;
-                      },
-                      onSaved: (email) {},
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        label: Text("email"),
-                        contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            // color: Colors.grey[400],
-                            color: Colors.grey.shade500,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
-                      ),
-                    )),
-                Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 40,
-                    ),
-                    child: TextFormField(
-                      controller: _phone,
-                      keyboardType: TextInputType.phone,
-                      validator: (value) {
-                        if (value!.isEmpty && value!.length == 10) {
-                          return "Please enter phone number";
+                        if (_password.text != _confirmpassword.text) {
+                          return "Password Do not match";
                         }
                         return null;
                       },
                       onSaved: (name) {},
-                      obscureText: false,
                       decoration: InputDecoration(
-                        label: Text("phone"),
+                        label: Text("confirm password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -186,15 +223,10 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
-
-
-
-
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
                   width: MediaQuery.of(context).size.width / 1.3,
@@ -208,17 +240,28 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       if (formkey.currentState!.validate()) {
                         setState(() {
 
+                          Registration();
                         });
-                     _username.clear();
-                    }},
+                        _username.clear();
+                        _email.clear();
+                        _phone.clear();
+                        _password.clear();
+                        _confirmpassword.clear();
+                      }
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
                 ),
-
-
+                Text(
+                  status ? message : message,
+                  style: GoogleFonts.lato(
+                      fontSize: 12,
+                      color: Colors.red.shade900,
+                      fontWeight: FontWeight.bold),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -247,42 +290,40 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
       ),
     );
   }
-}
 
-Widget makeInput({
-  label,
-  obsureText = false,
-}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextFormField(
-        obscureText: obsureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              // color: Colors.grey[400],
-              color: Colors.grey.shade500,
-            ),
-          ),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.grey.shade500,
-          )),
-        ),
-      ),
-      SizedBox(
-        height: 30,
-      )
-    ],
-  );
+  Future Registration() async {
+    var Url = "http://$ip_address/MySampleApp/ORBVA/Admin/Registrationn.php";
+
+    http.Response reponse = await http.post(Uri.parse(Url), body: {
+      'username': _username.text,
+      'email': _email.text,
+      'phone': _phone.text,
+      'password': _password.text
+    });
+
+    //getting response from php code, here
+    var data = jsonDecode(reponse.body);
+    var responseMessage = data["message"];
+    var responseError = data["error"];
+    print("DATA: ${data}");
+    if (responseError) {
+      setState(() {
+        status = false;
+        message = responseMessage;
+      });
+    } else {
+      _username.clear();
+      _email.clear();
+      _phone.clear();
+      _password.clear();
+      _confirmpassword.clear();
+
+      setState(() {
+        status = true;
+        message = responseMessage;
+      });
+    }
+
+    // print("DATA: ${data}");
+  }
 }
