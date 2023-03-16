@@ -4,19 +4,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 import 'package:untitled/main.dart';
 
-class User_Dashboard extends StatefulWidget {
+class Service_Dashboard extends StatefulWidget {
 
-  var name ='';
+  var email_passing ='';
 
-  User_Dashboard({required this.name});
+  Service_Dashboard({required this.email_passing});
 
 
 
   @override
-  _User_DashboardState createState() => _User_DashboardState();
+  _Service_DashboardState createState() => _Service_DashboardState();
 }
 
-class _User_DashboardState extends State<User_Dashboard> {
+class _Service_DashboardState extends State<Service_Dashboard> {
 
   // var emai;
   //
@@ -29,22 +29,10 @@ class _User_DashboardState extends State<User_Dashboard> {
   //   });
   // }
 
-  Future logout_user(BuildContext context) async {
+  Future logout(BuildContext context) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.clear();
     Navigator.push(context, MaterialPageRoute(builder: (context)=>Main_screen()));
-
-
-    // final _MerchanntsharedPrefs = await SharedPreferences.getInstance();
-    // //await _MerchanntsharedPrefs.clear();
-    // await _MerchanntsharedPrefs.remove(Merchant_Key);
-    // //push new page and remove all other pages
-    //
-    // Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(builder: (ctx1) => Service_Login()),
-    //         (route) => false);
-  }
   }
 
   @override
@@ -64,13 +52,13 @@ class _User_DashboardState extends State<User_Dashboard> {
             // Center(
             //   child: emai == null ? Text('') : Text(em)),
             SizedBox(height: 20,),
-            Text(widget.name.toString()),
+            Text(widget.email_passing.toString()),
 
 
             ElevatedButton(
             onPressed: (){
 
-              logout_user(context);
+              logout(context);
             },
             child: Text("logout"),
           ),

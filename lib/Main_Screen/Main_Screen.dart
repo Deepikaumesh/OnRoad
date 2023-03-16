@@ -11,6 +11,8 @@ import '../Admin/Admin_Login.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../Service/Service_Dashboard.dart';
+import '../Service/service_Splashscreen.dart';
 import '../User/User_Dashboard.dart';
 import '../main.dart';
 import '../test/frstscreen.dart';
@@ -32,19 +34,39 @@ class _Main_screenState extends State<Main_screen> {
 
   get()async{
     WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    em =preferences.getString('email');
+    SharedPreferences user_preferences = await SharedPreferences.getInstance();
+    em =user_preferences.getString('email');
+
+
+
   }
 
+  checkMerchantLoogedIn() async{
+    WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences service =await SharedPreferences.getInstance();
+      mer = service.getBool(Merchant_Key);
+      // if(_merchantLoggedIn == null || _merchantLoggedIn == false){
+      //   Service_Login();
+      // }
+      // else{
+      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1)));
+      // }
+
+    }
 
 
-@override
-void initState() {
-  get();
-  print(em);
 
-    // TODO: implement initState
+
+
+
+  void initState() {
+
+    get();
     super.initState();
+  }
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
   }
 
 
@@ -136,9 +158,10 @@ void initState() {
                       setState(() {
                         print("emtest");
                         print(em);
-                     //   Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login()));
-                         em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
-                         Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
+
+                         em == null ?  Get.to(User_Login()) : Get.to(User_Dashboard(name: email_text));
+                         //   em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
+                        //                          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
                       });
 
 
@@ -189,7 +212,17 @@ void initState() {
                     ],
                   ),
                   onPressed: () {
-                   Get.to(Service_Login());
+                    setState(() {
+
+                    });
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>service_Splashscreen()));
+                       // mer == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Login())) :
+                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1,)));
+                   // em == null ? Service_Login() : Service_SignupPage();
+
+                //   Get.to(Service_Login());
+                //    em1 == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Login())) :
+                //    Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1,)));
                    // em == null ? Service_Login() : Service_SignupPage();
                   },
                 ),

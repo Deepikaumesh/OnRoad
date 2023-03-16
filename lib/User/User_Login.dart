@@ -17,20 +17,24 @@ class User_Login extends StatefulWidget {
 
 class _User_LoginState extends State<User_Login> {
 
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController user_email = TextEditingController();
+  TextEditingController user_password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
 
 
   Future checkLogin() async {
-    if (email.text ==  password.text ) {
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      em =preferences.setString('email', email.text);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => User_Dashboard(name: email.text,)));
-      email_text = email.text;
+    if (user_email.text ==  user_password.text ) {
+      SharedPreferences user_preferences = await SharedPreferences.getInstance();
+      em =user_preferences.setString("email", user_email.text);
+      //em =preferences.setString('email', user_email.text);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => User_Dashboard(name: user_email.text,)));
+
+      print('em value ${em}');
+      email_text = user_email.text;
       print("availability of email.text" + email_text);
+
       Fluttertoast.showToast(
           msg: 'Login successfull',
           toastLength: Toast.LENGTH_SHORT,
@@ -78,7 +82,7 @@ class _User_LoginState extends State<User_Login> {
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextFormField(
-                      controller: email,
+                      controller: user_email,
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -98,7 +102,7 @@ class _User_LoginState extends State<User_Login> {
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
                     //padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
-                      controller: password,
+                      controller: user_password,
 
                       keyboardType: TextInputType.text,
                       validator: (value) {
@@ -129,6 +133,7 @@ class _User_LoginState extends State<User_Login> {
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: () {
+
                  // Get.back();
                   setState(() {
 
@@ -136,8 +141,10 @@ class _User_LoginState extends State<User_Login> {
 
                   checkLogin();
 
+
+
                   if (formkey.currentState!.validate()) {
-                    print("Successfully  logged");
+                    print("Successfully  logged user");
                     // email.clear();
                     // password.clear();
                   }

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/Service/Service_Dashboard.dart';
 import 'package:untitled/User/User_SignUp.dart';
+
+import '../main.dart';
 
 
 
@@ -12,9 +17,47 @@ class Service_Login extends StatefulWidget {
 
 class _Service_LoginState extends State<Service_Login> {
 
-  TextEditingController email = TextEditingController();
+  TextEditingController service_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  Future checkLogin() async {
+    if (service_email.text ==  password.text ) {
+
+      final _sharedPrefs = await SharedPreferences.getInstance();
+      await _sharedPrefs.setBool(Merchant_Key, true);
+
+
+
+
+
+
+      // SharedPreferences service_preferences = await SharedPreferences.getInstance();
+      // em1 =service_preferences.setString('email_service', service_email.text);
+
+
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Service_Dashboard(email_passing: service_email.text.toString(),)));
+      email_text1 = service_email.text;
+       print("availability of email.text service login" + email_text1);
+      Fluttertoast.showToast(
+          msg: 'Login successfull',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green);
+    }else{
+      Fluttertoast.showToast(
+          msg: 'invalid email & password ',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green);
+
+    }
+  }
+
 
 
   @override
@@ -45,7 +88,7 @@ class _Service_LoginState extends State<Service_Login> {
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextFormField(
-                      controller: email,
+                      controller: service_email,
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -98,13 +141,14 @@ class _Service_LoginState extends State<Service_Login> {
                 onPressed: () {
                   // Get.back();
                   setState(() {
+                    checkLogin();
 
                   });
 
                   if (formkey.currentState!.validate()) {
-                    print("Successfully  logged");
-                    email.clear();
-                    password.clear();
+                    print("Successfully  logged Service");
+                    // email.clear();
+                    // password.clear();
                   }
 
                 },
