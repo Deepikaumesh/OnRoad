@@ -8,6 +8,7 @@ import 'package:untitled/Service/Service_Dashboard.dart';
 import 'package:untitled/User/User_SignUp.dart';
 
 import '../main.dart';
+import 'Admin_SignUp.dart';
 
 
 
@@ -100,8 +101,8 @@ class _Admin_LoginState extends State<Admin_Login> {
                       onSaved: (username) {},
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Email',
-                          hintText: 'Enter valid email id as abc@gmail.com'),
+                         // labelText: 'Email',
+                          hintText: 'username'),
                     ),
                   ),
                   Padding(
@@ -176,7 +177,7 @@ class _Admin_LoginState extends State<Admin_Login> {
 
                 Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
                 TextButton(onPressed: (){
-                  Get.to(Admin_Login());
+                  Get.to(Admin_SignupPage());
                 }, child: Text("Create Account"))
               ],)
           ],

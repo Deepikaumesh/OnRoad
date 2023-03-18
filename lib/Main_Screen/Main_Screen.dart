@@ -21,57 +21,17 @@ import '../test/frstscreen.dart';
 import '../test/splashscreen.dart';
 
 class Main_screen extends StatefulWidget {
-
   const Main_screen({Key? key}) : super(key: key);
 
   @override
-
   _Main_screenState createState() => _Main_screenState();
 }
 
 class _Main_screenState extends State<Main_screen> {
-
-
- // String  em ;
-
-
-  get()async{
-    WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences user_preferences = await SharedPreferences.getInstance();
-    em =user_preferences.getString('email');
-
-
-
-  }
-
-  checkMerchantLoogedIn() async{
-    WidgetsFlutterBinding.ensureInitialized();
-      SharedPreferences service =await SharedPreferences.getInstance();
-      mer = service.getBool(Merchant_Key);
-      // if(_merchantLoggedIn == null || _merchantLoggedIn == false){
-      //   Service_Login();
-      // }
-      // else{
-      //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1)));
-      // }
-
-    }
-
-
-
-
-
-
-  void initState() {
-
-    get();
-    super.initState();
-  }
   @override
-  void didChangeDependencies(){
+  void didChangeDependencies() {
     super.didChangeDependencies();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +42,10 @@ class _Main_screenState extends State<Main_screen> {
           child: Column(
             children: [
               Container(
-               // color:Colors.red,
-                 margin: EdgeInsets.symmetric(vertical: 20),
-                 padding:EdgeInsets.symmetric(horizontal: 20),
-                  height: MediaQuery.of(context).size.height/14,
+                  // color:Colors.red,
+                  margin: EdgeInsets.symmetric(vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  height: MediaQuery.of(context).size.height / 14,
                   child: Text("ORBVA",
                       style: GoogleFonts.sourceSerifPro(
                           fontSize: 50, color: Colors.red.shade900))),
@@ -130,22 +90,23 @@ class _Main_screenState extends State<Main_screen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height:MediaQuery.of(context).size.height/2,
-                          width: MediaQuery.of(context).size.width/7,
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: MediaQuery.of(context).size.width / 7,
                           child: Container(
-                            height:MediaQuery.of(context).size.height/2,
-                            width: MediaQuery.of(context).size.width/7,
+                            height: MediaQuery.of(context).size.height / 2,
+                            width: MediaQuery.of(context).size.width / 7,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               // color: Colors.teal,
                               image: DecorationImage(
-                                  image: AssetImage("assets/images/user (2).png"),
+                                  image:
+                                      AssetImage("assets/images/user (2).png"),
                                   fit: BoxFit.contain),
                             ),
                           ),
                         ),
                         Spacer(),
-                      //  Text("--------------------------------------"),
+                        //  Text("--------------------------------------"),
                         Text(
                           'USER',
                           style: TextStyle(
@@ -157,18 +118,20 @@ class _Main_screenState extends State<Main_screen> {
                       ],
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>User_Splashscreen()));
-                     // Get.to(User_Login());
-                     //  setState(() {
-                     //    print("emtest");
-                     //    print(em);
-                     //
-                     //     em == null ?  Get.to(User_Login()) : Get.to(User_Dashboard(name: email_text));
-                     //     //   em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
-                     //    //                          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
-                     //  });
-
-
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  User_Splashscreen()));
+                      // Get.to(User_Login());
+                      //  setState(() {
+                      //    print("emtest");
+                      //    print(em);
+                      //
+                      //     em == null ?  Get.to(User_Login()) : Get.to(User_Dashboard(name: email_text));
+                      //     //   em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
+                      //    //                          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
+                      //  });
                     },
                   ),
                 ),
@@ -189,22 +152,23 @@ class _Main_screenState extends State<Main_screen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height:MediaQuery.of(context).size.height/2,
-                        width: MediaQuery.of(context).size.width/7,
+                        height: MediaQuery.of(context).size.height / 2,
+                        width: MediaQuery.of(context).size.width / 7,
                         child: Container(
-                          height:MediaQuery.of(context).size.height/2,
-                          width: MediaQuery.of(context).size.width/7,
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: MediaQuery.of(context).size.width / 7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             // color: Colors.teal,
                             image: DecorationImage(
-                                image: AssetImage("assets/images/customer-service.png"),
+                                image: AssetImage(
+                                    "assets/images/customer-service.png"),
                                 fit: BoxFit.contain),
                           ),
                         ),
                       ),
                       Spacer(),
-                  //    Text("-------------------------------"),
+                      //    Text("-------------------------------"),
                       Text(
                         'SERVICE',
                         style: TextStyle(
@@ -216,18 +180,19 @@ class _Main_screenState extends State<Main_screen> {
                     ],
                   ),
                   onPressed: () {
-                    setState(() {
+                    setState(() {});
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => service_Splashscreen()));
+                    // mer == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Login())) :
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1,)));
+                    // em == null ? Service_Login() : Service_SignupPage();
 
-                    });
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>service_Splashscreen()));
-                       // mer == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Login())) :
-                       // Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1,)));
-                   // em == null ? Service_Login() : Service_SignupPage();
-
-                //   Get.to(Service_Login());
-                //    em1 == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Login())) :
-                //    Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1,)));
-                   // em == null ? Service_Login() : Service_SignupPage();
+                    //   Get.to(Service_Login());
+                    //    em1 == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Login())) :
+                    //    Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1,)));
+                    // em == null ? Service_Login() : Service_SignupPage();
                   },
                 ),
               ),
@@ -247,22 +212,23 @@ class _Main_screenState extends State<Main_screen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height:MediaQuery.of(context).size.height/2,
-                        width: MediaQuery.of(context).size.width/7,
+                        height: MediaQuery.of(context).size.height / 2,
+                        width: MediaQuery.of(context).size.width / 7,
                         child: Container(
-                          height:MediaQuery.of(context).size.height/2,
-                          width: MediaQuery.of(context).size.width/7,
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: MediaQuery.of(context).size.width / 7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             // color: Colors.teal,
                             image: DecorationImage(
-                                image: AssetImage("assets/images/businessman.png"),
+                                image:
+                                    AssetImage("assets/images/businessman.png"),
                                 fit: BoxFit.contain),
                           ),
                         ),
                       ),
                       Spacer(),
-                     // Text("----------------------------------"),
+                      // Text("----------------------------------"),
                       Text(
                         'ADMIN',
                         style: TextStyle(
@@ -274,12 +240,18 @@ class _Main_screenState extends State<Main_screen> {
                     ],
                   ),
                   onPressed: () {
-                 //Get.to(Admin_Login());
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Admin_Splashscreen()));
+                    //Get.to(Admin_Login());
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Admin_Splashscreen()));
                   },
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               // ElevatedButton(onPressed: (){
               //   Navigator.push(context, MaterialPageRoute(builder: (context)=>frst()));
               // },

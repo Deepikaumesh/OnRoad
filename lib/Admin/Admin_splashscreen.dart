@@ -28,7 +28,7 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
       // login_page() : homepage()));
 
       await Timer(Duration(microseconds: 1),() {
-        Admin_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Admin_Login())):
+        Admin_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>Admin_Login())):
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Admin_Dashboard(data_passing_admin: null,)));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
 

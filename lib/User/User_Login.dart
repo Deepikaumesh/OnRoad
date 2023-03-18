@@ -101,8 +101,8 @@ class _User_LoginState extends State<User_Login> {
                       onSaved: (username) {},
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Email',
-                          hintText: 'Enter valid email id as abc@gmail.com'),
+                        //  labelText: 'Email',
+                          hintText: 'username'),
                     ),
                   ),
                   Padding(
@@ -177,7 +177,7 @@ class _User_LoginState extends State<User_Login> {
 
                 Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
                 TextButton(onPressed: (){
-                  Get.to(User_Login());
+                  Get.to(User_SignupPage());
                 }, child: Text("Create Account"))
               ],)
           ],

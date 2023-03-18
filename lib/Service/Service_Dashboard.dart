@@ -16,14 +16,11 @@ class Service_Dashboard extends StatefulWidget {
 
   Service_Dashboard({required this.data_passing_service});
 
-
-
   @override
   _Service_DashboardState createState() => _Service_DashboardState();
 }
 
 class _Service_DashboardState extends State<Service_Dashboard> {
-
   // void initState() {
   //   setState(() {
   //     email_text;
@@ -49,30 +46,32 @@ class _Service_DashboardState extends State<Service_Dashboard> {
   //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Main_screen()));
   // }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("service"),),
+      appBar: AppBar(
+        title: Text("service"),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children:[
-            // Center(
-            //   child: emai == null ? Text('') : Text(em)),
-            SizedBox(height: 20,),
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Center(
+          //   child: emai == null ? Text('') : Text(em)),
+          SizedBox(
+            height: 20,
+          ),
           // Text("hai"+widget.data_passing_service.toString()),
-            Text('welcome${service_key}'),
-            MaterialButton(
-                color: Colors.lightBlueAccent,
-                child: Text('remove credentials service'),
-                onPressed: () async{
-                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
-                  sharedpreferences.remove('service_email');
-                  Get.to(Main_screen());
-
-                })
+          Text('welcome${service_key}'),
+          MaterialButton(
+              color: Colors.lightBlueAccent,
+              child: Text('remove credentials service'),
+              onPressed: () async {
+                final SharedPreferences sharedpreferences =
+                    await SharedPreferences.getInstance();
+                sharedpreferences.remove('service_email');
+                Get.to(Main_screen());
+              })
 
           //   ElevatedButton(
           //   onPressed: (){
@@ -81,24 +80,8 @@ class _Service_DashboardState extends State<Service_Dashboard> {
           //   },
           //   child: Text("logout"),
           // ),
-
-      ],
-        ),
-
+        ],
+      ),
     );
-
-
-  }
-  Merchant_Signout() async //using navigator so we need context
-      {
-    final _MerchanntsharedPrefs = await SharedPreferences.getInstance();
-    //await _MerchanntsharedPrefs.clear();
-    await _MerchanntsharedPrefs.remove(Merchant_Key);
-    //push new page and remove all other pages
-
-    Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (ctx1) => Service_Login()),
-            (route) => false);
   }
 }
