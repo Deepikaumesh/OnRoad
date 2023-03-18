@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
+import 'package:untitled/Service/service_Splashscreen.dart';
 import 'package:untitled/main.dart';
 
+import '../test/login_page.dart';
 import 'Service_Login.dart';
 
 class Service_Dashboard extends StatefulWidget {
+  //
+  var data_passing_service;
 
-  var email_passing;
-
-  Service_Dashboard({required this.email_passing});
+  Service_Dashboard({required this.data_passing_service});
 
 
 
@@ -19,6 +23,14 @@ class Service_Dashboard extends StatefulWidget {
 }
 
 class _Service_DashboardState extends State<Service_Dashboard> {
+
+  // void initState() {
+  //   setState(() {
+  //     email_text;
+  //   });
+  //
+  //   super.initState();
+  // }
 
   // var emai;
   //
@@ -37,16 +49,12 @@ class _Service_DashboardState extends State<Service_Dashboard> {
   //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Main_screen()));
   // }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
 
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("service"),),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,16 +62,25 @@ class _Service_DashboardState extends State<Service_Dashboard> {
             // Center(
             //   child: emai == null ? Text('') : Text(em)),
             SizedBox(height: 20,),
-            Text(widget.email_passing.toString()),
+          // Text("hai"+widget.data_passing_service.toString()),
+            Text('welcome${service_key}'),
+            MaterialButton(
+                color: Colors.lightBlueAccent,
+                child: Text('remove credentials service'),
+                onPressed: () async{
+                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+                  sharedpreferences.remove('service_email');
+                  Get.to(Main_screen());
 
+                })
 
-            ElevatedButton(
-            onPressed: (){
-
-              Merchant_Signout();
-            },
-            child: Text("logout"),
-          ),
+          //   ElevatedButton(
+          //   onPressed: (){
+          //
+          //     Merchant_Signout();
+          //   },
+          //   child: Text("logout"),
+          // ),
 
       ],
         ),

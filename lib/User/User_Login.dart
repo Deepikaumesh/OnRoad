@@ -3,10 +3,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/Admin/Admin_Dashboard.dart';
+import 'package:untitled/Service/Service_Dashboard.dart';
+import 'package:untitled/User/User_Dashboard.dart';
 import 'package:untitled/User/User_SignUp.dart';
 
 import '../main.dart';
-import 'User_Dashboard.dart';
 
 
 
@@ -18,40 +20,45 @@ class User_Login extends StatefulWidget {
 class _User_LoginState extends State<User_Login> {
 
   TextEditingController user_email = TextEditingController();
-  TextEditingController user_password = TextEditingController();
+  TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-
-
-  Future checkLogin() async {
-    if (user_email.text ==  user_password.text ) {
-      SharedPreferences user_preferences = await SharedPreferences.getInstance();
-      em =user_preferences.setString("email", user_email.text);
-      //em =preferences.setString('email', user_email.text);
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => User_Dashboard(name: user_email.text,)));
-
-      print('em value ${em}');
-      email_text = user_email.text;
-      print("availability of email.text" + email_text);
-
-      Fluttertoast.showToast(
-          msg: 'Login successfull',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green);
-    }else{
-      Fluttertoast.showToast(
-          msg: 'invalid email & password ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green);
-
-    }
-  }
-
+  // Future checkLogin() async {
+  //   if (service_email.text ==  password.text ) {
+  //
+  //     final _sharedPrefs = await SharedPreferences.getInstance();
+  //     await _sharedPrefs.setBool(Merchant_Key, true);
+  //
+  //
+  //
+  //
+  //
+  //
+  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
+  //     // em1 =service_preferences.setString('email_service', service_email.text);
+  //
+  //
+  //
+  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
+  //     email_text1 = service_email.text;
+  //      print("availability of email.text service login" + email_text1);
+  //     Fluttertoast.showToast(
+  //         msg: 'Login successfull',
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: Colors.green);
+  //   }else{
+  //     Fluttertoast.showToast(
+  //         msg: 'invalid email & password ',
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: Colors.green);
+  //
+  //   }
+  // }
+  //
 
 
   @override
@@ -59,6 +66,7 @@ class _User_LoginState extends State<User_Login> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text("User login",style: TextStyle(color: Colors.blueGrey),),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -91,18 +99,18 @@ class _User_LoginState extends State<User_Login> {
                         return null;
                       },
                       onSaved: (username) {},
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Email',
-                        hintText: 'Enter valid email id as abc@gmail.com'),
-                ),
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                          hintText: 'Enter valid email id as abc@gmail.com'),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
                     //padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
-                      controller: user_password,
+                      controller: password,
 
                       keyboardType: TextInputType.text,
                       validator: (value) {
@@ -120,7 +128,7 @@ class _User_LoginState extends State<User_Login> {
                           hintText: 'Enter secure password'),
                     ),
                   ),
-             ], ),
+                ], ),
             ),
 
             SizedBox(height: 30,),
@@ -132,16 +140,20 @@ class _User_LoginState extends State<User_Login> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
-                onPressed: () {
+                onPressed: () async{
+                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
 
-                 // Get.back();
-                  setState(() {
+                  sharedpreferences.setString('user_email', user_email.text);
+                  email_text2 = user_email.text;
+                  //Get.to(Service_Dashboard());
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => User_Dashboard(data_passing_user: email_text2,)));
 
-                  });
-
-                  checkLogin();
-
-
+                  // Get.back();
+                  // setState(() {
+                  //  // checkLogin();
+                  //
+                  //
+                  // });
 
                   if (formkey.currentState!.validate()) {
                     print("Successfully  logged user");
@@ -149,7 +161,7 @@ class _User_LoginState extends State<User_Login> {
                     // password.clear();
                   }
 
-                 },
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 35),
@@ -163,11 +175,11 @@ class _User_LoginState extends State<User_Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children:[
 
-              Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
-              TextButton(onPressed: (){
-                Get.to(User_SignupPage());
-              }, child: Text("Create Account"))
-    ],)
+                Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
+                TextButton(onPressed: (){
+                  Get.to(User_Login());
+                }, child: Text("Create Account"))
+              ],)
           ],
         ),
       ),

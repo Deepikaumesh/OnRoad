@@ -11,11 +11,14 @@ import '../Admin/Admin_Login.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../Admin/Admin_splashscreen.dart';
 import '../Service/Service_Dashboard.dart';
 import '../Service/service_Splashscreen.dart';
 import '../User/User_Dashboard.dart';
+import '../User/User_splashscreen.dart';
 import '../main.dart';
 import '../test/frstscreen.dart';
+import '../test/splashscreen.dart';
 
 class Main_screen extends StatefulWidget {
 
@@ -154,15 +157,16 @@ class _Main_screenState extends State<Main_screen> {
                       ],
                     ),
                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>User_Splashscreen()));
                      // Get.to(User_Login());
-                      setState(() {
-                        print("emtest");
-                        print(em);
-
-                         em == null ?  Get.to(User_Login()) : Get.to(User_Dashboard(name: email_text));
-                         //   em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
-                        //                          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
-                      });
+                     //  setState(() {
+                     //    print("emtest");
+                     //    print(em);
+                     //
+                     //     em == null ?  Get.to(User_Login()) : Get.to(User_Dashboard(name: email_text));
+                     //     //   em == null ? Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Login())) :
+                     //    //                          Navigator.push(context, MaterialPageRoute(builder: (context)=>User_Dashboard(name: email_text,)));
+                     //  });
 
 
                     },
@@ -270,8 +274,8 @@ class _Main_screenState extends State<Main_screen> {
                     ],
                   ),
                   onPressed: () {
-                 Get.to(Admin_Login());
-                 // Navigator.push(context, MaterialPageRoute(builder: (context)=>Admin_Login()));
+                 //Get.to(Admin_Login());
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Admin_Splashscreen()));
                   },
                 ),
               ),

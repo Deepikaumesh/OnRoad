@@ -21,43 +21,42 @@ class _Service_LoginState extends State<Service_Login> {
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  Future checkLogin() async {
-    if (service_email.text ==  password.text ) {
-
-      final _sharedPrefs = await SharedPreferences.getInstance();
-      await _sharedPrefs.setBool(Merchant_Key, true);
-
-
-
-
-
-
-      // SharedPreferences service_preferences = await SharedPreferences.getInstance();
-      // em1 =service_preferences.setString('email_service', service_email.text);
-
-
-
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Service_Dashboard(email_passing: service_email.text.toString(),)));
-      email_text1 = service_email.text;
-       print("availability of email.text service login" + email_text1);
-      Fluttertoast.showToast(
-          msg: 'Login successfull',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green);
-    }else{
-      Fluttertoast.showToast(
-          msg: 'invalid email & password ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.green);
-
-    }
-  }
-
+  // Future checkLogin() async {
+  //   if (service_email.text ==  password.text ) {
+  //
+  //     final _sharedPrefs = await SharedPreferences.getInstance();
+  //     await _sharedPrefs.setBool(Merchant_Key, true);
+  //
+  //
+  //
+  //
+  //
+  //
+  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
+  //     // em1 =service_preferences.setString('email_service', service_email.text);
+  //
+  //
+  //
+  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
+  //     email_text1 = service_email.text;
+  //      print("availability of email.text service login" + email_text1);
+  //     Fluttertoast.showToast(
+  //         msg: 'Login successfull',
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: Colors.green);
+  //   }else{
+  //     Fluttertoast.showToast(
+  //         msg: 'invalid email & password ',
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: Colors.green);
+  //
+  //   }
+  // }
+  //
 
 
   @override
@@ -65,6 +64,7 @@ class _Service_LoginState extends State<Service_Login> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text("servicelogin",style: TextStyle(color: Colors.blueGrey),),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -138,12 +138,20 @@ class _Service_LoginState extends State<Service_Login> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
-                onPressed: () {
-                  // Get.back();
-                  setState(() {
-                    checkLogin();
+                onPressed: () async{
+                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
 
-                  });
+                  sharedpreferences.setString('service_email', service_email.text);
+                  email_text1 = service_email.text;
+                  //Get.to(Service_Dashboard());
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service:email_text1 ,)));
+
+                  // Get.back();
+                  // setState(() {
+                  //  // checkLogin();
+                  //
+                  //
+                  // });
 
                   if (formkey.currentState!.validate()) {
                     print("Successfully  logged Service");
@@ -167,7 +175,7 @@ class _Service_LoginState extends State<Service_Login> {
 
                 Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
                 TextButton(onPressed: (){
-                  Get.to(User_SignupPage());
+                  Get.to(Service_Login());
                 }, child: Text("Create Account"))
               ],)
           ],

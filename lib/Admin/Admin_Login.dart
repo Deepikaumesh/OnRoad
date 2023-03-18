@@ -3,8 +3,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/User/User_Dashboard.dart';
+import 'package:untitled/Admin/Admin_Dashboard.dart';
+import 'package:untitled/Service/Service_Dashboard.dart';
 import 'package:untitled/User/User_SignUp.dart';
+
+import '../main.dart';
+
+
 
 class Admin_Login extends StatefulWidget {
   @override
@@ -12,19 +17,30 @@ class Admin_Login extends StatefulWidget {
 }
 
 class _Admin_LoginState extends State<Admin_Login> {
-  // var eml = 'deeps@gmail.com';
-  // var pass = '123';
 
-  TextEditingController email = TextEditingController();
+  TextEditingController admin_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   // Future checkLogin() async {
-  //   if (email == eml && password == pass) {
-  //     SharedPreferences preferences = await SharedPreferences.getInstance();
-  //     preferences.setString('email', email.text);
-  //     Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => User_Dashboard()));
+  //   if (service_email.text ==  password.text ) {
+  //
+  //     final _sharedPrefs = await SharedPreferences.getInstance();
+  //     await _sharedPrefs.setBool(Merchant_Key, true);
+  //
+  //
+  //
+  //
+  //
+  //
+  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
+  //     // em1 =service_preferences.setString('email_service', service_email.text);
+  //
+  //
+  //
+  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
+  //     email_text1 = service_email.text;
+  //      print("availability of email.text service login" + email_text1);
   //     Fluttertoast.showToast(
   //         msg: 'Login successfull',
   //         toastLength: Toast.LENGTH_SHORT,
@@ -41,12 +57,15 @@ class _Admin_LoginState extends State<Admin_Login> {
   //
   //   }
   // }
+  //
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text("Admin login",style: TextStyle(color: Colors.blueGrey),),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -65,12 +84,12 @@ class _Admin_LoginState extends State<Admin_Login> {
             Form(
               key: formkey,
               child: Column(
-                children: [
+                children:[
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
                     child: TextFormField(
-                      controller: email,
+                      controller: admin_email,
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -91,6 +110,7 @@ class _Admin_LoginState extends State<Admin_Login> {
                     //padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
                       controller: password,
+
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -107,28 +127,39 @@ class _Admin_LoginState extends State<Admin_Login> {
                           hintText: 'Enter secure password'),
                     ),
                   ),
-                ],
-              ),
+                ], ),
             ),
+
+            SizedBox(height: 30,),
+
             SizedBox(
-              height: 30,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 15,
-              width: MediaQuery.of(context).size.width / 1.3,
+              height: MediaQuery.of(context).size.height/15,
+              width: MediaQuery.of(context).size.width/1.3,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
-                onPressed: () {
+                onPressed: () async{
+                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+
+                  sharedpreferences.setString('admin_email', admin_email.text);
+                  email_text = admin_email.text;
+                  //Get.to(Service_Dashboard());
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Admin_Dashboard(data_passing_admin: email_text,)));
+
                   // Get.back();
-                  setState(() {});
+                  // setState(() {
+                  //  // checkLogin();
+                  //
+                  //
+                  // });
 
                   if (formkey.currentState!.validate()) {
-                    print("Successfully  logged");
-                    email.clear();
-                    password.clear();
+                    print("Successfully  logged admin");
+                    // email.clear();
+                    // password.clear();
                   }
+
                 },
                 child: Text(
                   'Login',
@@ -141,18 +172,13 @@ class _Admin_LoginState extends State<Admin_Login> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'New User?',
-                  style: TextStyle(color: Colors.black87, fontSize: 15),
-                ),
-                TextButton(
-                    onPressed: () {
-                      Get.to(User_SignupPage());
-                    },
-                    child: Text("Create Account"))
-              ],
-            )
+              children:[
+
+                Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
+                TextButton(onPressed: (){
+                  Get.to(Admin_Login());
+                }, child: Text("Create Account"))
+              ],)
           ],
         ),
       ),
