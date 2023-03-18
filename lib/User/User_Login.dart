@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -7,10 +9,9 @@ import 'package:untitled/Admin/Admin_Dashboard.dart';
 import 'package:untitled/Service/Service_Dashboard.dart';
 import 'package:untitled/User/User_Dashboard.dart';
 import 'package:untitled/User/User_SignUp.dart';
+import 'package:http/http.dart' as http;
 
 import '../main.dart';
-
-
 
 class User_Login extends StatefulWidget {
   @override
@@ -18,55 +19,19 @@ class User_Login extends StatefulWidget {
 }
 
 class _User_LoginState extends State<User_Login> {
-
   TextEditingController user_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
-  // Future checkLogin() async {
-  //   if (service_email.text ==  password.text ) {
-  //
-  //     final _sharedPrefs = await SharedPreferences.getInstance();
-  //     await _sharedPrefs.setBool(Merchant_Key, true);
-  //
-  //
-  //
-  //
-  //
-  //
-  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
-  //     // em1 =service_preferences.setString('email_service', service_email.text);
-  //
-  //
-  //
-  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
-  //     email_text1 = service_email.text;
-  //      print("availability of email.text service login" + email_text1);
-  //     Fluttertoast.showToast(
-  //         msg: 'Login successfull',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //   }else{
-  //     Fluttertoast.showToast(
-  //         msg: 'invalid email & password ',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //
-  //   }
-  // }
-  //
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("User login",style: TextStyle(color: Colors.blueGrey),),
+        title: Text(
+          "User login",
+          style: TextStyle(color: Colors.blueGrey),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -85,7 +50,7 @@ class _User_LoginState extends State<User_Login> {
             Form(
               key: formkey,
               child: Column(
-                children:[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
@@ -101,7 +66,7 @@ class _User_LoginState extends State<User_Login> {
                       onSaved: (username) {},
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                        //  labelText: 'Email',
+                          //  labelText: 'Email',
                           hintText: 'username'),
                     ),
                   ),
@@ -111,7 +76,6 @@ class _User_LoginState extends State<User_Login> {
                     //padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
                       controller: password,
-
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -128,25 +92,35 @@ class _User_LoginState extends State<User_Login> {
                           hintText: 'Enter secure password'),
                     ),
                   ),
-                ], ),
+                ],
+              ),
             ),
-
-            SizedBox(height: 30,),
-
             SizedBox(
-              height: MediaQuery.of(context).size.height/15,
-              width: MediaQuery.of(context).size.width/1.3,
+              height: 30,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 15,
+              width: MediaQuery.of(context).size.width / 1.3,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
-                onPressed: () async{
-                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
-
-                  sharedpreferences.setString('user_email', user_email.text);
-                  email_text2 = user_email.text;
+                onPressed: ()
+                //async
+                {
+                  user_Login();
+                  // final SharedPreferences sharedpreferences =
+                  //     await SharedPreferences.getInstance();
+                  //
+                  // sharedpreferences.setString('user_email', user_email.text);
+                  //email_text2 = user_email.text;
                   //Get.to(Service_Dashboard());
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => User_Dashboard(data_passing_user: email_text2,)));
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) => User_Dashboard(
+                  //               data_passing_user: email_text2,
+                  //             )));
 
                   // Get.back();
                   // setState(() {
@@ -160,7 +134,6 @@ class _User_LoginState extends State<User_Login> {
                     // email.clear();
                     // password.clear();
                   }
-
                 },
                 child: Text(
                   'Login',
@@ -173,16 +146,90 @@ class _User_LoginState extends State<User_Login> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-
-                Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
-                TextButton(onPressed: (){
-                  Get.to(User_SignupPage());
-                }, child: Text("Create Account"))
-              ],)
+              children: [
+                Text(
+                  'New User?',
+                  style: TextStyle(color: Colors.black87, fontSize: 15),
+                ),
+                TextButton(
+                    onPressed: () {
+                      Get.to(User_SignupPage());
+                    },
+                    child: Text("Create Account"))
+              ],
+            )
           ],
         ),
       ),
     );
+  }
+
+  Future user_Login() async {
+    //var url ="https://anthracitic-pecks.000webhostapp.com/Hope_Charity_Project/Admin/Hope_Admin_Login.php"; //intego wifi password
+    var url = "http://$ip/MySampleApp/ORBVA/User/login.php";
+    var response = await http.post(Uri.parse(url), headers: {
+      'Accept': 'application/json'
+    }, body: {
+      "username": user_email.text,
+      "password": password.text,
+    });
+    var data = json.decode(response.body);
+    // if (data.toString() == "Success") {
+    if (data != null) {
+      //var responseData = json.decode(response.body);
+
+      for (var singleUser in data) {
+        final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+
+       await sharedpreferences.setString('user_email', singleUser["email"]);
+
+
+
+
+      }
+
+      final snackBar = SnackBar(
+        content: Text('Login Successfull'),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: () {
+            // Some code to undo the change.
+          },
+        ),
+      );
+
+      // Find the ScaffoldMessenger in the widget tree
+      // and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      // final _CustomersharedPrefs = await SharedPreferences.getInstance();
+      // // await _CustomersharedPrefs.setBool(Customer_Key, true);
+      // await _CustomersharedPrefs.setInt("userid", data["id"]);
+
+      //
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => User_Dashboard(
+                data_passing_user: email_text2,
+              )));
+
+
+
+    } else {
+      final snackBar = SnackBar(
+        content: Text('Username and password invalid'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            // Some code to undo the change.
+          },
+        ),
+      );
+
+      // Find the ScaffoldMessenger in the widget tree
+      // and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 }

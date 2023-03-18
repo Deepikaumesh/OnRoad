@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -8,6 +10,7 @@ import 'package:untitled/User/User_SignUp.dart';
 
 import '../main.dart';
 import 'Service_SignUp.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -139,20 +142,22 @@ class _Service_LoginState extends State<Service_Login> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
-                onPressed: () async{
-                  final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
-
-                  sharedpreferences.setString('service_email', service_email.text);
-                  email_text1 = service_email.text;
-                  //Get.to(Service_Dashboard());
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service:email_text1 ,)));
+                onPressed: ()
+                //async
+                {
+                  // final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+                  //
+                  // sharedpreferences.setString('service_email', service_email.text);
+                  // email_text1 = service_email.text;
+                  // //Get.to(Service_Dashboard());
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service:email_text1 ,)));
 
                   // Get.back();
-                  // setState(() {
-                  //  // checkLogin();
-                  //
-                  //
-                  // });
+                  setState(() {
+                    service_Login();
+
+
+                  });
 
                   if (formkey.currentState!.validate()) {
                     print("Successfully  logged Service");
@@ -183,5 +188,72 @@ class _Service_LoginState extends State<Service_Login> {
         ),
       ),
     );
+  }
+  Future service_Login() async {
+
+    var url = "http://$ip/MySampleApp/ORBVA/Service/login.php";
+    var response = await http.post(Uri.parse(url), headers: {
+      'Accept': 'application/json'
+    }, body: {
+      "username": service_email.text,
+      "password": password.text,
+    });
+    var data = json.decode(response.body);
+    // if (data.toString() == "Success") {
+    if (data != null) {
+      //var responseData = json.decode(response.body);
+
+      for (var singleUser in data) {
+        final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+
+        await sharedpreferences.setString('service_email', singleUser["email"]);
+
+
+
+
+      }
+
+      final snackBar = SnackBar(
+        content: Text('Login Successfull'),
+        action: SnackBarAction(
+          label: 'Ok',
+          onPressed: () {
+            // Some code to undo the change.
+          },
+        ),
+      );
+
+      // Find the ScaffoldMessenger in the widget tree
+      // and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      // final _CustomersharedPrefs = await SharedPreferences.getInstance();
+      // // await _CustomersharedPrefs.setBool(Customer_Key, true);
+      // await _CustomersharedPrefs.setInt("userid", data["id"]);
+
+      //
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => Service_Dashboard(data_passing_service: null,
+              )));
+
+
+
+    } else {
+      final snackBar = SnackBar(
+        content: Text('Username and password invalid'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            // Some code to undo the change.
+          },
+        ),
+      );
+
+      // Find the ScaffoldMessenger in the widget tree
+      // and use it to show a SnackBar.
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 }
