@@ -29,7 +29,7 @@ class _User_SplashscreenState extends State<User_Splashscreen> {
       // Timer(Duration(seconds: 2),() => Get.to(finalemail == null ?
       // login_page() : homepage()));
 
-      await Timer(Duration(microseconds: 1),() {
+      await Timer(Duration(seconds: 1),() {
         User_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>User_Login())):
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => User_Dashboard(data_passing_user: email_text2,)));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
@@ -75,13 +75,15 @@ class _User_SplashscreenState extends State<User_Splashscreen> {
           //   height: 10,
           // ),
           Text(
-            "welcome",
+            "Loading......",
             style: GoogleFonts.aclonica(
               color: Colors.red.shade900,
               fontSize: 11.0,
               fontWeight: FontWeight.w600,
             ),
           ),
+          SizedBox(height: 20,),
+          CircularProgressIndicator(color: Colors.lightBlue,),
         ],
 
 

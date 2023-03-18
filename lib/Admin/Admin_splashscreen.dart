@@ -27,7 +27,7 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
       // Timer(Duration(seconds: 2),() => Get.to(finalemail == null ?
       // login_page() : homepage()));
 
-      await Timer(Duration(microseconds: 1),() {
+      await Timer(Duration(seconds: 1),() {
         Admin_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>Admin_Login())):
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Admin_Dashboard(data_passing_admin: null,)));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
@@ -73,13 +73,15 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
           //   height: 10,
           // ),
           Text(
-            "welcome",
+            "Loading......",
             style: GoogleFonts.aclonica(
               color: Colors.red.shade900,
               fontSize: 11.0,
               fontWeight: FontWeight.w600,
             ),
           ),
+          SizedBox(height: 20,),
+          CircularProgressIndicator(color: Colors.lightBlue,),
         ],
 
 
