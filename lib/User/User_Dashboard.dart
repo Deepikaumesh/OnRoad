@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Admin/Admin_Login.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
+import 'package:untitled/User/Drawer_User.dart';
 import 'package:untitled/User/User_splashscreen.dart';
 
 
@@ -49,6 +50,9 @@ class _User_DashboardState extends State<User_Dashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text("user"),
+      ),
+      drawer: Drawer(
+        child: UserDrawer(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
