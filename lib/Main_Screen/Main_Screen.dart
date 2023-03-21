@@ -18,6 +18,7 @@ import '../User/User_Dashboard.dart';
 import '../User/User_splashscreen.dart';
 import '../main.dart';
 import '../test/frstscreen.dart';
+import '../test/geo_location.dart';
 import '../test/splashscreen.dart';
 
 class Main_screen extends StatefulWidget {
@@ -256,6 +257,12 @@ class _Main_screenState extends State<Main_screen> {
               //   Navigator.push(context, MaterialPageRoute(builder: (context)=>frst()));
               // },
               // child: Text("test")),
+
+
+            ElevatedButton(onPressed: (){
+              Get.to(geo_location());
+            }, child:Text("location test"))
+
             ],
           ),
         ),

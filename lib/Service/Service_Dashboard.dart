@@ -6,12 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 import 'package:untitled/Service/service_Splashscreen.dart';
-import 'package:untitled/main.dart';
 
-import '../test/login_page.dart';
+import 'create_service.dart';
 import 'Drawer_Service.dart';
-import 'News_Container.dart';
-import 'Service_Login.dart';
 
 class Service_Dashboard extends StatefulWidget {
   //
@@ -67,85 +64,22 @@ class _Service_DashboardState extends State<Service_Dashboard> {
         child: ServiceDrawer(),
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-        //  Padding(padding: EdgeInsets.only(top: 30)),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //   children: [
-        //     Container(
-        //       height: 100,
-        //       width: 100,
-        //       child: Image.asset('assets/images/service.png'),
-        //       decoration: BoxDecoration(
-        //        //   color: Colors.red,
-        //           borderRadius: BorderRadius.circular(10)),
-        //     ),
-        //
-        //   Text("Create Service",
-        //       style: GoogleFonts.mukta(
-        //     fontSize: 35,
-        //     color: Colors.blue.shade700,
-        //     decoration: TextDecoration.underline,
-        //       )
-        //   ),
-        //
-        // ],),
-
-         // SizedBox(height: 40,),
-          // Divider(color: Colors.blueGrey,),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //   children: [
-          //     Container(
-          //       height: 100,
-          //       width: 100,
-          //       child: Image.asset('assets/images/create_service.png'),
-          //       decoration: BoxDecoration(
-          //         //   color: Colors.red,
-          //           borderRadius: BorderRadius.circular(10)),
-          //     ),
-          //
-          //     Text("Update Service", style: GoogleFonts.kanit(
-          //       color: Colors.blue.shade700,
-          //       fontSize: 35,
-          //       decoration: TextDecoration.underline,)),
-          //
-          //   ],),
-          // SizedBox(height: 40,),
-          // Divider(color: Colors.blueGrey,),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //   children: [
-          //     Container(
-          //       height: 100,
-          //       width: 100,
-          //       child: Image.asset('assets/images/update_service.png'),
-          //       decoration: BoxDecoration(
-          //         //   color: Colors.red,
-          //           borderRadius: BorderRadius.circular(10)),
-          //     ),
-          //
-          //     Text("Create Service", style: GoogleFonts.kanit(
-          //       fontSize: 35,
-          //       decoration: TextDecoration.underline,)),
-          //
-          //   ],),
-          //
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //
-          //
-          //   ],),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child: Create_Service()),
+              child:GestureDetector(
+                onTap: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
+                },
+                child:Create_Service_Container() ,
+              ),
+
+          ),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
               child: Update_Service()),
           Padding(
+
               padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
               child: feedback_container()),
         ],
@@ -153,7 +87,7 @@ class _Service_DashboardState extends State<Service_Dashboard> {
     );
   }
 
-  Create_Service() {
+  Create_Service_Container() {
     return Container(
       decoration: BoxDecoration(
           color: Color(0xfffad4d4),

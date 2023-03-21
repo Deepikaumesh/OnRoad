@@ -9,7 +9,7 @@ import 'Main_Screen/Main_Screen.dart';
 var email_text = '';
 var email_text1 = '';
 var email_text2 = '';
-var ip='192.168.29.64';
+var ip='192.168.29.102';
 void main() async {
   runApp(
       GetMaterialApp(debugShowCheckedModeBanner: false, home: Main_screen()));
