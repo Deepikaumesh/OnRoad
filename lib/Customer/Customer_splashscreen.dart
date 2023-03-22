@@ -5,24 +5,23 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Admin/Admin_Login.dart';
-import 'package:untitled/User/User_Login.dart';
+import 'package:untitled/Customer/Customer_Login.dart';
 
 import '../main.dart';
-import 'User_Dashboard.dart';
+import 'Customer_Dashboard.dart';
 
 
 
 
 
 
-var User_key;
+var Customer_key;
 
-class User_Splashscreen extends StatefulWidget {
-  _User_SplashscreenState createState() => _User_SplashscreenState();
+class Customer_Splashscreen extends StatefulWidget {
+  _Customer_SplashscreenState createState() => _Customer_SplashscreenState();
 }
 
-class _User_SplashscreenState extends State<User_Splashscreen> {
+class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
 
   void initState() {
     getValidationData().whenComplete(() async{
@@ -30,8 +29,8 @@ class _User_SplashscreenState extends State<User_Splashscreen> {
       // login_page() : homepage()));
 
       await Timer(Duration(seconds: 1),() {
-        User_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>User_Login())):
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => User_Dashboard(data_passing_user: email_text2,)));
+        Customer_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Customer_Login())):
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Customer_Dashboard(data_passing_user: email_text2,)));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
 
       });
@@ -99,9 +98,9 @@ class _User_SplashscreenState extends State<User_Splashscreen> {
     var obtainedemail = await  sharedprefs.getString('user_email');
     //value = obtainedemail;
     setState(() {
-      User_key= obtainedemail;
+      Customer_key= obtainedemail;
     });
-    print('thisis user  value $User_key');
+    print('thisis user  value $Customer_key');
   }
 
 // Future<void> checkMerchantLoogedIn() async{

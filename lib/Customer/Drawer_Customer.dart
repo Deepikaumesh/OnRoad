@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 
-class UserDrawer extends StatelessWidget {
+class CustomerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

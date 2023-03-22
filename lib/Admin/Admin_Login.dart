@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Admin/Admin_Dashboard.dart';
-import 'package:untitled/Service/Service_Dashboard.dart';
-import 'package:untitled/User/User_SignUp.dart';
 
 import '../main.dart';
 import 'Admin_SignUp.dart';

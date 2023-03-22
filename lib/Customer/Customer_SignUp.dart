@@ -5,16 +5,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:untitled/Admin/Admin_Login.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/User/User_Login.dart';
+import 'package:untitled/Customer/Customer_Login.dart';
 
 import '../main.dart';
 
-class User_SignupPage extends StatefulWidget {
+class Customer_SignupPage extends StatefulWidget {
   @override
-  State<User_SignupPage> createState() => _User_SignupPageState();
+  State<Customer_SignupPage> createState() => _Customer_SignupPageState();
 }
 
-class _User_SignupPageState extends State<User_SignupPage> {
+class _Customer_SignupPageState extends State<Customer_SignupPage> {
   TextEditingController _username = TextEditingController();
 
   TextEditingController _email = TextEditingController();
@@ -270,7 +270,7 @@ class _User_SignupPageState extends State<User_SignupPage> {
                     Text("Already have an account? "),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>User_Login()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>Customer_Login()));
                       },
                       child: Text(
                         "Login",

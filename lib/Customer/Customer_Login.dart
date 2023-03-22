@@ -1,24 +1,21 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Admin/Admin_Dashboard.dart';
-import 'package:untitled/Service/Service_Dashboard.dart';
-import 'package:untitled/User/User_Dashboard.dart';
-import 'package:untitled/User/User_SignUp.dart';
 import 'package:http/http.dart' as http;
 
 import '../main.dart';
+import 'Customer_Dashboard.dart';
+import 'Customer_SignUp.dart';
 
-class User_Login extends StatefulWidget {
+class Customer_Login extends StatefulWidget {
   @override
-  _User_LoginState createState() => _User_LoginState();
+  _Customer_LoginState createState() => _Customer_LoginState();
 }
 
-class _User_LoginState extends State<User_Login> {
+class _Customer_LoginState extends State<Customer_Login> {
   TextEditingController user_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -106,8 +103,8 @@ class _User_LoginState extends State<User_Login> {
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: ()
-                //async
-                {
+                    //async
+                    {
                   user_Login();
                   // final SharedPreferences sharedpreferences =
                   //     await SharedPreferences.getInstance();
@@ -153,7 +150,7 @@ class _User_LoginState extends State<User_Login> {
                 ),
                 TextButton(
                     onPressed: () {
-                      Get.to(User_SignupPage());
+                      Get.to(Customer_SignupPage());
                     },
                     child: Text("Create Account"))
               ],
@@ -179,13 +176,10 @@ class _User_LoginState extends State<User_Login> {
       //var responseData = json.decode(response.body);
 
       for (var singleUser in data) {
-        final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+        final SharedPreferences sharedpreferences =
+            await SharedPreferences.getInstance();
 
-       await sharedpreferences.setString('user_email', singleUser["email"]);
-
-
-
-
+        await sharedpreferences.setString('user_email', singleUser["email"]);
       }
 
       final snackBar = SnackBar(
@@ -210,12 +204,9 @@ class _User_LoginState extends State<User_Login> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => User_Dashboard(
-                data_passing_user: email_text2,
-              )));
-
-
-
+              builder: (BuildContext context) => Customer_Dashboard(
+                    data_passing_user: email_text2,
+                  )));
     } else {
       final snackBar = SnackBar(
         content: Text('Username and password invalid'),

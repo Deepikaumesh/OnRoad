@@ -240,7 +240,7 @@ class _Create_serviceState extends State<Create_service> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: 40,
+                  horizontal: 40,vertical: 20
                 ),
                 child: TextFormField(
                   controller: mech_name,
