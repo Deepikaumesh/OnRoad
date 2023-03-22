@@ -114,7 +114,7 @@ class _Create_serviceState extends State<Create_service> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Future Service_Reg() async {
-    var APIURL = "http://$ip/MySampleApp/ORBVA/Service/create_service.php";
+    var APIURL = "http://$ip/MySampleApp/ORBVA/Service_center/create_service.php";
 
     Map mapeddate = {
       'service_name': service_name.text,

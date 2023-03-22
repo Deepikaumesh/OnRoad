@@ -2,19 +2,20 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import 'package:untitled/Admin/Admin_Login.dart';
-
 import 'package:http/http.dart' as http;
-import 'package:untitled/main.dart';
 
-class Admin_SignupPage extends StatefulWidget {
+
+
+
+import '../main.dart';
+import 'Service_Login.dart';
+
+class Service_SignupPage extends StatefulWidget {
   @override
-  State<Admin_SignupPage> createState() => _Admin_SignupPageState();
+  State<Service_SignupPage> createState() => _Service_SignupPageState();
 }
 
-class _Admin_SignupPageState extends State<Admin_SignupPage> {
+class _Service_SignupPageState extends State<Service_SignupPage> {
   TextEditingController _username = TextEditingController();
 
   TextEditingController _email = TextEditingController();
@@ -84,7 +85,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("username"),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -93,10 +94,11 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.grey.shade500,
-                        )),
+                              color: Colors.grey.shade500,
+                            )),
                       ),
                     )),
+
                 Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 40,
@@ -108,7 +110,8 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         if (value!.isEmpty) {
                           return "Please enter  email";
                         }
-                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        if (!RegExp(
+                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                             .hasMatch(value)) {
                           return "Please enter a valid email";
                         }
@@ -119,7 +122,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("email"),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -128,8 +131,8 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.grey.shade500,
-                        )),
+                              color: Colors.grey.shade500,
+                            )),
                       ),
                     )),
                 Padding(
@@ -150,7 +153,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("phone"),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -159,8 +162,8 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.grey.shade500,
-                        )),
+                              color: Colors.grey.shade500,
+                            )),
                       ),
                     )),
                 Padding(
@@ -181,7 +184,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("password"),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -190,8 +193,8 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.grey.shade500,
-                        )),
+                              color: Colors.grey.shade500,
+                            )),
                       ),
                     )),
                 Padding(
@@ -215,7 +218,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("confirm password"),
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -224,10 +227,16 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                          color: Colors.grey.shade500,
-                        )),
+                              color: Colors.grey.shade500,
+                            )),
                       ),
                     )),
+
+
+
+
+
+
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
                   width: MediaQuery.of(context).size.width / 1.3,
@@ -240,29 +249,23 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         setState(() {
+                          RegistrationService();
 
-                          RegistrationAdmin();
                         });
                         _username.clear();
                         _email.clear();
                         _phone.clear();
                         _password.clear();
                         _confirmpassword.clear();
-                      }
-                    },
+                      }},
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
                 ),
-                // Text(
-                //   status ? message : message,
-                //   style: GoogleFonts.lato(
-                //       fontSize: 12,
-                //       color: Colors.red.shade900,
-                //       fontWeight: FontWeight.bold),
-                // ),
+
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -272,7 +275,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Admin_Login()));
+                                builder: (BuildContext context) => Service_Login()));
                       },
                       child: Text(
                         "Login",
@@ -291,11 +294,9 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
       ),
     );
   }
-
-
-  Future RegistrationAdmin() async {
+  Future RegistrationService() async {
     var APIURL =
-        "http://$ip/MySampleApp/ORBVA/Admin/Registrationn.php";
+        "http://$ip/MySampleApp/ORBVA/Service_center/Registrationn.php";
 
     //json maping user entered details
     Map mapeddate = {
@@ -353,4 +354,45 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
 
     print("DATA: ${data}");
   }
+}
+
+
+
+
+Widget makeInput({
+  label,
+  obsureText = false,
+}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        label,
+        style: TextStyle(
+            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+      ),
+      SizedBox(
+        height: 5,
+      ),
+      TextFormField(
+        obscureText: obsureText,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              // color: Colors.grey[400],
+              color: Colors.grey.shade500,
+            ),
+          ),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.grey.shade500,
+              )),
+        ),
+      ),
+      SizedBox(
+        height: 30,
+      )
+    ],
+  );
 }

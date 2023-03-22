@@ -5,23 +5,20 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Customer/Customer_Login.dart';
-
-import '../main.dart';
-import 'Customer_Dashboard.dart';
+import 'Workshop_Login.dart';
+import 'Workshop_dashboard.dart';
 
 
 
 
 
+var Workshop_key;
 
-var Customer_key;
-
-class Customer_Splashscreen extends StatefulWidget {
-  _Customer_SplashscreenState createState() => _Customer_SplashscreenState();
+class Workshop_Splashscreen extends StatefulWidget {
+  _Workshop_SplashscreenState createState() => _Workshop_SplashscreenState();
 }
 
-class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
+class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
 
   void initState() {
     getValidationData().whenComplete(() async{
@@ -29,8 +26,8 @@ class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
       // login_page() : homepage()));
 
       await Timer(Duration(seconds: 1),() {
-        Customer_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Customer_Login())):
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Customer_Dashboard(data_passing_user: email_text2,)));
+        Workshop_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>Work_shop_Login())):
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop: null,)));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
 
       });
@@ -95,12 +92,12 @@ class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
   // }
   Future getValidationData() async{
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await  sharedprefs.getString('user_email');
+    var obtainedemail = await  sharedprefs.getString('workshop_email');
     //value = obtainedemail;
     setState(() {
-      Customer_key= obtainedemail;
+      Workshop_key= obtainedemail;
     });
-    print('thisis user  value $Customer_key');
+    print('thisis workshop  value $Workshop_key');
   }
 
 // Future<void> checkMerchantLoogedIn() async{

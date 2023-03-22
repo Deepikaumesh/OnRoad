@@ -3,23 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Admin/Admin_Login.dart';
-import 'package:untitled/Customer/Customer_splashscreen.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
+import 'Admin_splashscreen.dart';
 
-import 'Drawer_Customer.dart';
-
-class Customer_Dashboard extends StatefulWidget {
+class Admin_Dashboard extends StatefulWidget {
   //
-  var data_passing_user;
+  var data_passing_admin;
 
-  Customer_Dashboard({required this.data_passing_user});
+  Admin_Dashboard({required this.data_passing_admin});
 
   @override
-  _Customer_DashboardState createState() => _Customer_DashboardState();
+  _Admin_DashboardState createState() => _Admin_DashboardState();
 }
 
-class _Customer_DashboardState extends State<Customer_Dashboard> {
+class _Admin_DashboardState extends State<Admin_Dashboard> {
   // void initState() {
   //   setState(() {
   //     email_text;
@@ -49,10 +46,7 @@ class _Customer_DashboardState extends State<Customer_Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("user"),
-      ),
-      drawer: Drawer(
-        child: CustomerDrawer(),
+        title: Text("admin"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -64,14 +58,14 @@ class _Customer_DashboardState extends State<Customer_Dashboard> {
             height: 20,
           ),
           // Text("hai"+widget.data_passing_service.toString()),
-          Text('welcome${Customer_key}'),
+          Text('welcome${Admin_key}'),
           MaterialButton(
               color: Colors.lightBlueAccent,
-              child: Text('remove credentials user'),
+              child: Text('remove credentials admin'),
               onPressed: () async {
                 final SharedPreferences sharedpreferences =
                     await SharedPreferences.getInstance();
-                sharedpreferences.remove('user_email');
+                sharedpreferences.remove('admin_email');
                 Get.to(Main_screen());
               })
         ],

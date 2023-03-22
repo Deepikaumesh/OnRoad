@@ -2,21 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:http/http.dart' as http;
 
-import 'package:untitled/Admin/Admin_Login.dart';
-
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:untitled/Service/Service_Login.dart';
 
 import '../main.dart';
+import 'Customer_Login.dart';
 
-class Service_SignupPage extends StatefulWidget {
+class Customer_SignupPage extends StatefulWidget {
   @override
-  State<Service_SignupPage> createState() => _Service_SignupPageState();
+  State<Customer_SignupPage> createState() => _Customer_SignupPageState();
 }
 
-class _Service_SignupPageState extends State<Service_SignupPage> {
+class _Customer_SignupPageState extends State<Customer_SignupPage> {
   TextEditingController _username = TextEditingController();
 
   TextEditingController _email = TextEditingController();
@@ -250,7 +248,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         setState(() {
-                          RegistrationService();
+                          RegistrationUser();
 
                         });
                         _username.clear();
@@ -258,6 +256,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         _phone.clear();
                         _password.clear();
                         _confirmpassword.clear();
+
                       }},
                     child: Text(
                       'Sign Up',
@@ -265,18 +264,13 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                     ),
                   ),
                 ),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Already have an account? "),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => Service_Login()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>Customer_Login()));
                       },
                       child: Text(
                         "Login",
@@ -286,6 +280,10 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                     ),
                   ],
                 )
+
+
+             //   Text(status ? message : message,style: TextStyle(color: Colors.red.shade900),),
+                //Text("hello"),
               ],
             ),
 
@@ -295,69 +293,70 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
       ),
     );
   }
-  Future RegistrationService() async {
-    var APIURL =
-        "http://$ip/MySampleApp/ORBVA/Service/Registrationn.php";
-
-    //json maping user entered details
-    Map mapeddate = {
-      'username': _username.text,
-      'email': _email.text,
-      'phone': _phone.text,
-      'password': _password.text
-    };
-    //send  data using http post to our php code
-    http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
-
-    //getting response from php code, here
-    var data = jsonDecode(reponse.body);
-    var responseMessage = data["message"];
-    var responseError = data["error"];
-    print("DATA: ${data}");
-    if (responseError) {
-
-      setState(() {
-        status = false;
-        message = responseMessage;
-      });
-      Fluttertoast.showToast(
-          msg: 'email and password already exists try another! ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.white,
-          webPosition: 1,
-          backgroundColor: Colors.blueGrey);
-
-    }
-
-    else {
-      _username.clear();
-      _email.clear();
-      _phone.clear();
-      _password.clear();
-      _confirmpassword.clear();
-
-      setState(() {
-        status = true;
-        message = responseMessage;
-      });
-
-      Fluttertoast.showToast(
-          msg: 'Registration successfull ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blueGrey);
-
-    }
 
 
-    print("DATA: ${data}");
+
+Future RegistrationUser() async {
+  var APIURL =
+      "http://$ip/MySampleApp/ORBVA/Customer/Registrationn.php";
+
+  //json maping user entered details
+  Map mapeddate = {
+    'username': _username.text,
+    'email': _email.text,
+    'phone': _phone.text,
+    'password': _password.text
+  };
+  //send  data using http post to our php code
+  http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
+
+  //getting response from php code, here
+  var data = jsonDecode(reponse.body);
+  var responseMessage = data["message"];
+  var responseError = data["error"];
+  print("DATA: ${data}");
+  if (responseError) {
+
+    setState(() {
+      status = false;
+      message = responseMessage;
+    });
+    Fluttertoast.showToast(
+              msg: 'email and password already exists try another! ',
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              textColor: Colors.white,
+              webPosition: 1,
+              backgroundColor: Colors.blueGrey);
+
   }
+
+  else {
+    _username.clear();
+    _email.clear();
+    _phone.clear();
+    _password.clear();
+    _confirmpassword.clear();
+
+    setState(() {
+      status = true;
+      message = responseMessage;
+    });
+
+        Fluttertoast.showToast(
+            msg: 'Registration successfull ',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blueGrey);
+
+       }
+  
+
+  print("DATA: ${data}");
 }
-
-
+}
 
 
 Widget makeInput({

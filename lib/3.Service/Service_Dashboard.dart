@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/3.Service/service_Splashscreen.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
-import 'package:untitled/Service/service_Splashscreen.dart';
+
 
 import 'create_service.dart';
 import 'Drawer_Service.dart';

@@ -5,18 +5,20 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Admin/Admin_Dashboard.dart';
+
 
 import '../main.dart';
-import 'Admin_SignUp.dart';
 import 'package:http/http.dart' as http;
 
-class Admin_Login extends StatefulWidget {
+import 'Workshop_SignUp.dart';
+import 'Workshop_dashboard.dart';
+
+class Work_shop_Login extends StatefulWidget {
   @override
-  _Admin_LoginState createState() => _Admin_LoginState();
+  _Work_shop_LoginState createState() => _Work_shop_LoginState();
 }
 
-class _Admin_LoginState extends State<Admin_Login> {
+class _Work_shop_LoginState extends State<Work_shop_Login> {
   TextEditingController admin_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -64,7 +66,7 @@ class _Admin_LoginState extends State<Admin_Login> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Admin login",
+          "workshop login",
           style: TextStyle(color: Colors.blueGrey),
         ),
         backgroundColor: Colors.white,
@@ -79,7 +81,7 @@ class _Admin_LoginState extends State<Admin_Login> {
                 child: Container(
                     width: 200,
                     height: 150,
-                    child: Image.asset('assets/images/Admin_login.png')),
+                    child: Image.asset('assets/images/workshop_login.png')),
               ),
             ),
             Form(
@@ -187,7 +189,7 @@ class _Admin_LoginState extends State<Admin_Login> {
                 ),
                 TextButton(
                     onPressed: () {
-                      Get.to(Admin_SignupPage());
+                      Get.to(Workshop_SignupPage());
                     },
                     child: Text("Create Account"))
               ],
@@ -199,7 +201,7 @@ class _Admin_LoginState extends State<Admin_Login> {
   }
 
   Future admin_Login() async {
-    var url = "http://$ip/MySampleApp/ORBVA/Admin/login.php";
+    var url = "http://$ip/MySampleApp/ORBVA/Work_shop/login.php";
     var response = await http.post(Uri.parse(url), headers: {
       'Accept': 'application/json'
     }, body: {
@@ -215,7 +217,7 @@ class _Admin_LoginState extends State<Admin_Login> {
         final SharedPreferences sharedpreferences =
             await SharedPreferences.getInstance();
 
-        await sharedpreferences.setString('admin_email', singleUser["email"]);
+        await sharedpreferences.setString('workshop_email', singleUser["email"]);
       }
 
       final snackBar = SnackBar(
@@ -240,8 +242,7 @@ class _Admin_LoginState extends State<Admin_Login> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Admin_Dashboard(
-                    data_passing_admin: null,
+              builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop: null,
                   )));
     } else {
       final snackBar = SnackBar(

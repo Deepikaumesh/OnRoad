@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/Customer/Customer_splashscreen.dart';
 
-import '../Admin/Admin_Login.dart';
+
+import '../1.Admin/Admin_splashscreen.dart';
+import '../2.Work_Shop/Workshop_splashscreen.dart';
+import '../3.Service/service_Splashscreen.dart';
+import '../4.Customer/Customer_splashscreen.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../Admin/Admin_splashscreen.dart';
-import '../Service/Service_Dashboard.dart';
-import '../Service/service_Splashscreen.dart';
+
 import '../test/geo_location.dart';
 import '../test/splashscreen.dart';
 
@@ -130,7 +132,7 @@ class _Main_screenState extends State<Main_screen> {
                     style: ElevatedButton.styleFrom(
                       //  shape: StadiumBorder(),
                       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      backgroundColor: Colors.amber.shade400,
+                      backgroundColor: Colors.red.shade200,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -164,7 +166,7 @@ class _Main_screenState extends State<Main_screen> {
                       ],
                     ),
                     onPressed: () {
-                      //Get.to(Admin_Login());
+                      Get.to(Workshop_Splashscreen());
                     },
                   ),
                 ),

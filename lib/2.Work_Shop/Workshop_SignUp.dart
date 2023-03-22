@@ -2,19 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import 'package:untitled/Admin/Admin_Login.dart';
+
+
 import 'package:http/http.dart' as http;
-import 'package:untitled/Customer/Customer_Login.dart';
+import 'package:untitled/main.dart';
 
-import '../main.dart';
+import 'Workshop_Login.dart';
 
-class Customer_SignupPage extends StatefulWidget {
+
+
+class Workshop_SignupPage extends StatefulWidget {
   @override
-  State<Customer_SignupPage> createState() => _Customer_SignupPageState();
+  State<Workshop_SignupPage> createState() => _Workshop_SignupPageState();
 }
 
-class _Customer_SignupPageState extends State<Customer_SignupPage> {
+class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
   TextEditingController _username = TextEditingController();
 
   TextEditingController _email = TextEditingController();
@@ -84,7 +88,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("username"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -93,11 +97,10 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
-
                 Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 40,
@@ -109,8 +112,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         if (value!.isEmpty) {
                           return "Please enter  email";
                         }
-                        if (!RegExp(
-                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                             .hasMatch(value)) {
                           return "Please enter a valid email";
                         }
@@ -121,7 +123,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("email"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -130,8 +132,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -152,7 +154,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("phone"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -161,8 +163,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -183,7 +185,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -192,8 +194,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -217,7 +219,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("confirm password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -226,16 +228,10 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
-
-
-
-
-
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
                   width: MediaQuery.of(context).size.width / 1.3,
@@ -248,29 +244,39 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         setState(() {
-                          RegistrationUser();
 
+                          RegistrationWorkshop();
                         });
                         _username.clear();
                         _email.clear();
                         _phone.clear();
                         _password.clear();
                         _confirmpassword.clear();
-
-                      }},
+                      }
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
                 ),
+                // Text(
+                //   status ? message : message,
+                //   style: GoogleFonts.lato(
+                //       fontSize: 12,
+                //       color: Colors.red.shade900,
+                //       fontWeight: FontWeight.bold),
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Already have an account? "),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>Customer_Login()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Work_shop_Login()));
                       },
                       child: Text(
                         "Login",
@@ -280,10 +286,6 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                     ),
                   ],
                 )
-
-
-             //   Text(status ? message : message,style: TextStyle(color: Colors.red.shade900),),
-                //Text("hello"),
               ],
             ),
 
@@ -295,104 +297,64 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
   }
 
 
+  Future RegistrationWorkshop() async {
+    var APIURL =
+        "http://$ip/MySampleApp/ORBVA/Work_shop/Registrationn.php";
 
-Future RegistrationUser() async {
-  var APIURL =
-      "http://$ip/MySampleApp/ORBVA/User/Registrationn.php";
+    //json maping user entered details
+    Map mapeddate = {
+      'username': _username.text,
+      'email': _email.text,
+      'phone': _phone.text,
+      'password': _password.text
+    };
+    //send  data using http post to our php code
+    http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
 
-  //json maping user entered details
-  Map mapeddate = {
-    'username': _username.text,
-    'email': _email.text,
-    'phone': _phone.text,
-    'password': _password.text
-  };
-  //send  data using http post to our php code
-  http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
+    //getting response from php code, here
+    var data = jsonDecode(reponse.body);
+    var responseMessage = data["message"];
+    var responseError = data["error"];
+    print("DATA: ${data}");
+    if (responseError) {
 
-  //getting response from php code, here
-  var data = jsonDecode(reponse.body);
-  var responseMessage = data["message"];
-  var responseError = data["error"];
-  print("DATA: ${data}");
-  if (responseError) {
+      setState(() {
+        status = false;
+        message = responseMessage;
+      });
+      Fluttertoast.showToast(
+          msg: 'email and password already exists try another! ',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          webPosition: 1,
+          backgroundColor: Colors.blueGrey);
 
-    setState(() {
-      status = false;
-      message = responseMessage;
-    });
-    Fluttertoast.showToast(
-              msg: 'email and password already exists try another! ',
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              textColor: Colors.white,
-              webPosition: 1,
-              backgroundColor: Colors.blueGrey);
+    }
 
+    else {
+      _username.clear();
+      _email.clear();
+      _phone.clear();
+      _password.clear();
+      _confirmpassword.clear();
+
+      setState(() {
+        status = true;
+        message = responseMessage;
+      });
+
+      Fluttertoast.showToast(
+          msg: 'Registration successfull ',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blueGrey);
+
+    }
+
+
+    print("DATA: ${data}");
   }
-
-  else {
-    _username.clear();
-    _email.clear();
-    _phone.clear();
-    _password.clear();
-    _confirmpassword.clear();
-
-    setState(() {
-      status = true;
-      message = responseMessage;
-    });
-
-        Fluttertoast.showToast(
-            msg: 'Registration successfull ',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.blueGrey);
-
-       }
-  
-
-  print("DATA: ${data}");
-}
-}
-
-
-Widget makeInput({
-  label,
-  obsureText = false,
-}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextFormField(
-        obscureText: obsureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              // color: Colors.grey[400],
-              color: Colors.grey.shade500,
-            ),
-          ),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.grey.shade500,
-              )),
-        ),
-      ),
-      SizedBox(
-        height: 30,
-      )
-    ],
-  );
 }
