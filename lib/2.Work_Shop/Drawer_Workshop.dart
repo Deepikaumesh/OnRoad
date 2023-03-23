@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../About/About_Us.dart';
 import '../Main_Screen/Main_Screen.dart';
 import 'Add_Crain.dart';
 import 'Add_Spare_parts.dart';
@@ -58,10 +59,10 @@ class WorkshopDrawer extends StatelessWidget {
 
         ListTile(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => Hope_Admin_event_registration()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => About_Us()));
           },
           leading: Icon(
             Icons.person,
