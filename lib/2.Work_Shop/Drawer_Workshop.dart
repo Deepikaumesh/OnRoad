@@ -5,6 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Main_Screen/Main_Screen.dart';
+import 'Add_Crain.dart';
+import 'Add_Spare_parts.dart';
+import 'Add_Worker.dart';
 
 
 
@@ -71,10 +74,10 @@ class WorkshopDrawer extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => Hope_Admin_event_registration()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Add_Worker()));
           },
           leading: Icon(
             Icons.man,
@@ -87,10 +90,10 @@ class WorkshopDrawer extends StatelessWidget {
         ),
         ListTile(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => Hope_Admin_event_registration()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Add_Crain()));
           },
           leading: Icon(
             Icons.add,
@@ -101,12 +104,14 @@ class WorkshopDrawer extends StatelessWidget {
                 fontSize: 15,
               )),
         ),
+
+
         ListTile(
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => Hope_Admin_event_registration()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Add_Spare_Parts()));
           },
           leading: Icon(
             Icons.add,
@@ -117,6 +122,9 @@ class WorkshopDrawer extends StatelessWidget {
                 fontSize: 15,
               )),
         ),
+
+
+
         ListTile(
           onTap: () async{
               final SharedPreferences sharedpreferences =

@@ -69,6 +69,7 @@ class _Add_WorkshopState extends State<Add_Workshop> {
   TextEditingController address = TextEditingController();
   TextEditingController location = TextEditingController();
   TextEditingController status = TextEditingController();
+
   late bool sta;
 
   late String message;
@@ -119,7 +120,7 @@ class _Add_WorkshopState extends State<Add_Workshop> {
         message = responseMessage;
       });
       Fluttertoast.showToast(
-          msg: 'service not created ',
+          msg: 'workshop not added',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -141,7 +142,7 @@ class _Add_WorkshopState extends State<Add_Workshop> {
       });
 
       Fluttertoast.showToast(
-          msg: 'service created ',
+          msg: 'workshop added',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -175,6 +176,14 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
                   controller: name,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please enter workshop name";
+                    }
+                    return null;
+                  },
+                  onSaved: (name) {},
+                  textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -202,7 +211,21 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                 ),
                 child: TextFormField(
                   controller: contact_no,
-                  keyboardType: TextInputType.text,
+                  // validator: (value) {
+                  //   if (value!.isEmpty && value.length < 10) {
+                  //     return "Please enter phone number";
+                  //   }
+                  //   return null;
+                  // },
+                  // onSaved: (contact_no) {},
+                  validator: (value) {
+                    if (value!.isEmpty && value.length < 10) {
+                      return "Please enter contact no";
+                    }
+                    return null;
+                  },
+                  onSaved: (contact_no) {},
+                  keyboardType: TextInputType.number,
                   //   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -229,6 +252,17 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
                   controller: email_id,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please enter  email";
+                    }
+                    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        .hasMatch(value)) {
+                      return "Please enter a valid email";
+                    }
+                    return null;
+                  },
+                  onSaved: (email) {},
                   decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -254,6 +288,13 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                  controller: license_no,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please enter license no";
+                    }
+                    return null;
+                  },
+                 keyboardType: TextInputType.number,
                  decoration: InputDecoration(
                  enabledBorder: OutlineInputBorder(
                    borderRadius: BorderRadius.circular(10),
@@ -291,6 +332,13 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                       keyboardType: TextInputType.number,
                       style: TextStyle(color: Colors.black),
                       controller: location,
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return "Please add your location";
+                      //   }
+                      //   //return null;
+                      // },
+                      // onSaved: (location) {},
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             //borderRadius: BorderRadius.circular(10),
@@ -342,6 +390,13 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   controller: address,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please add address";
+                    }
+                    return null;
+                  },
+                  onSaved: (name) {},
                   keyboardType: TextInputType.text,
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
@@ -383,15 +438,21 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                       left: 110, right: 110, top: 20, bottom: 20),
                 ),
                 onPressed: () {
-                  setState(() {});
-                  Service_Reg();
-                  name.clear();
-                  contact_no.clear();
-                  email_id.clear();
-                  license_no.clear();
-                  address.clear();
-                  location.clear();
-                  //status.clear();
+
+
+    if (_formkey.currentState!.validate()) {
+      setState(() {
+
+        Service_Reg();
+      });
+      name.clear();
+      contact_no.clear();
+      email_id.clear();
+      license_no.clear();
+      address.clear();
+      location.clear();
+      //status.clear();
+    }
                 },
                 child: Text('Submit'),
               ),

@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 
+import '../main.dart';
 import 'Add_Workshop.dart';
 import 'Drawer_Workshop.dart';
 import 'Workshop_splashscreen.dart';
@@ -24,7 +25,10 @@ class Workshop_Dashboard extends StatefulWidget {
 class _Workshop_DashboardState extends State<Workshop_Dashboard> {
   // void initState() {
   //   setState(() {
-  //     email_text;
+  //     if(Workshop_key == null ? Text("") : Workshop_key ){
+  //
+  //     }
+  //
   //   });
   //
   //   super.initState();
@@ -86,7 +90,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
             style: GoogleFonts.hind(fontWeight: FontWeight.bold, fontSize: 30),
           ),
           Text('${Workshop_key}', style: GoogleFonts.hind(fontSize: 15)),
-        ]),
+            ]),
       ),
       drawer:Drawer( child: WorkshopDrawer()),
       body: SingleChildScrollView(
