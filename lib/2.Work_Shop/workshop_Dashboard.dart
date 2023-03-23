@@ -9,6 +9,7 @@ import 'package:untitled/Main_Screen/Main_Screen.dart';
 import '../main.dart';
 import 'Add_Workshop.dart';
 import 'Drawer_Workshop.dart';
+import 'Workshop_data.dart';
 import 'Workshop_splashscreen.dart';
 
 
@@ -218,7 +219,17 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
               ),
 
             ),
-            SizedBox(height: 30,),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30,),
+              child:GestureDetector(
+                onTap: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Workshop_data_Page()));
+                },
+                child:Work_shop_data_Container() ,
+              ),
+
+            ),
             // Text("hai"+widget.data_passing_service.toString()),
 
             // MaterialButton(
@@ -230,6 +241,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
             //       sharedpreferences.remove('workshop_email');
             //       Get.to(Main_screen());
             //     })
+            SizedBox(height: 30,),
           ],
         ),
       ),
@@ -422,6 +434,45 @@ Chat_Container() {
     ),
   );
 }
+Work_shop_data_Container() {
+  return Container(
+    decoration: BoxDecoration(
+      //color: Color(0xfffad4d4),
+        color: Colors.teal.shade200,
+        borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+    height: 100,
+    width: 340,
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(
+              'assets/images/workshop_data.png',
+              height: 75.0,
+              width: 75.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+              },
+              child: Text(
+                "Workshop Data",
+                style: GoogleFonts.quicksand(
+                    fontSize: 25,
+                    color: Colors.teal.shade900,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+
 
 
 

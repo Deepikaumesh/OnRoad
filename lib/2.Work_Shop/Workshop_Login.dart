@@ -242,7 +242,8 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop: null,
+              builder: (BuildContext context) => Workshop_Dashboard(
+                data_passing_workshop: null,
                   )));
     } else {
       final snackBar = SnackBar(

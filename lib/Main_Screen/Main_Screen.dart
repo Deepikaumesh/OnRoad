@@ -396,10 +396,10 @@ class _Main_screenState extends State<Main_screen> {
               // },
               // child: Text("test")),
 
-
-            ElevatedButton(onPressed: (){
-              Get.to(geo_location());
-            }, child:Text("location test"))
+            //
+            // ElevatedButton(onPressed: (){
+            //   Get.to(geo_location());
+            // }, child:Text("location test"))
 
             ],
           ),
