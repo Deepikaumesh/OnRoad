@@ -269,7 +269,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+               //   Get.to(Workshop_view_request_Page());
                 },
                 child: Text(
                   "View Request",
@@ -306,7 +306,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+                //  Get.to(Workshop_feedback_Page());
                 },
                 child: Text(
                   "View Feedback",
@@ -343,7 +343,7 @@ View_Rating_Container() {
             ),
             GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+              //  Get.to(Workshop_Rating_Page());
               },
               child: Text(
                 "View Rating",
@@ -380,7 +380,7 @@ Account_Container() {
             ),
             GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+           //     Get.to(Workshop_Account_Page());
               },
               child: Text(
                 "Account",
@@ -418,7 +418,7 @@ Chat_Container() {
             ),
             GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+            //    Get.to(Workshop_chat_page());
               },
               child: Text(
                 "Chat with Customer",
@@ -455,7 +455,7 @@ Work_shop_data_Container() {
             ),
             GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+                Get.to(Workshop_data_Page());
               },
               child: Text(
                 "Workshop Data",

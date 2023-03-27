@@ -109,7 +109,7 @@ class _Service_DashboardState extends State<Service_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+                  Get.to(Create_service());
                 },
                 child: Text(
                   "Create Service",
@@ -149,7 +149,7 @@ class _Service_DashboardState extends State<Service_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+                 // Get.to(Update_service());
                 },
                 child: Text(
                   "Update Service",
@@ -188,7 +188,7 @@ class _Service_DashboardState extends State<Service_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>News_Display_with_delete()));
+                //  Get.to(Feedback_service());
                 },
                 child: Text(
                   "View Feedback",
