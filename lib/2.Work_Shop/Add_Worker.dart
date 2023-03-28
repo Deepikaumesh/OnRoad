@@ -200,6 +200,7 @@ class _Add_WorkerState extends State<Add_Worker> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   controller: email,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -236,6 +237,7 @@ class _Add_WorkerState extends State<Add_Worker> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   controller: contact_no,
                   // validator: (value) {
                   //   if (value!.isEmpty && value.length < 10) {
@@ -277,6 +279,7 @@ class _Add_WorkerState extends State<Add_Worker> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   controller: place,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -309,6 +312,7 @@ class _Add_WorkerState extends State<Add_Worker> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   controller: post,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -341,6 +345,7 @@ class _Add_WorkerState extends State<Add_Worker> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   controller: pin,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -349,7 +354,7 @@ class _Add_WorkerState extends State<Add_Worker> {
                     return null;
                   },
                   onSaved: (name) {},
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.number,
                   style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -378,6 +383,7 @@ class _Add_WorkerState extends State<Add_Worker> {
                   children: <Widget>[
                     new Expanded(
                         child: TextFormField(
+                          textCapitalization: TextCapitalization.words,
                       controller: district,
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -421,6 +427,7 @@ class _Add_WorkerState extends State<Add_Worker> {
                   children: <Widget>[
                     new Expanded(
                         child: TextFormField(
+                          textCapitalization: TextCapitalization.words,
                           controller: specification,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
@@ -464,6 +471,7 @@ class _Add_WorkerState extends State<Add_Worker> {
                   children: <Widget>[
                     new Expanded(
                         child: TextFormField(
+                          textCapitalization: TextCapitalization.words,
                           controller: available,
                           decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(

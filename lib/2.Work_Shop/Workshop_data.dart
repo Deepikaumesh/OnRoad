@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../Carousel slider.dart';
+import '../test/Admin_News_Registration.dart';
+import '../test/New_News_Display.dart';
 import 'View_workers.dart';
 
 class Workshop_data_Page extends StatefulWidget {
@@ -67,9 +69,20 @@ class _Workshop_data_PageState extends State<Workshop_data_Page> {
                         shape: StadiumBorder(),
                         backgroundColor: Colors.red.shade900),
                     onPressed: () {
-                    //  Get.to(Workshop_data_Page());
+                     // Get.to(News_Display_with_delete());
                     },
                     child: Text('View Crains')),
+                // ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //         padding: EdgeInsets.only(
+                //             left: 110, right: 110, top: 20, bottom: 20),
+                //         shape: StadiumBorder(),
+                //         backgroundColor: Colors.red.shade900),
+                //     onPressed: () {
+                //       Get.to(Admin_News_Reg());
+                //     },
+                //     child: Text('news reg')),
+
 
 
                 SizedBox(height: 40,),
@@ -97,3 +110,5 @@ class _Workshop_data_PageState extends State<Workshop_data_Page> {
     );
   }
 }
+
+

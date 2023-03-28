@@ -17,53 +17,10 @@ class Carousel_slider extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          margin: EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            image: DecorationImage(
-              image: AssetImage("assets/images/crain2.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
 
 
-        //2nd Image of Slider
-        Container(
-          margin: EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            image: DecorationImage(
-              image: AssetImage("assets/images/mech.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        //
-      //  3rd Image of Slider
-        Container(
-          margin: EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            image: DecorationImage(
-              image: AssetImage("assets/images/mech2.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        //
-        //4th Image of Slider
-        Container(
-          margin: EdgeInsets.all(6.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            image: DecorationImage(
-              image: AssetImage("assets/images/mech3.jpg"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
+
+
         Container(
           margin: EdgeInsets.all(6.0),
           decoration: BoxDecoration(
@@ -80,7 +37,7 @@ class Carousel_slider extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               image: AssetImage("assets/images/parts2.jpg"),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),
@@ -100,19 +57,15 @@ class Carousel_slider extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               image: AssetImage("assets/images/workshop1.jpg"),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),
-
-
-
-
       ],
 
       //Slider Container properties
       options: CarouselOptions(
-        height: 100.0,
+        height: 120.0,
         enlargeCenterPage: true,
         autoPlay: true,
         aspectRatio: 16 / 9,
