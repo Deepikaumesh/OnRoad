@@ -461,9 +461,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:untitled/2.Work_Shop/Worker/View_workers.dart';
+import 'package:untitled/2.Work_Shop/Workshop_data.dart';
+import 'package:untitled/2.Work_Shop/workshop_Dashboard.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class Edit_Worker extends StatefulWidget {
   final List list;
@@ -920,18 +923,26 @@ class _Edit_WorkerState extends State<Edit_Worker> {
                 new Padding(
                   padding: const EdgeInsets.all(10.0),
                 ),
-                new ElevatedButton(
-                  child: new Text(
-                    "Submit",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  //  color: Colors.red.shade900,
-                  onPressed: () {
-                    UpdateData();
-                    Navigator.of(context).push(new MaterialPageRoute(
-                        builder: (BuildContext context) => Main_screen()));
-                  },
-                )
+
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                        MaterialStateProperty.all(Colors.red.shade900),
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(horizontal: 50, vertical: 15)),
+                        textStyle:
+                        MaterialStateProperty.all(TextStyle(fontSize: 20))),
+                    onPressed: () {
+                      setState(() {
+                        UpdateData();
+                        Navigator.of(context).pushReplacement(new MaterialPageRoute(
+                            builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop:null
+                            )));
+                      });
+
+                    },
+                    child: Text("Submit")),
+                SizedBox(height: 20,),
               ],
             ),
           ],

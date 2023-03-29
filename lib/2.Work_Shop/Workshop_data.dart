@@ -6,7 +6,9 @@ import 'package:get/get_core/src/get_main.dart';
 import '../Carousel slider.dart';
 import '../test/Admin_News_Registration.dart';
 import '../test/New_News_Display.dart';
-import 'View_workers.dart';
+import 'Crain/View_crains.dart';
+import 'Spare_Parts/View_Spare_Parts.dart';
+import 'Worker/View_workers.dart';
 
 class Workshop_data_Page extends StatefulWidget {
   const Workshop_data_Page({Key? key}) : super(key: key);
@@ -56,7 +58,11 @@ class _Workshop_data_PageState extends State<Workshop_data_Page> {
                         shape: StadiumBorder(),
                         backgroundColor: Colors.red.shade900),
                     onPressed: () {
-                      Get.to(View_Workers());
+                     // Get.to(View_Workers());
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => View_Workers()));
                     },
                     child: Text('View Workers')),
 
@@ -69,19 +75,9 @@ class _Workshop_data_PageState extends State<Workshop_data_Page> {
                         shape: StadiumBorder(),
                         backgroundColor: Colors.red.shade900),
                     onPressed: () {
-                     // Get.to(News_Display_with_delete());
+                      Get.to(View_Crains());
                     },
                     child: Text('View Crains')),
-                // ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //         padding: EdgeInsets.only(
-                //             left: 110, right: 110, top: 20, bottom: 20),
-                //         shape: StadiumBorder(),
-                //         backgroundColor: Colors.red.shade900),
-                //     onPressed: () {
-                //       Get.to(Admin_News_Reg());
-                //     },
-                //     child: Text('news reg')),
 
 
 
@@ -93,7 +89,7 @@ class _Workshop_data_PageState extends State<Workshop_data_Page> {
                         shape: StadiumBorder(),
                         backgroundColor: Colors.red.shade900),
                     onPressed: () {
-                     // Get.to(Workshop_data_Page());
+                      Get.to(View_Spare_Parts());
                     },
                     child: Text('View Spare Parts')),
 

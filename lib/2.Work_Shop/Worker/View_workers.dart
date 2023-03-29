@@ -211,15 +211,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/2.Work_Shop/workers_detail.dart';
+import 'package:untitled/2.Work_Shop/Worker/workers_detail.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 
 class View_Workers extends StatefulWidget {
   @override
   _View_WorkersState createState() =>
-      new _View_WorkersState();
+       _View_WorkersState();
 }
 
 class _View_WorkersState extends State<View_Workers> {
@@ -231,7 +231,7 @@ class _View_WorkersState extends State<View_Workers> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return  Scaffold(
       backgroundColor: Colors.white,
         appBar: AppBar(
         elevation: 0,
@@ -243,18 +243,18 @@ class _View_WorkersState extends State<View_Workers> {
           style: GoogleFonts.prompt(fontSize: 22,color: Colors.blueGrey),
         ),
       ),
-      body: new FutureBuilder<List>(
+      body:  FutureBuilder<List>(
         future: getData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? new ItemList(
+              ?  ItemList(
             // list: snapshot.data,
             list: snapshot.data ?? [],
           )
-              : new Center(
-            child: new CircularProgressIndicator(),
+              :  Center(
+            child:  CircularProgressIndicator(),
           );
         },
       ),
@@ -269,19 +269,19 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ListView.builder(
+    return  ListView.builder(
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
-        return new Container(
+        return  Container(
           padding: const EdgeInsets.all(10.0),
-          child: new GestureDetector(
+          child:  GestureDetector(
 
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => new Workers_detail(
+            onTap: () => Navigator.of(context).push( MaterialPageRoute(
+                builder: (BuildContext context) =>  Workers_detail(
                   list: list,
                   index: i,
                 ))),
-            child: new Card(
+            child:  Card(
               color: Colors.red.shade100,
               margin: EdgeInsets.all(10),
               shape: RoundedRectangleBorder(

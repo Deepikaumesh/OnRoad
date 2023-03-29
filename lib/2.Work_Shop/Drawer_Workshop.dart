@@ -6,9 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../About/About_Us.dart';
 import '../Main_Screen/Main_Screen.dart';
-import 'Add_Crain.dart';
-import 'Add_Spare_parts.dart';
-import 'Add_Worker.dart';
+import 'Crain/Add_Crain.dart';
+import 'Spare_Parts/Add_Spare_parts.dart';
+import 'Worker/Add_Worker.dart';
 
 
 

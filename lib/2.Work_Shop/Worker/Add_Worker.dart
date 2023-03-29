@@ -8,7 +8,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-import '../main.dart';
+import '../../main.dart';
 
 class Add_Worker extends StatefulWidget {
   @override

@@ -8,18 +8,18 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
-import '../main.dart';
+import '../../main.dart';
 
-class Add_Crain extends StatefulWidget {
+class Add_Spare_Parts extends StatefulWidget {
   @override
-  _Add_CrainState createState() => _Add_CrainState();
+  _Add_Spare_PartsState createState() => _Add_Spare_PartsState();
 }
 
-class _Add_CrainState extends State<Add_Crain> {
+class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
   var getResult = '';
 
-  TextEditingController Owner_name = TextEditingController();
-  TextEditingController Crain_details = TextEditingController();
+  TextEditingController parts_name = TextEditingController();
+  TextEditingController parts_details = TextEditingController();
 
 
 
@@ -30,8 +30,8 @@ class _Add_CrainState extends State<Add_Crain> {
 
   @override
   void initState() {
-    Owner_name = TextEditingController();
-    Crain_details = TextEditingController();
+    parts_name = TextEditingController();
+    parts_details = TextEditingController();
 
 
 
@@ -44,11 +44,11 @@ class _Add_CrainState extends State<Add_Crain> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Future crain_reg() async {
-    var APIURL = "http://$ip/MySampleApp/ORBVA/Work_shop/add_crain.php";
+    var APIURL = "http://$ip/MySampleApp/ORBVA/Work_shop/add_spare_prts.php";
 
     Map mapeddate = {
-      'Owner_name': Owner_name.text,
-      'Crain_details': Crain_details.text,
+      'parts_name': parts_name.text,
+      'parts_details': parts_details.text,
     };
     //send  data using http post to our php code
     http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
@@ -64,7 +64,7 @@ class _Add_CrainState extends State<Add_Crain> {
         message = responseMessage;
       });
       Fluttertoast.showToast(
-          msg: 'worker not added',
+          msg: 'Spare parts not added',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -72,8 +72,8 @@ class _Add_CrainState extends State<Add_Crain> {
           webPosition: 1,
           backgroundColor: Colors.blueGrey);
     } else {
-      Owner_name.clear();
-      Crain_details.clear();
+      parts_name.clear();
+      parts_details.clear();
 
 
       setState(() {
@@ -82,7 +82,7 @@ class _Add_CrainState extends State<Add_Crain> {
       });
 
       Fluttertoast.showToast(
-          msg: 'worker added ',
+          msg: 'Spare parts not added ',
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.TOP,
           timeInSecForIosWeb: 1,
@@ -101,7 +101,7 @@ class _Add_CrainState extends State<Add_Crain> {
         backgroundColor: Colors.white,
         title: Center(
           child: Text(
-            "Add Crain",
+            "Add Spare parts",
             style: TextStyle(color: Colors.blue.shade700),
           ),
         ),
@@ -115,10 +115,10 @@ class _Add_CrainState extends State<Add_Crain> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
-                  controller: Owner_name,
+                  controller: parts_name,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Please enter Owner  name";
+                      return "Please enter Spare parts name";
                     }
                     return null;
                   },
@@ -137,8 +137,8 @@ class _Add_CrainState extends State<Add_Crain> {
                           color: Colors.black,
                         ),
                       ),
-                      hintText: "Enter Owner name",
-                      label: Text('Owner name'),
+                      hintText: "Enter Spare parts name",
+                      label: Text('Spare parts name'),
                       hintStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -150,10 +150,10 @@ class _Add_CrainState extends State<Add_Crain> {
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
                   maxLines: 5,
-                  controller: Crain_details,
+                  controller: parts_details,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Please enter  Crain_details";
+                      return "Please enter  Spare parts_details";
                     }
                     return null;
                   },
@@ -171,8 +171,8 @@ class _Add_CrainState extends State<Add_Crain> {
                           color: Colors.black,
                         ),
                       ),
-                      hintText: "Enter Crain_details",
-                      label: Text('Crain_details'),
+                      hintText: "Enter Spare parts_details",
+                      label: Text('Spare parts_details'),
                       hintStyle: TextStyle(color: Colors.grey),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -196,10 +196,10 @@ class _Add_CrainState extends State<Add_Crain> {
                     setState(() {
                       crain_reg();
                     });
-                    Owner_name.clear();
-                    Crain_details.clear();
+                    parts_name.clear();
+                    parts_details.clear();
                     Fluttertoast.showToast(
-                        msg: 'worker added ',
+                        msg: 'Spare parts added ',
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.TOP,
                         timeInSecForIosWeb: 1,
