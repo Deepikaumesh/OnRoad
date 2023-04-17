@@ -226,6 +226,10 @@ class Display_Edit_Profile_Page extends StatefulWidget {
 }
 
 class _Display_Edit_Profile_PageState extends State<Display_Edit_Profile_Page> {
+
+
+
+
   Future<List> getData() async {
     final response = await http.get(Uri.parse(
         "http://$ip/MySampleApp/ORBVA/Service_center/Service_display.php"));
@@ -265,15 +269,20 @@ class _Display_Edit_Profile_PageState extends State<Display_Edit_Profile_Page> {
   }
 }
 
-class ItemList extends StatelessWidget {
+class ItemList extends StatefulWidget {
   final List list;
 
   ItemList({required this.list});
 
   @override
+  State<ItemList> createState() => _ItemListState();
+}
+
+class _ItemListState extends State<ItemList> {
+  @override
   Widget build(BuildContext context) {
     return  ListView.builder(
-      itemCount: list == null ? 0 : list.length,
+      itemCount: widget.list == null ? 0 : widget.list.length,
       itemBuilder: (context, i) {
         return  Container(
           padding: const EdgeInsets.all(10.0),
@@ -284,16 +293,27 @@ class ItemList extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: ListTile(
-              leading:Icon(Icons.delete,color: Colors.red.shade900,) ,
+              leading:GestureDetector(
+                  onTap: (){
+                    setState(() {
+                      delrecord(widget.list[i]['id']);
+
+                    });
+
+
+
+
+                  },
+                  child: Icon(Icons.delete,color: Colors.red.shade900,)) ,
               title: Text(
-                (list[i]['mech_name']),
+                (widget.list[i]['mech_name']),
                 style: GoogleFonts.lora(
                     fontSize: 13, color: Colors.white),
               ),
               trailing: GestureDetector(
                   onTap: (){
 
-                    Get.to(Edit_Service(   list: list,
+                    Get.to(Edit_Service(   list: widget.list,
                       index: i,
                       ));
                   },
@@ -304,6 +324,27 @@ class ItemList extends StatelessWidget {
         );
       },
     );
+
+
+
+  }
+
+  Future<void> delrecord(dynamic id) async {
+    String url =
+        "http://$ip/MySampleApp/ORBVA/Service_center/delete_service.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "id": id,
+    });
+    var resoponse = jsonDecode(res.body);
+    if (resoponse["success"] == "true") {
+      print(id);
+       setState(() {
+
+       });
+
+    } else {
+      print("some issue");
+    }
   }
 }
 
