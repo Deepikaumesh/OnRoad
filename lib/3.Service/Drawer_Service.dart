@@ -69,6 +69,41 @@ class ServiceDrawer extends StatelessWidget {
                 fontSize: 15,
               )),
         ),
+
+        ListTile(
+          onTap: () {
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => Hope_Admin_event_registration()));
+          },
+          leading: Icon(
+            Icons.filter_vintage,
+            color: Colors.blueGrey.shade900,
+          ),
+          title: Text("Add Offers",
+              style: GoogleFonts.prompt(
+                fontSize: 15,
+              )),
+        ),
+        // ListTile(
+        //   onTap: () {
+        //     // Navigator.push(
+        //     //     context,
+        //     //     MaterialPageRoute(
+        //     //         builder: (context) => Hope_Admin_event_registration()));
+        //   },
+        //   leading: Icon(
+        //     Icons.person,
+        //     color: Colors.blueGrey.shade900,
+        //   ),
+        //   title: Text("Add Workers",
+        //       style: GoogleFonts.prompt(
+        //         fontSize: 15,
+        //       )),
+        // ),
+
+
         ListTile(
           onTap: () async{
               final SharedPreferences sharedpreferences =

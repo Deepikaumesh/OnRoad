@@ -1,21 +1,23 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 import '../main.dart';
+import 'display_Edit_Profile_Page.dart';
 
-class Create_service extends StatefulWidget {
+class Edit_Service extends StatefulWidget {
+  List list;
+  int index;
+
+  Edit_Service({required this.list, required this.index});
+
   @override
-  _Create_serviceState createState() => _Create_serviceState();
+  _Edit_ServiceState createState() => _Edit_ServiceState();
 }
 
-class _Create_serviceState extends State<Create_service> {
+class _Edit_ServiceState extends State<Edit_Service> {
   String locationn = 'null press button';
   String Address = 'search';
 
@@ -75,16 +77,37 @@ class _Create_serviceState extends State<Create_service> {
 
   late String message;
 
+  void UpdateData() {
+    var url = "http://$ip/MySampleApp/ORBVA/Service_center/Edit_Service.php";
+    http.post(Uri.parse(url), body: {
+      "id": widget.list[widget.index]['id'],
+      'service_name': service_name.text,
+      'mech_name': mech_name.text,
+      'services': services.text,
+      'available': available.text,
+      'address': address.text,
+      'city': city.text,
+      'location': location.text,
+      'mobile': mobile.text,
+      'status': status.text,
+    });
+  }
+
   @override
   void initState() {
-    service_name = TextEditingController();
-    mech_name = TextEditingController();
-    services = TextEditingController();
-    available = TextEditingController();
-    address = TextEditingController();
-    city = TextEditingController();
-    location = TextEditingController();
-    mobile = TextEditingController();
+    service_name =
+        TextEditingController(text: widget.list[widget.index]['service_name']);
+    mech_name =
+        TextEditingController(text: widget.list[widget.index]['mech_name']);
+    services =
+        TextEditingController(text: widget.list[widget.index]['services']);
+    available =
+        TextEditingController(text: widget.list[widget.index]['available']);
+    address = TextEditingController(text: widget.list[widget.index]['address']);
+    city = TextEditingController(text: widget.list[widget.index]['city']);
+    location =
+        TextEditingController(text: widget.list[widget.index]['location']);
+    mobile = TextEditingController(text: widget.list[widget.index]['mobile']);
     status = TextEditingController(text: 'pending');
 
     sta = false;
@@ -113,66 +136,6 @@ class _Create_serviceState extends State<Create_service> {
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
-  Future Service_Reg() async {
-    var APIURL = "http://$ip/MySampleApp/ORBVA/Service_center/create_service.php";
-
-    Map mapeddate = {
-      'service_name': service_name.text,
-      'mech_name': mech_name.text,
-      'services': services.text,
-      'available': available.text,
-      'address': address.text,
-      'city': city.text,
-      'location': location.text,
-      'mobile': mobile.text,
-      'status': status.text,
-    };
-    //send  data using http post to our php code
-    http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
-
-    //getting response from php code, here
-    var data = jsonDecode(reponse.body);
-    var responseMessage = data["message"];
-    var responseError = data["error"];
-    print("DATA: ${data}");
-    if (responseError) {
-      setState(() {
-        sta = false;
-        message = responseMessage;
-      });
-      Fluttertoast.showToast(
-          msg: 'service not created ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.white,
-          webPosition: 1,
-          backgroundColor: Colors.blueGrey);
-    } else {
-      service_name.clear();
-      mech_name.clear();
-      services.clear();
-      available.clear();
-      address.clear();
-      city.clear();
-      location.clear();
-      mobile.clear();
-      status.clear();
-
-      setState(() {
-        sta = true;
-        message = responseMessage;
-      });
-
-      Fluttertoast.showToast(
-          msg: 'service created ',
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blueGrey);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,7 +147,7 @@ class _Create_serviceState extends State<Create_service> {
         backgroundColor: Colors.white,
         title: Center(
           child: Text(
-            "Create Service",
+            "Edit Profile",
             style: TextStyle(color: Colors.red.shade300),
           ),
         ),
@@ -239,9 +202,7 @@ class _Create_serviceState extends State<Create_service> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 40,vertical: 20
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   textCapitalization: TextCapitalization.words,
                   controller: mech_name,
@@ -353,58 +314,6 @@ class _Create_serviceState extends State<Create_service> {
                   ],
                 ),
               ),
-              // Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              //   child: TextFormField(
-              //     controller: location,
-              //     keyboardType: TextInputType.number,
-              //     style: TextStyle(color: Colors.black),
-              //     decoration: InputDecoration(
-              //         enabledBorder: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10),
-              //           borderSide: BorderSide(
-              //             color: Colors.black,
-              //           ),
-              //         ),
-              //         focusedBorder: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10),
-              //           borderSide: BorderSide(
-              //             color: Colors.black,
-              //           ),
-              //         ),
-              //         hintText: "select your location",
-              //         hintStyle: TextStyle(color: Colors.grey),
-              //         border: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10),
-              //         )),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              //   child: TextFormField(
-              //     controller: address,
-              //     keyboardType: TextInputType.text,
-              //     style: TextStyle(color: Colors.black),
-              //     decoration: InputDecoration(
-              //         enabledBorder: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10),
-              //           borderSide: BorderSide(
-              //             color: Colors.black,
-              //           ),
-              //         ),
-              //         focusedBorder: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10),
-              //           borderSide: BorderSide(
-              //             color: Colors.black,
-              //           ),
-              //         ),
-              //         hintText: "Please enter a address",
-              //         hintStyle: TextStyle(color: Colors.grey),
-              //         border: OutlineInputBorder(
-              //           borderRadius: BorderRadius.circular(10),
-              //         )),
-              //   ),
-              // ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
@@ -432,7 +341,6 @@ class _Create_serviceState extends State<Create_service> {
                       )),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
@@ -462,7 +370,6 @@ class _Create_serviceState extends State<Create_service> {
               SizedBox(
                 height: 15,
               ),
-
               SizedBox(
                 height: 15,
               ),
@@ -520,9 +427,9 @@ class _Create_serviceState extends State<Create_service> {
                           ))),
                 ],
               ),
-              SizedBox(height: 20,),
-
-
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
@@ -549,17 +456,9 @@ class _Create_serviceState extends State<Create_service> {
                       )),
                 ),
               ),
-
-
-
-              SizedBox(height: 30,),
-
-
-
-
-
-
-
+              SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: StadiumBorder(),
@@ -569,7 +468,9 @@ class _Create_serviceState extends State<Create_service> {
                 ),
                 onPressed: () {
                   setState(() {});
-                  Service_Reg();
+                  UpdateData();
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>Display_Edit_Profile_Page()));
+                 // Navigator.pushNamed(context, 'Display_Edit_Profile_Page');
                   service_name.clear();
                   mech_name.clear();
                   services.clear();

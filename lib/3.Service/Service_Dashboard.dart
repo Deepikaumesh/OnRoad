@@ -10,6 +10,7 @@ import 'package:untitled/Main_Screen/Main_Screen.dart';
 
 import 'create_service.dart';
 import 'Drawer_Service.dart';
+import 'display_Edit_Profile_Page.dart';
 
 class Service_Dashboard extends StatefulWidget {
   //
@@ -64,26 +65,38 @@ class _Service_DashboardState extends State<Service_Dashboard> {
       drawer: Drawer(
         child: ServiceDrawer(),
       ),
-      body: Column(
-        children: [
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child:GestureDetector(
-                onTap: (){
-                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
-                },
-                child:Create_Service_Container() ,
-              ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                child:GestureDetector(
+                  onTap: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
+                  },
+                  child:Create_Service_Container() ,
+                ),
 
-          ),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child: Update_Service()),
-          Padding(
+            ),
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                child: Update_Service()),
 
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child: feedback_container()),
-        ],
+            Padding(
+
+                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                child: Request_container()),
+            Padding(
+
+                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                child: feedback_container()),
+
+            Padding(
+
+                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                child: Rating()),
+          ],
+        ),
       ),
     );
   }
@@ -112,7 +125,7 @@ class _Service_DashboardState extends State<Service_Dashboard> {
                   Get.to(Create_service());
                 },
                 child: Text(
-                  "Create Service",
+                  "Add Service",
                   style: GoogleFonts.quicksand(
                       fontSize: 25,
                       color: Colors.teal.shade900,
@@ -129,39 +142,39 @@ class _Service_DashboardState extends State<Service_Dashboard> {
 
 
   Update_Service() {
-    return Container(
-      decoration: BoxDecoration(
-       //   color: Color(0xfffad4d4),
-          color: Colors.blueGrey.shade100,
-          borderRadius: BorderRadius.circular(10)),
-      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-      height: 100,
-      width: 340,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Image.asset(
-                'assets/images/create_service.png',
-                height: 75.0,
-                width: 75.0,
-              ),
-              GestureDetector(
-                onTap: () {
-                 // Get.to(Update_service());
-                },
-                child: Text(
-                  "Update Service",
+    return GestureDetector(
+      onTap: (){
+        Get.to(Display_Edit_Profile_Page());
+      },
+      child: Container(
+        decoration: BoxDecoration(
+         //   color: Color(0xfffad4d4),
+            color: Colors.blueGrey.shade100,
+            borderRadius: BorderRadius.circular(10)),
+        padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+        height: 100,
+        width: 340,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Image.asset(
+                  'assets/images/create_service.png',
+                  height: 75.0,
+                  width: 75.0,
+                ),
+                Text(
+                  "Edit Profile",
                   style: GoogleFonts.quicksand(
                       fontSize: 25,
                       color: Colors.teal.shade900,
                       fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          ),
-        ],
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
 
@@ -191,9 +204,9 @@ class _Service_DashboardState extends State<Service_Dashboard> {
                 //  Get.to(Feedback_service());
                 },
                 child: Text(
-                  "View Feedback",
+                  "Customer Feedback",
                   style: GoogleFonts.quicksand(
-                      fontSize: 25,
+                      fontSize: 23,
                       color: Colors.teal.shade900,
                       fontWeight: FontWeight.bold),
                 ),
@@ -206,5 +219,78 @@ class _Service_DashboardState extends State<Service_Dashboard> {
 
   }
 
+Request_container(){
+  return Container(
+    decoration: BoxDecoration(
+      // color: Color(0xfffad4d5),
+        color: Colors.red.shade100,
+        borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+    height: 100,
+    width: 340,
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(
+              'assets/images/request.png',
+              height: 75.0,
+              width: 75.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                //  Get.to(Feedback_service());
+              },
+              child: Text(
+                "Customer Request",
+                style: GoogleFonts.quicksand(
+                    fontSize: 23,
+                    color: Colors.teal.shade900,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+}
+Rating(){
+  return Container(
+    decoration: BoxDecoration(
+      // color: Color(0xfffad4d5),
+        color: Colors.green.shade200,
+        borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+    height: 100,
+    width: 340,
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(
+              'assets/images/rating_workshop.png',
+              height: 75.0,
+              width: 75.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                //  Get.to(Feedback_service());
+              },
+              child: Text(
+                "Customer Rating",
+                style: GoogleFonts.quicksand(
+                    fontSize: 23,
+                    color: Colors.teal.shade900,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      ],
+    ),
+  );
 
-
+}
