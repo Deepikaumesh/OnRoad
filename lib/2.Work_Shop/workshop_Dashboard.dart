@@ -12,7 +12,6 @@ import 'Drawer_Workshop.dart';
 import 'Workshop_data.dart';
 import 'Workshop_splashscreen.dart';
 
-
 class Workshop_Dashboard extends StatefulWidget {
   //
   var data_passing_workshop;
@@ -24,34 +23,6 @@ class Workshop_Dashboard extends StatefulWidget {
 }
 
 class _Workshop_DashboardState extends State<Workshop_Dashboard> {
-  // void initState() {
-  //   setState(() {
-  //     if(Workshop_key == null ? Text("") : Workshop_key ){
-  //
-  //     }
-  //
-  //   });
-  //
-  //   super.initState();
-  // }
-
-  // var emai;
-  //
-  //
-  //
-  // Future getEmail() async {
-  //   SharedPreferences preferences = await SharedPreferences.getInstance();
-  //   setState(() {
-  //     emai =preferences.getString('email');
-  //   });
-  // }
-
-  // Future logout(BuildContext context) async {
-  //   SharedPreferences service_preference = await SharedPreferences.getInstance();
-  //   service_preference.clear();
-  //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Main_screen()));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +38,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
               IconButton(
                   onPressed: () async {
                     final SharedPreferences sharedpreferences =
-                    await SharedPreferences.getInstance();
+                        await SharedPreferences.getInstance();
                     sharedpreferences.remove('workshop_email');
                     Get.to(Main_screen());
                   },
@@ -79,10 +50,10 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
             width: 10,
           ),
         ],
-       toolbarHeight: 150,
+        toolbarHeight: 150,
         elevation: 0,
-       backgroundColor:  Colors.red.shade200,
-       //  backgroundColor:  Color(0xF5951B),
+        backgroundColor: Colors.red.shade200,
+        //  backgroundColor:  Color(0xF5951B),
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // Text('Welcome,',style: GoogleFonts.hind(fontSize: 15),),
 
@@ -91,157 +62,141 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
             style: GoogleFonts.hind(fontWeight: FontWeight.bold, fontSize: 30),
           ),
           Text('${Workshop_key}', style: GoogleFonts.hind(fontSize: 15)),
-            ]),
+        ]),
       ),
-      drawer:Drawer( child: WorkshopDrawer()),
+      drawer: Drawer(child: WorkshopDrawer()),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>Add_Workshop()));
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Add_Workshop()));
               },
               child: Container(
                 decoration: BoxDecoration(
-                   color: Colors.grey,
-                  borderRadius: BorderRadius.circular(4),),
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(4),
+                ),
                 margin: EdgeInsets.only(top: 40),
                 height: 50,
                 width: MediaQuery.of(context).size.width / 1.2,
-
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children:[
+                  children: [
                     Container(
                       height: 40,
                       width: 40,
                       decoration: BoxDecoration(
-                        //border: Border.all(width: 0.5,color: Colors.pink),
+                          //border: Border.all(width: 0.5,color: Colors.pink),
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
-                              image: AssetImage("assets/images/workshop.png",),
+                              image: AssetImage(
+                                "assets/images/workshop.png",
+                              ),
                               fit: BoxFit.contain)),
                     ),
-          Icon(Icons.arrow_right_alt_rounded,color: Colors.white,),
+                    Icon(
+                      Icons.arrow_right_alt_rounded,
+                      color: Colors.white,
+                    ),
                     Text(
-                    "Add Workshop",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20),
-                  ),
-        ],
+                      "Add Workshop",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ],
                 ),
-
               ),
             ),
-            SizedBox(height: 40,),
-
-
+            SizedBox(
+              height: 40,
+            ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 25,),
+              padding: EdgeInsets.symmetric(
+                horizontal: 25,
+              ),
               child: Container(
                 height: MediaQuery.of(context).size.height / 3,
-                width: MediaQuery.of(context).size.width ,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  //border: Border.all(width: 0.5,color: Colors.pink),
+                    //border: Border.all(width: 0.5,color: Colors.pink),
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(
-                        image: AssetImage("assets/images/workshop_dashboard.jpg"),
+                        image:
+                            AssetImage("assets/images/workshop_dashboard.jpg"),
                         fit: BoxFit.cover)),
               ),
             ),
-
-            // Container(
-            //   padding: EdgeInsets.symmetric(horizontal: 95, vertical: 10),
-            //   height: 50,
-            //   width: MediaQuery.of(context).size.width / 1.2,
-            //   child: Text(
-            //     "View Requests",
-            //     style: TextStyle(
-            //         color: Colors.white,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 20),
-            //   ),
-            //   color: Colors.black45,
-            // ),
-
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child:GestureDetector(
-                onTap: (){
-                 // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
-                },
-                child:View_Requests_Container() ,
-              ),
-
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,),
-              child:GestureDetector(
-                onTap: (){
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+              child: GestureDetector(
+                onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
                 },
-                child:View_Feedback_Container() ,
+                child: View_Requests_Container(),
               ),
-
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child:GestureDetector(
-                onTap: (){
+              padding: EdgeInsets.symmetric(
+                horizontal: 30,
+              ),
+              child: GestureDetector(
+                onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
                 },
-                child:View_Rating_Container() ,
+                child: View_Feedback_Container(),
               ),
-
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+              child: GestureDetector(
+                onTap: () {
+                  // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
+                },
+                child: View_Rating_Container(),
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
-              child:GestureDetector(
-                onTap: (){
+              child: GestureDetector(
+                onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
                 },
-                child:Account_Container() ,
+                child: Account_Container(),
               ),
-
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-              child:GestureDetector(
-                onTap: (){
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+              child: GestureDetector(
+                onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
                 },
-                child:Chat_Container() ,
+                child: Chat_Container(),
               ),
-
             ),
-
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,),
-              child:GestureDetector(
-                onTap: (){
-                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Workshop_data_Page()));
-                },
-                child:Work_shop_data_Container() ,
+              padding: EdgeInsets.symmetric(
+                horizontal: 30,
               ),
-
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Workshop_data_Page()));
+                },
+                child: Work_shop_data_Container(),
+              ),
             ),
-            // Text("hai"+widget.data_passing_service.toString()),
-
-            // MaterialButton(
-            //     color: Colors.lightBlueAccent,
-            //     child: Text('remove credentials workshop'),
-            //     onPressed: () async {
-            //       final SharedPreferences sharedpreferences =
-            //           await SharedPreferences.getInstance();
-            //       sharedpreferences.remove('workshop_email');
-            //       Get.to(Main_screen());
-            //     })
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),
@@ -252,7 +207,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
     return Container(
       decoration: BoxDecoration(
           //color: Color(0xfffad4d4),
-           color: Colors.black26,
+          color: Colors.black26,
           borderRadius: BorderRadius.circular(10)),
       padding: EdgeInsets.only(top: 10, left: 10, right: 10),
       height: 100,
@@ -269,7 +224,7 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-               //   Get.to(Workshop_view_request_Page());
+                  //   Get.to(Workshop_view_request_Page());
                 },
                 child: Text(
                   "View Request",
@@ -284,48 +239,51 @@ class _Workshop_DashboardState extends State<Workshop_Dashboard> {
         ],
       ),
     );
-}}
-  View_Feedback_Container() {
-    return Container(
-      decoration: BoxDecoration(
-        //color: Color(0xfffad4d4),
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(10)),
-      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-      height: 100,
-      width: 340,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Image.asset(
-                'assets/images/feedback_workshop.png',
-                height: 75.0,
-                width: 75.0,
-              ),
-              GestureDetector(
-                onTap: () {
-                //  Get.to(Workshop_feedback_Page());
-                },
-                child: Text(
-                  "View Feedback",
-                  style: GoogleFonts.quicksand(
-                      fontSize: 25,
-                      color: Colors.teal.shade900,
-                      fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
   }
+}
+
+View_Feedback_Container() {
+  return Container(
+    decoration: BoxDecoration(
+        //color: Color(0xfffad4d4),
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+    height: 100,
+    width: 340,
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(
+              'assets/images/feedback_workshop.png',
+              height: 75.0,
+              width: 75.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                //  Get.to(Workshop_feedback_Page());
+              },
+              child: Text(
+                "View Feedback",
+                style: GoogleFonts.quicksand(
+                    fontSize: 25,
+                    color: Colors.teal.shade900,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
 View_Rating_Container() {
   return Container(
     decoration: BoxDecoration(
-      //color: Color(0xfffad4d4),
+        //color: Color(0xfffad4d4),
         color: Colors.lightBlue.shade100,
         borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -343,7 +301,7 @@ View_Rating_Container() {
             ),
             GestureDetector(
               onTap: () {
-              //  Get.to(Workshop_Rating_Page());
+                //  Get.to(Workshop_Rating_Page());
               },
               child: Text(
                 "View Rating",
@@ -359,10 +317,11 @@ View_Rating_Container() {
     ),
   );
 }
+
 Account_Container() {
   return Container(
     decoration: BoxDecoration(
-      //color: Color(0xfffad4d4),
+        //color: Color(0xfffad4d4),
         color: Colors.red.shade200,
         borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -380,7 +339,7 @@ Account_Container() {
             ),
             GestureDetector(
               onTap: () {
-           //     Get.to(Workshop_Account_Page());
+                //     Get.to(Workshop_Account_Page());
               },
               child: Text(
                 "Account",
@@ -400,7 +359,7 @@ Account_Container() {
 Chat_Container() {
   return Container(
     decoration: BoxDecoration(
-      //color: Color(0xfffad4d4),
+        //color: Color(0xfffad4d4),
         color: Colors.orange.shade200,
         borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -418,7 +377,7 @@ Chat_Container() {
             ),
             GestureDetector(
               onTap: () {
-            //    Get.to(Workshop_chat_page());
+                //    Get.to(Workshop_chat_page());
               },
               child: Text(
                 "Chat with Customer",
@@ -434,10 +393,11 @@ Chat_Container() {
     ),
   );
 }
+
 Work_shop_data_Container() {
   return Container(
     decoration: BoxDecoration(
-      //color: Color(0xfffad4d4),
+        //color: Color(0xfffad4d4),
         color: Colors.teal.shade200,
         borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -471,8 +431,3 @@ Work_shop_data_Container() {
     ),
   );
 }
-
-
-
-
-

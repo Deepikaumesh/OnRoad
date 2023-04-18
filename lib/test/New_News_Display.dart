@@ -101,5 +101,3 @@ class ItemList extends StatelessWidget {
     );
   }
 }
-
-

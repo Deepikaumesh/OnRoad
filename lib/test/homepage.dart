@@ -9,19 +9,15 @@ import 'package:untitled/test/splashscreen.dart';
 import '../main.dart';
 
 class homepage extends StatefulWidget {
-  var name ='';
+  var name = '';
 
   homepage({required this.name});
-
 
   @override
   _homepageState createState() => _homepageState();
 }
 
 class _homepageState extends State<homepage> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,16 +25,16 @@ class _homepageState extends State<homepage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text('Welcome'+widget.name),
+            child: Text('Welcome' + widget.name),
           ),
           MaterialButton(
               color: Colors.lightBlueAccent,
               child: Text('remove credentials'),
-              onPressed: () async{
-                final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+              onPressed: () async {
+                final SharedPreferences sharedpreferences =
+                    await SharedPreferences.getInstance();
                 sharedpreferences.remove('email');
                 Get.to(login_page());
-
               })
         ],
       ),

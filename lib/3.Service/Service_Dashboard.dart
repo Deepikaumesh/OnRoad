@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/3.Service/service_Splashscreen.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 
-
 import 'create_service.dart';
 import 'Drawer_Service.dart';
 import 'display_Edit_Profile_Page.dart';
@@ -69,31 +68,28 @@ class _Service_DashboardState extends State<Service_Dashboard> {
         child: Column(
           children: [
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
-                child:GestureDetector(
-                  onTap: (){
-                     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Create_service()));
-                  },
-                  child:Create_Service_Container() ,
-                ),
-
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Create_service()));
+                },
+                child: Create_Service_Container(),
+              ),
             ),
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Update_Service()),
-
             Padding(
-
-                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Request_container()),
             Padding(
-
-                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: feedback_container()),
-
             Padding(
-
-                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Rating()),
           ],
         ),
@@ -105,7 +101,7 @@ class _Service_DashboardState extends State<Service_Dashboard> {
     return Container(
       decoration: BoxDecoration(
           color: Color(0xfffad4d4),
-         // color: Colors.blueGrey.shade100,
+          // color: Colors.blueGrey.shade100,
           borderRadius: BorderRadius.circular(10)),
       padding: EdgeInsets.only(top: 10, left: 10, right: 10),
       height: 100,
@@ -140,51 +136,15 @@ class _Service_DashboardState extends State<Service_Dashboard> {
   }
 }
 
-
-  Update_Service() {
-    return GestureDetector(
-      onTap: (){
-        Get.to(Display_Edit_Profile_Page());
-      },
-      child: Container(
-        decoration: BoxDecoration(
-         //   color: Color(0xfffad4d4),
-            color: Colors.blueGrey.shade100,
-            borderRadius: BorderRadius.circular(10)),
-        padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-        height: 100,
-        width: 340,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Image.asset(
-                  'assets/images/create_service.png',
-                  height: 75.0,
-                  width: 75.0,
-                ),
-                Text(
-                  "Edit Profile",
-                  style: GoogleFonts.quicksand(
-                      fontSize: 25,
-                      color: Colors.teal.shade900,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-
-  }
-
-  feedback_container(){
-    return Container(
+Update_Service() {
+  return GestureDetector(
+    onTap: () {
+      Get.to(Display_Edit_Profile_Page());
+    },
+    child: Container(
       decoration: BoxDecoration(
-         // color: Color(0xfffad4d5),
-         color: Colors.orangeAccent.shade100,
+          //   color: Color(0xfffad4d4),
+          color: Colors.blueGrey.shade100,
           borderRadius: BorderRadius.circular(10)),
       padding: EdgeInsets.only(top: 10, left: 10, right: 10),
       height: 100,
@@ -195,34 +155,67 @@ class _Service_DashboardState extends State<Service_Dashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Image.asset(
-                'assets/images/feedback.png',
+                'assets/images/create_service.png',
                 height: 75.0,
                 width: 75.0,
               ),
-              GestureDetector(
-                onTap: () {
-                //  Get.to(Feedback_service());
-                },
-                child: Text(
-                  "Customer Feedback",
-                  style: GoogleFonts.quicksand(
-                      fontSize: 23,
-                      color: Colors.teal.shade900,
-                      fontWeight: FontWeight.bold),
-                ),
+              Text(
+                "Edit Profile",
+                style: GoogleFonts.quicksand(
+                    fontSize: 25,
+                    color: Colors.teal.shade900,
+                    fontWeight: FontWeight.bold),
               )
             ],
           ),
         ],
       ),
-    );
+    ),
+  );
+}
 
-  }
-
-Request_container(){
+feedback_container() {
   return Container(
     decoration: BoxDecoration(
-      // color: Color(0xfffad4d5),
+        // color: Color(0xfffad4d5),
+        color: Colors.orangeAccent.shade100,
+        borderRadius: BorderRadius.circular(10)),
+    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+    height: 100,
+    width: 340,
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset(
+              'assets/images/feedback.png',
+              height: 75.0,
+              width: 75.0,
+            ),
+            GestureDetector(
+              onTap: () {
+                //  Get.to(Feedback_service());
+              },
+              child: Text(
+                "Customer Feedback",
+                style: GoogleFonts.quicksand(
+                    fontSize: 23,
+                    color: Colors.teal.shade900,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Request_container() {
+  return Container(
+    decoration: BoxDecoration(
+        // color: Color(0xfffad4d5),
         color: Colors.red.shade100,
         borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -256,10 +249,11 @@ Request_container(){
     ),
   );
 }
-Rating(){
+
+Rating() {
   return Container(
     decoration: BoxDecoration(
-      // color: Color(0xfffad4d5),
+        // color: Color(0xfffad4d5),
         color: Colors.green.shade200,
         borderRadius: BorderRadius.circular(10)),
     padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -292,5 +286,4 @@ Rating(){
       ],
     ),
   );
-
 }

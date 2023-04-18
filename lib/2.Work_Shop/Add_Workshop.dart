@@ -90,8 +90,6 @@ class _Add_WorkshopState extends State<Add_Workshop> {
     super.initState();
   }
 
-
-
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Future Service_Reg() async {
@@ -185,30 +183,28 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                   onSaved: (name) {},
                   textCapitalization: TextCapitalization.words,
                   decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                  hintText: "Enter Workshop name",
-                  label: Text('Workshop name'),
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  )),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      hintText: "Enter Workshop name",
+                      label: Text('Workshop name'),
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 40,vertical: 20
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   controller: contact_no,
                   // validator: (value) {
@@ -264,61 +260,58 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                   },
                   onSaved: (email) {},
                   decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                  hintText: "Enter email id",
-                  label: Text('Email'),
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  )),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      hintText: "Enter email id",
+                      label: Text('Email'),
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
-                 controller: license_no,
+                  controller: license_no,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Please enter license no";
                     }
                     return null;
                   },
-                 keyboardType: TextInputType.number,
-                 decoration: InputDecoration(
-                 enabledBorder: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(10),
-                   borderSide: BorderSide(
-                     color: Colors.black,
-                   ),
-                 ),
-                 focusedBorder: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(10),
-                   borderSide: BorderSide(
-                     color: Colors.black,
-                   ),
-                 ),
-                 hintText: "Enter license no",
-                 label: Text('License no'),
-                 hintStyle: TextStyle(color: Colors.grey),
-                 border: OutlineInputBorder(
-                   borderRadius: BorderRadius.circular(10),
-                 )),
-                    ),
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          color: Colors.black,
+                        ),
+                      ),
+                      hintText: "Enter license no",
+                      label: Text('License no'),
+                      hintStyle: TextStyle(color: Colors.grey),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
+                ),
               ),
-
-
-
               SizedBox(
                 height: 15,
               ),
@@ -383,9 +376,9 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                           ))),
                 ],
               ),
-              SizedBox(height: 20,),
-
-
+              SizedBox(
+                height: 20,
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
@@ -419,17 +412,9 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                       )),
                 ),
               ),
-
-
-
-              SizedBox(height: 30,),
-
-
-
-
-
-
-
+              SizedBox(
+                height: 30,
+              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: StadiumBorder(),
@@ -438,21 +423,18 @@ class _Add_WorkshopState extends State<Add_Workshop> {
                       left: 110, right: 110, top: 20, bottom: 20),
                 ),
                 onPressed: () {
-
-
-    if (_formkey.currentState!.validate()) {
-      setState(() {
-
-        Service_Reg();
-      });
-      name.clear();
-      contact_no.clear();
-      email_id.clear();
-      license_no.clear();
-      address.clear();
-      location.clear();
-      //status.clear();
-    }
+                  if (_formkey.currentState!.validate()) {
+                    setState(() {
+                      Service_Reg();
+                    });
+                    name.clear();
+                    contact_no.clear();
+                    email_id.clear();
+                    license_no.clear();
+                    address.clear();
+                    location.clear();
+                    //status.clear();
+                  }
                 },
                 child: Text('Submit'),
               ),

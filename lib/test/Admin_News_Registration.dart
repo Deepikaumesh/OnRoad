@@ -11,31 +11,30 @@ class Admin_News_Reg extends StatefulWidget {
   @override
   _Admin_News_RegState createState() => _Admin_News_RegState();
 
-  // void _showDialog(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: new Text("Alert!!"),
-  //         content: new Text("You are awesome!"),
-  //         actions: <Widget>[
-  //           new FlatButton(
-  //             child: new Text("OK"),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
+// void _showDialog(BuildContext context) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: new Text("Alert!!"),
+//         content: new Text("You are awesome!"),
+//         actions: <Widget>[
+//           new FlatButton(
+//             child: new Text("OK"),
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
 }
 
 class _Admin_News_RegState extends State<Admin_News_Reg> {
   TextEditingController name = new TextEditingController();
   TextEditingController address = new TextEditingController();
-
 
   late bool status;
   late String message;
@@ -59,8 +58,6 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
     var send = await http.post(Uri.parse(serverUrl), body: {
       "name": name.text,
       "address": address.text,
-
-
     });
 
     if (send.statusCode == 200) {
@@ -75,7 +72,6 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
       } else {
         name.clear();
         address.clear();
-
 
         setState(() {
           status = true;
@@ -92,18 +88,16 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
 
   Widget _buildName() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: TextField(
-        controller: name,
-        decoration: new InputDecoration(
+        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        child: TextField(
+          controller: name,
+          decoration: new InputDecoration(
             border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.teal)
-            ),
-          labelText: 'News title',
-           ),
-        keyboardType: TextInputType.text,
-      )
-    );
+                borderSide: new BorderSide(color: Colors.teal)),
+            labelText: 'News title',
+          ),
+          keyboardType: TextInputType.text,
+        ));
   }
 
   Widget _buildaddress() {
@@ -113,17 +107,13 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
           controller: address,
           decoration: new InputDecoration(
             border: new OutlineInputBorder(
-                borderSide: new BorderSide(color: Colors.teal)
-            ),
+                borderSide: new BorderSide(color: Colors.teal)),
             labelText: 'News Description',
           ),
           keyboardType: TextInputType.multiline,
           maxLines: 15,
-        )
-    );
+        ));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +134,7 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
           child: Icon(
             Icons.arrow_back_rounded,
             color: Colors.red.shade900,
-            size: 35,// add custom icons also
+            size: 35, // add custom icons also
           ),
         ),
       ),
@@ -155,9 +145,10 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
             child: Column(
               children: <Widget>[
                 _buildName(),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 _buildaddress(),
-
                 SizedBox(
                   height: 10,
                 ),
@@ -166,7 +157,7 @@ class _Admin_News_RegState extends State<Admin_News_Reg> {
                   // color: Colors.red.shade900,
                   child: Padding(
                       padding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       child: Text(
                         "Submit",
                         style: GoogleFonts.prompt(

@@ -1,16 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Admin_Dashboard.dart';
 import 'Admin_Login.dart';
-
-
-
-
 
 var Admin_key;
 
@@ -19,19 +14,25 @@ class Admin_Splashscreen extends StatefulWidget {
 }
 
 class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
-
   void initState() {
-    getValidationData().whenComplete(() async{
+    getValidationData().whenComplete(() async {
       // Timer(Duration(seconds: 2),() => Get.to(finalemail == null ?
       // login_page() : homepage()));
 
-      await Timer(Duration(seconds: 1),() {
-        Admin_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>Admin_Login())):
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Admin_Dashboard(data_passing_admin: null,)));
+      await Timer(Duration(seconds: 1), () {
+        Admin_key == null
+            ? Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Admin_Login()))
+            : Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Admin_Dashboard(
+                          data_passing_admin: null,
+                        )));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
-
       });
-
     });
 
     // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
@@ -44,12 +45,10 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
   //   super.didChangeDependencies();
   // }
 
-
   // Timer(
   //   Duration(seconds: 2),
   //       () => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyLogin())),
   // );
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +56,6 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
       color: Colors.white,
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -78,24 +75,27 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 20,),
-          CircularProgressIndicator(color: Colors.lightBlue,),
+          SizedBox(
+            height: 20,
+          ),
+          CircularProgressIndicator(
+            color: Colors.lightBlue,
+          ),
         ],
-
-
       ),
     );
   }
+
   // Future Merchant_gotoLogin() async {
   //   await Future.delayed(Duration(seconds: 1));
   //   Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Service_Login()));
   // }
-  Future getValidationData() async{
+  Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await  sharedprefs.getString('admin_email');
+    var obtainedemail = await sharedprefs.getString('admin_email');
     //value = obtainedemail;
     setState(() {
-      Admin_key= obtainedemail;
+      Admin_key = obtainedemail;
     });
     print('thisis service  value $Admin_key');
   }
@@ -112,6 +112,4 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
 //   }
 //
 // }
-
-
 }

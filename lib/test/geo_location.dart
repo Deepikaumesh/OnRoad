@@ -11,9 +11,8 @@ class geo_location extends StatefulWidget {
 }
 
 class _geo_locationState extends State<geo_location> {
-
-  String location ='null press button';
-  String Address ='search';
+  String location = 'null press button';
+  String Address = 'search';
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -22,7 +21,7 @@ class _geo_locationState extends State<geo_location> {
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-    await Geolocator.openLocationSettings();
+      await Geolocator.openLocationSettings();
       return Future.error('Location services are disabled.');
     }
 
@@ -45,16 +44,14 @@ class _geo_locationState extends State<geo_location> {
     return await Geolocator.getCurrentPosition();
   }
 
-  Future<void> GetAddressFromLatiLongi(Position position) async{
-    List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude);
+  Future<void> GetAddressFromLatiLongi(Position position) async {
+    List<Placemark> placemark =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
     print(placemark);
-    Placemark place =placemark[0];
-    Address = '${place.name},${place.administrativeArea},${place.locality},${place.country}';
-    setState(() {
-
-    });
-
-
+    Placemark place = placemark[0];
+    Address =
+        '${place.name},${place.administrativeArea},${place.locality},${place.country}';
+    setState(() {});
   }
 
   @override
@@ -65,24 +62,25 @@ class _geo_locationState extends State<geo_location> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("coordinate points"),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text('$location'),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text("address"),
             Text('${Address}'),
-
-            ElevatedButton(onPressed: ()async{
-              Position position = await _determinePosition();
-              print(position.latitude);
-              print(position.longitude);
-              location ='Lat${position.latitude},Log${position.longitude}';
-              GetAddressFromLatiLongi(position);
-              setState(() {
-
-              });
-
-            }, child: Text("get location")),
-
+            ElevatedButton(
+                onPressed: () async {
+                  Position position = await _determinePosition();
+                  print(position.latitude);
+                  print(position.longitude);
+                  location = 'Lat${position.latitude},Log${position.longitude}';
+                  GetAddressFromLatiLongi(position);
+                  setState(() {});
+                },
+                child: Text("get location")),
           ],
         ),
       ),

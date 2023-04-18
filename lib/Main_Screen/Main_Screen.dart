@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 import '../1.Admin/Admin_splashscreen.dart';
 import '../2.Work_Shop/Workshop_splashscreen.dart';
 import '../3.Service/service_Splashscreen.dart';
@@ -12,7 +11,6 @@ import '../4.Customer/Customer_splashscreen.dart';
 
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 
 import '../test/geo_location.dart';
 import '../test/splashscreen.dart';
@@ -71,11 +69,11 @@ class _Main_screenState extends State<Main_screen> {
               ),
 
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40,vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
                 child: SizedBox(
                   width: 330.0,
                   height: 70.0,
-                  child:  ElevatedButton(
+                  child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       //  shape: StadiumBorder(),
                       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -94,8 +92,8 @@ class _Main_screenState extends State<Main_screen> {
                               borderRadius: BorderRadius.circular(6),
                               // color: Colors.teal,
                               image: DecorationImage(
-                                  image:
-                                  AssetImage("assets/images/businessman.png"),
+                                  image: AssetImage(
+                                      "assets/images/businessman.png"),
                                   fit: BoxFit.contain),
                             ),
                           ),
@@ -124,11 +122,13 @@ class _Main_screenState extends State<Main_screen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40,),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 40,
+                ),
                 child: SizedBox(
                   width: 330.0,
                   height: 70.0,
-                  child:  ElevatedButton(
+                  child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       //  shape: StadiumBorder(),
                       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -148,7 +148,7 @@ class _Main_screenState extends State<Main_screen> {
                               // color: Colors.teal,
                               image: DecorationImage(
                                   image:
-                                  AssetImage("assets/images/workshop.png"),
+                                      AssetImage("assets/images/workshop.png"),
                                   fit: BoxFit.contain),
                             ),
                           ),
@@ -172,11 +172,11 @@ class _Main_screenState extends State<Main_screen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40,vertical: 40),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 40),
                 child: SizedBox(
                   width: 330.0,
                   height: 70.0,
-                  child:  ElevatedButton(
+                  child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       //  shape: StadiumBorder(),
                       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -195,8 +195,8 @@ class _Main_screenState extends State<Main_screen> {
                               borderRadius: BorderRadius.circular(6),
                               // color: Colors.teal,
                               image: DecorationImage(
-                                  image:
-                                  AssetImage("assets/images/customer-service.png"),
+                                  image: AssetImage(
+                                      "assets/images/customer-service.png"),
                                   fit: BoxFit.contain),
                             ),
                           ),
@@ -248,7 +248,7 @@ class _Main_screenState extends State<Main_screen> {
                               // color: Colors.teal,
                               image: DecorationImage(
                                   image:
-                                  AssetImage("assets/images/user (2).png"),
+                                      AssetImage("assets/images/user (2).png"),
                                   fit: BoxFit.contain),
                             ),
                           ),
@@ -396,11 +396,10 @@ class _Main_screenState extends State<Main_screen> {
               // },
               // child: Text("test")),
 
-            //
-            // ElevatedButton(onPressed: (){
-            //   Get.to(geo_location());
-            // }, child:Text("location test"))
-
+              //
+              // ElevatedButton(onPressed: (){
+              //   Get.to(geo_location());
+              // }, child:Text("location test"))
             ],
           ),
         ),

@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
-
-
-
 import '../main.dart';
 import 'Service_Login.dart';
 
@@ -85,7 +82,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("username"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -94,11 +91,10 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
-
                 Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 40,
@@ -110,8 +106,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         if (value!.isEmpty) {
                           return "Please enter  email";
                         }
-                        if (!RegExp(
-                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                             .hasMatch(value)) {
                           return "Please enter a valid email";
                         }
@@ -122,7 +117,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("email"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -131,8 +126,8 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -153,7 +148,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("phone"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -162,8 +157,8 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -184,7 +179,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -193,8 +188,8 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -218,7 +213,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("confirm password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -227,16 +222,10 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
-
-
-
-
-
-
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
                   width: MediaQuery.of(context).size.width / 1.3,
@@ -250,22 +239,20 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                       if (formkey.currentState!.validate()) {
                         setState(() {
                           RegistrationService();
-
                         });
                         _username.clear();
                         _email.clear();
                         _phone.clear();
                         _password.clear();
                         _confirmpassword.clear();
-                      }},
+                      }
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
                 ),
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -275,7 +262,8 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => Service_Login()));
+                                builder: (BuildContext context) =>
+                                    Service_Login()));
                       },
                       child: Text(
                         "Login",
@@ -294,6 +282,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
       ),
     );
   }
+
   Future RegistrationService() async {
     var APIURL =
         "http://$ip/MySampleApp/ORBVA/Service_center/Registrationn.php";
@@ -314,7 +303,6 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
     var responseError = data["error"];
     print("DATA: ${data}");
     if (responseError) {
-
       setState(() {
         status = false;
         message = responseMessage;
@@ -327,10 +315,7 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
           textColor: Colors.white,
           webPosition: 1,
           backgroundColor: Colors.blueGrey);
-
-    }
-
-    else {
+    } else {
       _username.clear();
       _email.clear();
       _phone.clear();
@@ -348,16 +333,11 @@ class _Service_SignupPageState extends State<Service_SignupPage> {
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blueGrey);
-
     }
-
 
     print("DATA: ${data}");
   }
 }
-
-
-
 
 Widget makeInput({
   label,
@@ -386,8 +366,8 @@ Widget makeInput({
           ),
           border: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.grey.shade500,
-              )),
+            color: Colors.grey.shade500,
+          )),
         ),
       ),
       SizedBox(

@@ -6,8 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Main_Screen/Main_Screen.dart';
 
-
-
 class ServiceDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -103,13 +101,12 @@ class ServiceDrawer extends StatelessWidget {
         //       )),
         // ),
 
-
         ListTile(
-          onTap: () async{
-              final SharedPreferences sharedpreferences =
-              await SharedPreferences.getInstance();
-              sharedpreferences.remove('service_email');
-              Get.to(Main_screen());
+          onTap: () async {
+            final SharedPreferences sharedpreferences =
+                await SharedPreferences.getInstance();
+            sharedpreferences.remove('service_email');
+            Get.to(Main_screen());
           },
           leading: Icon(
             Icons.exit_to_app_sharp,
@@ -120,8 +117,6 @@ class ServiceDrawer extends StatelessWidget {
             style: GoogleFonts.prompt(fontSize: 15),
           ),
         ),
-
-
       ]),
     );
   }

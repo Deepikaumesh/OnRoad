@@ -923,26 +923,28 @@ class _Edit_WorkerState extends State<Edit_Worker> {
                 new Padding(
                   padding: const EdgeInsets.all(10.0),
                 ),
-
                 ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all(Colors.red.shade900),
+                            MaterialStateProperty.all(Colors.red.shade900),
                         padding: MaterialStateProperty.all(
                             EdgeInsets.symmetric(horizontal: 50, vertical: 15)),
                         textStyle:
-                        MaterialStateProperty.all(TextStyle(fontSize: 20))),
+                            MaterialStateProperty.all(TextStyle(fontSize: 20))),
                     onPressed: () {
                       setState(() {
                         UpdateData();
-                        Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                            builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop:null
-                            )));
+                        Navigator.of(context).pushReplacement(
+                            new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Workshop_Dashboard(
+                                        data_passing_workshop: null)));
                       });
-
                     },
                     child: Text("Submit")),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ],

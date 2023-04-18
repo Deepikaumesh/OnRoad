@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 class CustomerDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -81,8 +79,6 @@ class CustomerDrawer extends StatelessWidget {
             style: GoogleFonts.prompt(fontSize: 15),
           ),
         ),
-
-
       ]),
     );
   }

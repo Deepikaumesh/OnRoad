@@ -4,14 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 import 'package:http/http.dart' as http;
 import 'package:untitled/main.dart';
 
 import 'Workshop_Login.dart';
-
-
 
 class Workshop_SignupPage extends StatefulWidget {
   @override
@@ -244,7 +240,6 @@ class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         setState(() {
-
                           RegistrationWorkshop();
                         });
                         _username.clear();
@@ -276,7 +271,8 @@ class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => Work_shop_Login()));
+                                builder: (BuildContext context) =>
+                                    Work_shop_Login()));
                       },
                       child: Text(
                         "Login",
@@ -296,10 +292,8 @@ class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
     );
   }
 
-
   Future RegistrationWorkshop() async {
-    var APIURL =
-        "http://$ip/MySampleApp/ORBVA/Work_shop/Registrationn.php";
+    var APIURL = "http://$ip/MySampleApp/ORBVA/Work_shop/Registrationn.php";
 
     //json maping user entered details
     Map mapeddate = {
@@ -317,7 +311,6 @@ class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
     var responseError = data["error"];
     print("DATA: ${data}");
     if (responseError) {
-
       setState(() {
         status = false;
         message = responseMessage;
@@ -330,10 +323,7 @@ class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
           textColor: Colors.white,
           webPosition: 1,
           backgroundColor: Colors.blueGrey);
-
-    }
-
-    else {
+    } else {
       _username.clear();
       _email.clear();
       _phone.clear();
@@ -351,9 +341,7 @@ class _Workshop_SignupPageState extends State<Workshop_SignupPage> {
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blueGrey);
-
     }
-
 
     print("DATA: ${data}");
   }

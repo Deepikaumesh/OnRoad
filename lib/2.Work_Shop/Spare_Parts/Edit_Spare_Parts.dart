@@ -468,7 +468,6 @@ import 'package:untitled/Main_Screen/Main_Screen.dart';
 
 import '../../main.dart';
 
-
 class Edit_Spare_Parts extends StatefulWidget {
   final List list;
   final int index;
@@ -483,14 +482,12 @@ class _Edit_Spare_PartsState extends State<Edit_Spare_Parts> {
   TextEditingController parts_name = TextEditingController();
   TextEditingController parts_details = TextEditingController();
 
-
   void UpdateData() {
     var url = "http://$ip/MySampleApp/ORBVA/Work_shop/Edit_spare_parts.php";
     http.post(Uri.parse(url), body: {
       "id": widget.list[widget.index]['id'],
       'parts_name': parts_name.text,
       'parts_details': parts_details.text,
-
     });
   }
 
@@ -499,7 +496,8 @@ class _Edit_Spare_PartsState extends State<Edit_Spare_Parts> {
     //controllername= new TextEditingController(text: widget.list[widget.index]['name'] );
     parts_name =
         TextEditingController(text: widget.list[widget.index]['parts_name']);
-    parts_details = TextEditingController(text: widget.list[widget.index]['parts_details']);
+    parts_details =
+        TextEditingController(text: widget.list[widget.index]['parts_details']);
 
     super.initState();
   }
@@ -557,7 +555,6 @@ class _Edit_Spare_PartsState extends State<Edit_Spare_Parts> {
                         )),
                   ),
                 ),
-
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                   child: new TextFormField(
@@ -591,32 +588,31 @@ class _Edit_Spare_PartsState extends State<Edit_Spare_Parts> {
                         )),
                   ),
                 ),
-
-
-
                 new Padding(
                   padding: const EdgeInsets.all(10.0),
                 ),
-
                 ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                        MaterialStateProperty.all(Colors.red.shade900),
+                            MaterialStateProperty.all(Colors.red.shade900),
                         padding: MaterialStateProperty.all(
                             EdgeInsets.symmetric(horizontal: 50, vertical: 15)),
                         textStyle:
-                        MaterialStateProperty.all(TextStyle(fontSize: 20))),
+                            MaterialStateProperty.all(TextStyle(fontSize: 20))),
                     onPressed: () {
                       setState(() {
                         UpdateData();
-                        Navigator.of(context).pushReplacement(new MaterialPageRoute(
-                            builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop:null
-                            )));
+                        Navigator.of(context).pushReplacement(
+                            new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Workshop_Dashboard(
+                                        data_passing_workshop: null)));
                       });
-
                     },
                     child: Text("Submit")),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ],

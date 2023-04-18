@@ -17,7 +17,11 @@ class _About_UsState extends State<About_Us> {
       children: [
         Column(
           children: [
-            Expanded(flex: 2, child: Container(color: Colors.cyan.shade50,)),
+            Expanded(
+                flex: 2,
+                child: Container(
+                  color: Colors.cyan.shade50,
+                )),
             Expanded(child: Container(color: Colors.white)),
           ],
         ),
@@ -50,9 +54,9 @@ class _About_UsState extends State<About_Us> {
                         padding: const EdgeInsets.all(25.0),
                         child: Text(
                           'On Road Vehicle Breakdown Assistance (ORVBA) is going to be a good solution for the '
-    'people who seek help in the remote locations with mechanical issues of their vehicle. Users of the On Road Vehicle Breakdown Assistance'
-   ' will be the registered public and they will be getting connected with the particular mechanic through the trustworthy On Road Vehicle Breakdown Assistance (ORVBA) system. Because only the legally licensed and approved mechanics are enlisted in the On Road Vehicle Breakdown'
-                              ' Assistance (ORVBA) App.',
+                          'people who seek help in the remote locations with mechanical issues of their vehicle. Users of the On Road Vehicle Breakdown Assistance'
+                          ' will be the registered public and they will be getting connected with the particular mechanic through the trustworthy On Road Vehicle Breakdown Assistance (ORVBA) system. Because only the legally licensed and approved mechanics are enlisted in the On Road Vehicle Breakdown'
+                          ' Assistance (ORVBA) App.',
 
                           textAlign: TextAlign.justify,
                           //style: TextStyle(fontSize: 15),

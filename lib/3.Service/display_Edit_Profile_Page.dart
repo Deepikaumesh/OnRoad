@@ -209,6 +209,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -218,7 +219,6 @@ import 'package:untitled/2.Work_Shop/Worker/workers_detail.dart';
 import '../../main.dart';
 import 'Edit_Service.dart';
 
-
 class Display_Edit_Profile_Page extends StatefulWidget {
   @override
   _Display_Edit_Profile_PageState createState() =>
@@ -226,10 +226,6 @@ class Display_Edit_Profile_Page extends StatefulWidget {
 }
 
 class _Display_Edit_Profile_PageState extends State<Display_Edit_Profile_Page> {
-
-
-
-
   Future<List> getData() async {
     final response = await http.get(Uri.parse(
         "http://$ip/MySampleApp/ORBVA/Service_center/Service_display.php"));
@@ -238,7 +234,7 @@ class _Display_Edit_Profile_PageState extends State<Display_Edit_Profile_Page> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -247,22 +243,22 @@ class _Display_Edit_Profile_PageState extends State<Display_Edit_Profile_Page> {
         centerTitle: true,
         title: Text(
           "Update Profile",
-          style: GoogleFonts.prompt(fontSize: 22,color: Colors.blueGrey),
+          style: GoogleFonts.prompt(fontSize: 22, color: Colors.blueGrey),
         ),
       ),
-      body:  FutureBuilder<List>(
+      body: FutureBuilder<List>(
         future: getData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ?  ItemList(
-            // list: snapshot.data,
-            list: snapshot.data ?? [],
-          )
-              :  Center(
-            child:  CircularProgressIndicator(),
-          );
+              ? ItemList(
+                  // list: snapshot.data,
+                  list: snapshot.data ?? [],
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                );
         },
       ),
     );
@@ -281,52 +277,59 @@ class ItemList extends StatefulWidget {
 class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
-    return  ListView.builder(
+    return ListView.builder(
       itemCount: widget.list == null ? 0 : widget.list.length,
       itemBuilder: (context, i) {
-        return  Container(
+        return Container(
           padding: const EdgeInsets.all(10.0),
-          child:  Card(
+          child: Card(
             color: Colors.grey.shade400,
             margin: EdgeInsets.all(10),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: ListTile(
-              leading:GestureDetector(
-                  onTap: (){
+              leading: GestureDetector(
+                  onTap: () {
                     setState(() {
                       delrecord(widget.list[i]['id']);
-
                     });
-
-
-
-
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Display_Edit_Profile_Page()));
+                    Fluttertoast.showToast(
+                        msg: 'Profile deleted',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.SNACKBAR,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.blueGrey);
                   },
-                  child: Icon(Icons.delete,color: Colors.red.shade900,)) ,
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.red.shade900,
+                  )),
               title: Text(
                 (widget.list[i]['mech_name']),
-                style: GoogleFonts.lora(
-                    fontSize: 13, color: Colors.white),
+                style: GoogleFonts.lora(fontSize: 13, color: Colors.white),
               ),
               trailing: GestureDetector(
-                  onTap: (){
-
-                    Get.to(Edit_Service(   list: widget.list,
+                  onTap: () {
+                    Get.to(Edit_Service(
+                      list: widget.list,
                       index: i,
-                      ));
+                    ));
                   },
-                  child: Icon(Icons.edit,color: Colors.green.shade900,)) ,
-
+                  child: Icon(
+                    Icons.edit,
+                    color: Colors.green.shade900,
+                  )),
             ),
           ),
         );
       },
     );
-
-
-
   }
 
   Future<void> delrecord(dynamic id) async {
@@ -338,14 +341,9 @@ class _ItemListState extends State<ItemList> {
     var resoponse = jsonDecode(res.body);
     if (resoponse["success"] == "true") {
       print(id);
-       setState(() {
-
-       });
-
+      setState(() {});
     } else {
       print("some issue");
     }
   }
 }
-
-

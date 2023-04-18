@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
 
-
 import '../main.dart';
 import 'Customer_Login.dart';
 
@@ -84,7 +83,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("username"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -93,8 +92,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
 
@@ -109,8 +108,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         if (value!.isEmpty) {
                           return "Please enter  email";
                         }
-                        if (!RegExp(
-                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                             .hasMatch(value)) {
                           return "Please enter a valid email";
                         }
@@ -121,7 +119,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("email"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -130,8 +128,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -152,7 +150,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("phone"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -161,8 +159,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -183,7 +181,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -192,8 +190,8 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
                 Padding(
@@ -217,7 +215,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       decoration: InputDecoration(
                         label: Text("confirm password"),
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             // color: Colors.grey[400],
@@ -226,15 +224,10 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                         ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.grey.shade500,
-                            )),
+                          color: Colors.grey.shade500,
+                        )),
                       ),
                     )),
-
-
-
-
-
 
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
@@ -249,15 +242,14 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                       if (formkey.currentState!.validate()) {
                         setState(() {
                           RegistrationUser();
-
                         });
                         _username.clear();
                         _email.clear();
                         _phone.clear();
                         _password.clear();
                         _confirmpassword.clear();
-
-                      }},
+                      }
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.white, fontSize: 35),
@@ -270,7 +262,11 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                     Text("Already have an account? "),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>Customer_Login()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Customer_Login()));
                       },
                       child: Text(
                         "Login",
@@ -281,8 +277,7 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
                   ],
                 )
 
-
-             //   Text(status ? message : message,style: TextStyle(color: Colors.red.shade900),),
+                //   Text(status ? message : message,style: TextStyle(color: Colors.red.shade900),),
                 //Text("hello"),
               ],
             ),
@@ -294,70 +289,60 @@ class _Customer_SignupPageState extends State<Customer_SignupPage> {
     );
   }
 
+  Future RegistrationUser() async {
+    var APIURL = "http://$ip/MySampleApp/ORBVA/Customer/Registrationn.php";
 
+    //json maping user entered details
+    Map mapeddate = {
+      'username': _username.text,
+      'email': _email.text,
+      'phone': _phone.text,
+      'password': _password.text
+    };
+    //send  data using http post to our php code
+    http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
 
-Future RegistrationUser() async {
-  var APIURL =
-      "http://$ip/MySampleApp/ORBVA/Customer/Registrationn.php";
+    //getting response from php code, here
+    var data = jsonDecode(reponse.body);
+    var responseMessage = data["message"];
+    var responseError = data["error"];
+    print("DATA: ${data}");
+    if (responseError) {
+      setState(() {
+        status = false;
+        message = responseMessage;
+      });
+      Fluttertoast.showToast(
+          msg: 'email and password already exists try another! ',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.white,
+          webPosition: 1,
+          backgroundColor: Colors.blueGrey);
+    } else {
+      _username.clear();
+      _email.clear();
+      _phone.clear();
+      _password.clear();
+      _confirmpassword.clear();
 
-  //json maping user entered details
-  Map mapeddate = {
-    'username': _username.text,
-    'email': _email.text,
-    'phone': _phone.text,
-    'password': _password.text
-  };
-  //send  data using http post to our php code
-  http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
+      setState(() {
+        status = true;
+        message = responseMessage;
+      });
 
-  //getting response from php code, here
-  var data = jsonDecode(reponse.body);
-  var responseMessage = data["message"];
-  var responseError = data["error"];
-  print("DATA: ${data}");
-  if (responseError) {
+      Fluttertoast.showToast(
+          msg: 'Registration successfull ',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blueGrey);
+    }
 
-    setState(() {
-      status = false;
-      message = responseMessage;
-    });
-    Fluttertoast.showToast(
-              msg: 'email and password already exists try another! ',
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              textColor: Colors.white,
-              webPosition: 1,
-              backgroundColor: Colors.blueGrey);
-
+    print("DATA: ${data}");
   }
-
-  else {
-    _username.clear();
-    _email.clear();
-    _phone.clear();
-    _password.clear();
-    _confirmpassword.clear();
-
-    setState(() {
-      status = true;
-      message = responseMessage;
-    });
-
-        Fluttertoast.showToast(
-            msg: 'Registration successfull ',
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.blueGrey);
-
-       }
-  
-
-  print("DATA: ${data}");
 }
-}
-
 
 Widget makeInput({
   label,
@@ -386,8 +371,8 @@ Widget makeInput({
           ),
           border: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.grey.shade500,
-              )),
+            color: Colors.grey.shade500,
+          )),
         ),
       ),
       SizedBox(

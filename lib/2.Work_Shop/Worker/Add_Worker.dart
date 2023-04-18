@@ -73,7 +73,6 @@ class _Add_WorkerState extends State<Add_Worker> {
     specification = TextEditingController();
     available = TextEditingController();
 
-
     sta = false;
     message = "";
 
@@ -383,7 +382,7 @@ class _Add_WorkerState extends State<Add_Worker> {
                   children: <Widget>[
                     new Expanded(
                         child: TextFormField(
-                          textCapitalization: TextCapitalization.words,
+                      textCapitalization: TextCapitalization.words,
                       controller: district,
                       decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -427,28 +426,28 @@ class _Add_WorkerState extends State<Add_Worker> {
                   children: <Widget>[
                     new Expanded(
                         child: TextFormField(
-                          textCapitalization: TextCapitalization.words,
-                          controller: specification,
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              hintText: "Please select your Specification",
-                              label: Text('Specification'),
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        )),
+                      textCapitalization: TextCapitalization.words,
+                      controller: specification,
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          hintText: "Please select your Specification",
+                          label: Text('Specification'),
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                    )),
                     new PopupMenuButton<String>(
                       icon: const Icon(Icons.arrow_drop_down),
                       onSelected: (String value1) {
@@ -471,28 +470,28 @@ class _Add_WorkerState extends State<Add_Worker> {
                   children: <Widget>[
                     new Expanded(
                         child: TextFormField(
-                          textCapitalization: TextCapitalization.words,
-                          controller: available,
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              hintText: "Please select your available time",
-                              label: Text('Available'),
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
-                        )),
+                      textCapitalization: TextCapitalization.words,
+                      controller: available,
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          hintText: "Please select your available time",
+                          label: Text('Available'),
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                    )),
                     new PopupMenuButton<String>(
                       icon: const Icon(Icons.arrow_drop_down),
                       onSelected: (String value1) {
@@ -537,7 +536,9 @@ class _Add_WorkerState extends State<Add_Worker> {
                 },
                 child: Text('Submit'),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),

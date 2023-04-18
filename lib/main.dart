@@ -11,15 +11,15 @@ import 'Main_Screen/Main_Screen.dart';
 var email_text = '';
 var email_text1 = '';
 var email_text2 = '';
-var ip='192.168.29.64';
-void main() async {
-  runApp(
-      GetMaterialApp(debugShowCheckedModeBanner: false, home: Main_screen(),
+var ip = '192.168.29.64';
 
-          routes: {
-          'Display_Edit_Profile_Page': (context) => Display_Edit_Profile_Page(),
-          }
-      ));
+void main() async {
+  runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Main_screen(),
+      routes: {
+        'Display_Edit_Profile_Page': (context) => Display_Edit_Profile_Page(),
+      }));
 }
 
 // class MyApp extends StatelessWidget {

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 import 'package:http/http.dart' as http;
 import 'package:untitled/main.dart';
 
@@ -242,7 +240,6 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         setState(() {
-
                           RegistrationAdmin();
                         });
                         _username.clear();
@@ -294,10 +291,8 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
     );
   }
 
-
   Future RegistrationAdmin() async {
-    var APIURL =
-        "http://$ip/MySampleApp/ORBVA/Admin/Registrationn.php";
+    var APIURL = "http://$ip/MySampleApp/ORBVA/Admin/Registrationn.php";
 
     //json maping user entered details
     Map mapeddate = {
@@ -315,7 +310,6 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
     var responseError = data["error"];
     print("DATA: ${data}");
     if (responseError) {
-
       setState(() {
         status = false;
         message = responseMessage;
@@ -328,10 +322,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
           textColor: Colors.white,
           webPosition: 1,
           backgroundColor: Colors.blueGrey);
-
-    }
-
-    else {
+    } else {
       _username.clear();
       _email.clear();
       _phone.clear();
@@ -349,9 +340,7 @@ class _Admin_SignupPageState extends State<Admin_SignupPage> {
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blueGrey);
-
     }
-
 
     print("DATA: ${data}");
   }

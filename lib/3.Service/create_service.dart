@@ -114,7 +114,8 @@ class _Create_serviceState extends State<Create_service> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   Future Service_Reg() async {
-    var APIURL = "http://$ip/MySampleApp/ORBVA/Service_center/create_service.php";
+    var APIURL =
+        "http://$ip/MySampleApp/ORBVA/Service_center/create_service.php";
 
     Map mapeddate = {
       'service_name': service_name.text,
@@ -239,9 +240,7 @@ class _Create_serviceState extends State<Create_service> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 40,vertical: 20
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: TextFormField(
                   textCapitalization: TextCapitalization.words,
                   controller: mech_name,
@@ -520,8 +519,9 @@ class _Create_serviceState extends State<Create_service> {
                           ))),
                 ],
               ),
-              SizedBox(height: 20,),
-
+              SizedBox(
+                height: 20,
+              ),
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
@@ -550,15 +550,9 @@ class _Create_serviceState extends State<Create_service> {
                 ),
               ),
 
-
-
-              SizedBox(height: 30,),
-
-
-
-
-
-
+              SizedBox(
+                height: 30,
+              ),
 
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

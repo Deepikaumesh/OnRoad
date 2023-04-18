@@ -14,7 +14,7 @@ class Workers_detail extends StatefulWidget {
   Workers_detail({required this.index, required this.list});
 
   @override
-  _Workers_detailState createState() =>  _Workers_detailState();
+  _Workers_detailState createState() => _Workers_detailState();
 }
 
 class _Workers_detailState extends State<Workers_detail> {
@@ -25,19 +25,19 @@ class _Workers_detailState extends State<Workers_detail> {
   }
 
   void confirm() {
-    AlertDialog alertDialog =  AlertDialog(
-      content:  Text(
+    AlertDialog alertDialog = AlertDialog(
+      content: Text(
           "Are You sure want to delete '${widget.list[widget.index]['mech_name']}'"),
       actions: <Widget>[
-         ElevatedButton(
+        ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.red.shade700),
               padding: MaterialStateProperty.all(
                   EdgeInsets.symmetric(horizontal: 8, vertical: 8)),
               textStyle: MaterialStateProperty.all(TextStyle(fontSize: 15))),
-          child:  Text(
+          child: Text(
             "OK DELETE!",
-            style:  TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
           //  color: Colors.red,
           onPressed: () {
@@ -46,19 +46,21 @@ class _Workers_detailState extends State<Workers_detail> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop: null,)));
+                    builder: (BuildContext context) => Workshop_Dashboard(
+                          data_passing_workshop: null,
+                        )));
             // Navigator.of(context).pushReplacement(MaterialPageRoute(
             //   builder: (BuildContext context) => View_Workers(),
             // ));
           },
         ),
-         ElevatedButton(
+        ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.green.shade700),
               padding: MaterialStateProperty.all(
                   EdgeInsets.symmetric(horizontal: 8, vertical: 8)),
               textStyle: MaterialStateProperty.all(TextStyle(fontSize: 15))),
-          child:  Text("CANCEL", style:  TextStyle(color: Colors.white)),
+          child: Text("CANCEL", style: TextStyle(color: Colors.white)),
           //  color: Colors.green,
           onPressed: () => Navigator.pop(context),
         ),
@@ -75,7 +77,7 @@ class _Workers_detailState extends State<Workers_detail> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       // appBar: new AppBar(title: new Text("${widget.list[widget.index]['name']}"),
       appBar: AppBar(
         elevation: 0,
@@ -270,7 +272,6 @@ class _Workers_detailState extends State<Workers_detail> {
                             MaterialStateProperty.all(TextStyle(fontSize: 20))),
                     onPressed: () {
                       confirm();
-
                     },
                     child: Text("Delete")),
               ],

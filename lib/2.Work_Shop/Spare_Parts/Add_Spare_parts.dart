@@ -21,9 +21,6 @@ class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
   TextEditingController parts_name = TextEditingController();
   TextEditingController parts_details = TextEditingController();
 
-
-
-
   late bool sta;
 
   late String message;
@@ -32,8 +29,6 @@ class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
   void initState() {
     parts_name = TextEditingController();
     parts_details = TextEditingController();
-
-
 
     sta = false;
     message = "";
@@ -74,7 +69,6 @@ class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
     } else {
       parts_name.clear();
       parts_details.clear();
-
 
       setState(() {
         sta = true;
@@ -145,7 +139,6 @@ class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
                       )),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                 child: new TextFormField(
@@ -179,8 +172,6 @@ class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
                       )),
                 ),
               ),
-
-
               SizedBox(
                 height: 30,
               ),
@@ -204,12 +195,13 @@ class _Add_Spare_PartsState extends State<Add_Spare_Parts> {
                         gravity: ToastGravity.TOP,
                         timeInSecForIosWeb: 1,
                         backgroundColor: Colors.blueGrey);
-
                   }
                 },
                 child: Text('Submit'),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),

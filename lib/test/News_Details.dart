@@ -4,53 +4,54 @@ import 'package:http/http.dart' as http;
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 import 'Update_News.dart';
 
-
-
-
 class News_Detail extends StatefulWidget {
   List list;
   int index;
-  News_Detail({required this.index,required this.list});
+
+  News_Detail({required this.index, required this.list});
+
   @override
   _News_DetailState createState() => new _News_DetailState();
 }
 
 class _News_DetailState extends State<News_Detail> {
-
-  void deleteData(){
+  void deleteData() {
     //var url="http://10.0.2.2/my_store/deleteData.php";
-    var url= "https://jcizone19.in/._A_nileswaram/directoryapp/Nileswaram.com/Delete/News_Delete.php";
-    http.post(Uri.parse(url),
-        body: {
-          'id': widget.list[widget.index]['id']
-        });
+    var url =
+        "https://jcizone19.in/._A_nileswaram/directoryapp/Nileswaram.com/Delete/News_Delete.php";
+    http.post(Uri.parse(url), body: {'id': widget.list[widget.index]['id']});
   }
 
-  void confirm (){
+  void confirm() {
     AlertDialog alertDialog = new AlertDialog(
-      content: new Text("Are You sure want to delete '${widget.list[widget.index]['name']}'"),
+      content: new Text(
+          "Are You sure want to delete '${widget.list[widget.index]['name']}'"),
       actions: <Widget>[
         new ElevatedButton(
-          child: new Text("OK DELETE!",style: new TextStyle(color: Colors.black),),
-        //  color: Colors.red,
-          onPressed: (){
+          child: new Text(
+            "OK DELETE!",
+            style: new TextStyle(color: Colors.black),
+          ),
+          //  color: Colors.red,
+          onPressed: () {
             deleteData();
-            Navigator.of(context).push(
-                new MaterialPageRoute(
-                  builder: (BuildContext context)=> Main_screen (),
-                )
-            );
+            Navigator.of(context).push(new MaterialPageRoute(
+              builder: (BuildContext context) => Main_screen(),
+            ));
           },
         ),
         new ElevatedButton(
-          child: new Text("CANCEL",style: new TextStyle(color: Colors.black)),
-        //  color: Colors.green,
-          onPressed: ()=> Navigator.pop(context),
+          child: new Text("CANCEL", style: new TextStyle(color: Colors.black)),
+          //  color: Colors.green,
+          onPressed: () => Navigator.pop(context),
         ),
       ],
     );
 
-    showDialog(context: context, builder: (BuildContext context) =>alertDialog,);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => alertDialog,
+    );
 
     // showDialog(context: context, child: alertDialog);
   }
@@ -62,7 +63,8 @@ class _News_DetailState extends State<News_Detail> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.pink.shade800,
-        title:Text("${widget.list[widget.index]['name']}",
+        title: Text(
+          "${widget.list[widget.index]['name']}",
           style: GoogleFonts.prompt(fontSize: 22),
         ),
         leading: IconButton(
@@ -83,30 +85,33 @@ class _News_DetailState extends State<News_Detail> {
             onPressed: () {
               Navigator.of(context).push(
                 new MaterialPageRoute(
-                  builder: (BuildContext context)=>new News_Update(list: widget.list, index: widget.index,),
-                ), );
+                  builder: (BuildContext context) => new News_Update(
+                    list: widget.list,
+                    index: widget.index,
+                  ),
+                ),
+              );
             },
           ),
         ],
       ),
 
       body: new Container(
-        height:MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.all(20.0),
         child: new Center(
           child: new Column(
             children: <Widget>[
               //new Padding(padding: const EdgeInsets.only(top: 30.0),),
-              new Text(widget.list[widget.index]['address'],
+              new Text(
+                widget.list[widget.index]['address'],
                 textAlign: TextAlign.justify,
-                style: const TextStyle(fontSize: 20.0, color: Colors.black,),
-                overflow: TextOverflow.visible,),
-
-
-
-
-
-
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black,
+                ),
+                overflow: TextOverflow.visible,
+              ),
             ],
           ),
         ),
@@ -114,10 +119,6 @@ class _News_DetailState extends State<News_Detail> {
     );
   }
 }
-
-
-
-
 
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';

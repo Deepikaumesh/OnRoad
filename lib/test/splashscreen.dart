@@ -10,8 +10,8 @@ import 'package:untitled/test/login_page.dart';
 
 import '../main.dart';
 
-
 var finalemail;
+
 class splashscreen extends StatefulWidget {
   const splashscreen({Key? key}) : super(key: key);
 
@@ -20,36 +20,39 @@ class splashscreen extends StatefulWidget {
 }
 
 class _splashscreenState extends State<splashscreen> {
-
   @override
   void initState() {
-    getValidationData().whenComplete(() async{
+    getValidationData().whenComplete(() async {
       // Timer(Duration(seconds: 2),() => Get.to(finalemail == null ?
       // login_page() : homepage()));
 
-     await Timer(Duration(milliseconds: 1),() {
-       finalemail == null ?  Navigator.push(context, MaterialPageRoute(builder: (context)=>login_page())):
-       Navigator.push(context, MaterialPageRoute(builder: (context)=>homepage(name: '',)));
-
+      await Timer(Duration(milliseconds: 1), () {
+        finalemail == null
+            ? Navigator.push(
+                context, MaterialPageRoute(builder: (context) => login_page()))
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => homepage(
+                          name: '',
+                        )));
       });
-
     });
 
-   // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
+    // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
     // TODO: implement initState
     super.initState();
   }
 
-Future getValidationData() async{
+  Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await  sharedprefs.getString('email');
+    var obtainedemail = await sharedprefs.getString('email');
     //value = obtainedemail;
     setState(() {
-      finalemail= obtainedemail;
+      finalemail = obtainedemail;
     });
     print('thisisvalue $finalemail');
-}
-
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,6 @@ Future getValidationData() async{
               child: Icon(Icons.local_activity),
               radius: 50.0,
             )
-
           ],
         ),
       ),

@@ -10,8 +10,6 @@ import 'Crain/Add_Crain.dart';
 import 'Spare_Parts/Add_Spare_parts.dart';
 import 'Worker/Add_Worker.dart';
 
-
-
 class WorkshopDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,9 +58,7 @@ class WorkshopDrawer extends StatelessWidget {
         ListTile(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => About_Us()));
+                context, MaterialPageRoute(builder: (context) => About_Us()));
           },
           leading: Icon(
             Icons.person,
@@ -76,9 +72,7 @@ class WorkshopDrawer extends StatelessWidget {
         ListTile(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Add_Worker()));
+                context, MaterialPageRoute(builder: (context) => Add_Worker()));
           },
           leading: Icon(
             Icons.man,
@@ -92,9 +86,7 @@ class WorkshopDrawer extends StatelessWidget {
         ListTile(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Add_Crain()));
+                context, MaterialPageRoute(builder: (context) => Add_Crain()));
           },
           leading: Icon(
             Icons.add,
@@ -106,13 +98,10 @@ class WorkshopDrawer extends StatelessWidget {
               )),
         ),
 
-
         ListTile(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Add_Spare_Parts()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Add_Spare_Parts()));
           },
           leading: Icon(
             Icons.add,
@@ -124,14 +113,12 @@ class WorkshopDrawer extends StatelessWidget {
               )),
         ),
 
-
-
         ListTile(
-          onTap: () async{
-              final SharedPreferences sharedpreferences =
-              await SharedPreferences.getInstance();
-              sharedpreferences.remove('workshop_email');
-              Get.to(Main_screen());
+          onTap: () async {
+            final SharedPreferences sharedpreferences =
+                await SharedPreferences.getInstance();
+            sharedpreferences.remove('workshop_email');
+            Get.to(Main_screen());
           },
           leading: Icon(
             Icons.exit_to_app_sharp,
@@ -142,8 +129,6 @@ class WorkshopDrawer extends StatelessWidget {
             style: GoogleFonts.prompt(fontSize: 15),
           ),
         ),
-
-
       ]),
     );
   }

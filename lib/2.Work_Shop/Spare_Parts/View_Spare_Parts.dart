@@ -216,13 +216,9 @@ import 'package:untitled/2.Work_Shop/Worker/workers_detail.dart';
 import '../../main.dart';
 import 'Spare_Parts_details.dart';
 
-
-
-
 class View_Spare_Parts extends StatefulWidget {
   @override
-  _View_Spare_PartsState createState() =>
-       _View_Spare_PartsState();
+  _View_Spare_PartsState createState() => _View_Spare_PartsState();
 }
 
 class _View_Spare_PartsState extends State<View_Spare_Parts> {
@@ -234,31 +230,31 @@ class _View_Spare_PartsState extends State<View_Spare_Parts> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-        appBar: AppBar(
+      appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           "Spare Parts",
-          style: GoogleFonts.prompt(fontSize: 22,color: Colors.blueGrey),
+          style: GoogleFonts.prompt(fontSize: 22, color: Colors.blueGrey),
         ),
       ),
-      body:  FutureBuilder<List>(
+      body: FutureBuilder<List>(
         future: getData(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ?  ItemList(
-            // list: snapshot.data,
-            list: snapshot.data ?? [],
-          )
-              :  Center(
-            child:  CircularProgressIndicator(),
-          );
+              ? ItemList(
+                  // list: snapshot.data,
+                  list: snapshot.data ?? [],
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                );
         },
       ),
     );
@@ -272,19 +268,18 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.builder(
+    return ListView.builder(
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
-        return  Container(
+        return Container(
           padding: const EdgeInsets.all(10.0),
-          child:  GestureDetector(
-
-            onTap: () => Navigator.of(context).push( MaterialPageRoute(
-                builder: (BuildContext context) =>  Spare_Parts_detail(
-                  list: list,
-                  index: i,
-                ))),
-            child:  Card(
+          child: GestureDetector(
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => Spare_Parts_detail(
+                      list: list,
+                      index: i,
+                    ))),
+            child: Card(
               color: Colors.red.shade100,
               margin: EdgeInsets.all(10),
               shape: RoundedRectangleBorder(
@@ -304,7 +299,10 @@ class ItemList extends StatelessWidget {
                   style: GoogleFonts.lora(
                       fontSize: 13, color: Colors.pink.shade700),
                 ),
-                trailing: Icon(Icons.arrow_forward_ios_rounded,color: Colors.cyan,),
+                trailing: Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: Colors.cyan,
+                ),
               ),
             ),
           ),
@@ -313,5 +311,3 @@ class ItemList extends StatelessWidget {
     );
   }
 }
-
-

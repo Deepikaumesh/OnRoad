@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 import '../main.dart';
 import 'package:http/http.dart' as http;
 
@@ -143,8 +142,8 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: ()
-                //async
-                  {
+                    //async
+                    {
                   // final SharedPreferences sharedpreferences =
                   //     await SharedPreferences.getInstance();
                   //
@@ -161,8 +160,6 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
                   // Get.back();
                   setState(() {
                     admin_Login();
-
-
                   });
 
                   if (formkey.currentState!.validate()) {
@@ -217,7 +214,8 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
         final SharedPreferences sharedpreferences =
             await SharedPreferences.getInstance();
 
-        await sharedpreferences.setString('workshop_email', singleUser["email"]);
+        await sharedpreferences.setString(
+            'workshop_email', singleUser["email"]);
       }
 
       final snackBar = SnackBar(
@@ -243,7 +241,7 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
           context,
           MaterialPageRoute(
               builder: (BuildContext context) => Workshop_Dashboard(
-                data_passing_workshop: null,
+                    data_passing_workshop: null,
                   )));
     } else {
       final snackBar = SnackBar(

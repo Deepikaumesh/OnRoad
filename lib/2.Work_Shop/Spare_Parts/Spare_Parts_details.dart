@@ -6,8 +6,6 @@ import '../../main.dart';
 import '../Workshop_dashboard.dart';
 import 'Edit_Spare_Parts.dart';
 
-
-
 class Spare_Parts_detail extends StatefulWidget {
   List list;
   int index;
@@ -15,7 +13,7 @@ class Spare_Parts_detail extends StatefulWidget {
   Spare_Parts_detail({required this.index, required this.list});
 
   @override
-  _Spare_Parts_detailState createState() =>  _Spare_Parts_detailState();
+  _Spare_Parts_detailState createState() => _Spare_Parts_detailState();
 }
 
 class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
@@ -26,19 +24,19 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
   }
 
   void confirm() {
-    AlertDialog alertDialog =  AlertDialog(
-      content:  Text(
+    AlertDialog alertDialog = AlertDialog(
+      content: Text(
           "Are You sure want to delete '${widget.list[widget.index]['parts_name']}'"),
       actions: <Widget>[
-         ElevatedButton(
+        ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.red.shade700),
               padding: MaterialStateProperty.all(
                   EdgeInsets.symmetric(horizontal: 8, vertical: 8)),
               textStyle: MaterialStateProperty.all(TextStyle(fontSize: 15))),
-          child:  Text(
+          child: Text(
             "OK DELETE!",
-            style:  TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white),
           ),
           //  color: Colors.red,
           onPressed: () {
@@ -47,19 +45,21 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop: null,)));
+                    builder: (BuildContext context) => Workshop_Dashboard(
+                          data_passing_workshop: null,
+                        )));
             // Navigator.of(context).pushReplacement(MaterialPageRoute(
             //   builder: (BuildContext context) => View_Workers(),
             // ));
           },
         ),
-         ElevatedButton(
+        ElevatedButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.green.shade700),
               padding: MaterialStateProperty.all(
                   EdgeInsets.symmetric(horizontal: 8, vertical: 8)),
               textStyle: MaterialStateProperty.all(TextStyle(fontSize: 15))),
-          child:  Text("CANCEL", style:  TextStyle(color: Colors.white)),
+          child: Text("CANCEL", style: TextStyle(color: Colors.white)),
           //  color: Colors.green,
           onPressed: () => Navigator.pop(context),
         ),
@@ -76,7 +76,7 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       // appBar: new AppBar(title: new Text("${widget.list[widget.index]['name']}"),
       appBar: AppBar(
         elevation: 0,
@@ -150,14 +150,15 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
               height: 40,
             ),
 
-
-
             Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               Text(
                 'OwnerName :',
                 style: GoogleFonts.prompt(fontSize: 17),
               ),
-              Text(widget.list[widget.index]['parts_name'],style: GoogleFonts.prompt(fontSize: 17),),
+              Text(
+                widget.list[widget.index]['parts_name'],
+                style: GoogleFonts.prompt(fontSize: 17),
+              ),
               SizedBox(
                 height: 40,
               ),
@@ -166,37 +167,41 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
               height: 20,
             ),
 
-              Text("Spare Parts Details",style: GoogleFonts.prompt(fontSize: 20)),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                child: Container(
-                  height:MediaQuery.of(context).size.height/2.2,
-                  width: MediaQuery.of(context).size.height/2.6,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(width: 0.5,color: Colors.pink),
-                      borderRadius: BorderRadius.circular(8),),
-                  child:  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30,vertical: 30),
-                      child: Text(widget.list[widget.index]['parts_details'],style: GoogleFonts.prompt(fontSize: 17),textAlign: TextAlign.justify,)),
-
-
+            Text("Spare Parts Details",
+                style: GoogleFonts.prompt(fontSize: 20)),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Container(
+                height: MediaQuery.of(context).size.height / 2.2,
+                width: MediaQuery.of(context).size.height / 2.6,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 0.5, color: Colors.pink),
+                  borderRadius: BorderRadius.circular(8),
                 ),
+                child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                    child: Text(
+                      widget.list[widget.index]['parts_details'],
+                      style: GoogleFonts.prompt(fontSize: 17),
+                      textAlign: TextAlign.justify,
+                    )),
               ),
+            ),
 
-              // Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              //   new Text(widget.list[widget.index]['Owner_name'],
-              //       style: GoogleFonts.prompt(fontSize: 17)),
-              //   SizedBox(
-              //     height: 40,
-              //   ),
-              //   new Text(widget.list[widget.index]['Crain_details'],
-              //       style: GoogleFonts.prompt(fontSize: 17)),
-              //   SizedBox(
-              //     height: 40,
-              //   ),
-              //
-              // ])
+            // Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            //   new Text(widget.list[widget.index]['Owner_name'],
+            //       style: GoogleFonts.prompt(fontSize: 17)),
+            //   SizedBox(
+            //     height: 40,
+            //   ),
+            //   new Text(widget.list[widget.index]['Crain_details'],
+            //       style: GoogleFonts.prompt(fontSize: 17)),
+            //   SizedBox(
+            //     height: 40,
+            //   ),
+            //
+            // ])
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -212,7 +217,8 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
                     onPressed: () {
                       Navigator.of(context).push(
                         new MaterialPageRoute(
-                          builder: (BuildContext context) => new Edit_Spare_Parts(
+                          builder: (BuildContext context) =>
+                              new Edit_Spare_Parts(
                             list: widget.list,
                             index: widget.index,
                           ),
@@ -230,11 +236,10 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
                             MaterialStateProperty.all(TextStyle(fontSize: 20))),
                     onPressed: () {
                       confirm();
-
                     },
                     child: Text("Delete")),
               ],
-             ),
+            ),
             SizedBox(
               height: 40,
             ),

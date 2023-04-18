@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 
-
-
 class News_Update extends StatefulWidget {
   final List list;
   final int index;
@@ -16,27 +14,25 @@ class News_Update extends StatefulWidget {
 }
 
 class _News_UpdateState extends State<News_Update> {
-
   TextEditingController controllername = TextEditingController();
   TextEditingController controlleraddress = TextEditingController();
 
-
   void UpdateData() {
-    var url ="https://jcizone19.in/._A_nileswaram/directoryapp/Nileswaram.com/Update/News_Update.php";
-    http.post(Uri.parse(url),
-        body: {
-          "id": widget.list[widget.index]['id'],
-          "name": controllername.text,
-          "address": controlleraddress.text,
-
-        });
+    var url =
+        "https://jcizone19.in/._A_nileswaram/directoryapp/Nileswaram.com/Update/News_Update.php";
+    http.post(Uri.parse(url), body: {
+      "id": widget.list[widget.index]['id'],
+      "name": controllername.text,
+      "address": controlleraddress.text,
+    });
   }
-
 
   @override
   void initState() {
-    controllername= new TextEditingController(text: widget.list[widget.index]['name'] );
-    controlleraddress= new TextEditingController(text: widget.list[widget.index]['address'] );
+    controllername =
+        new TextEditingController(text: widget.list[widget.index]['name']);
+    controlleraddress =
+        new TextEditingController(text: widget.list[widget.index]['address']);
 
     super.initState();
   }
@@ -59,7 +55,7 @@ class _News_UpdateState extends State<News_Update> {
           child: Icon(
             Icons.arrow_back_rounded,
             color: Colors.red.shade900,
-            size: 35,// add custom icons also
+            size: 35, // add custom icons also
           ),
         ),
       ),
@@ -80,20 +76,19 @@ class _News_UpdateState extends State<News_Update> {
                   decoration: new InputDecoration(
                       hintText: "Description", labelText: "Description"),
                 ),
-
                 new Padding(
                   padding: const EdgeInsets.all(10.0),
                 ),
                 new ElevatedButton(
-                  child: new Text("Submit",style: TextStyle(color: Colors.white),),
-                //  color: Colors.red.shade900,
+                  child: new Text(
+                    "Submit",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  //  color: Colors.red.shade900,
                   onPressed: () {
                     UpdateData();
-                    Navigator.of(context).push(
-                        new MaterialPageRoute(
-                            builder: (BuildContext context)=>Main_screen()
-                        )
-                    );
+                    Navigator.of(context).push(new MaterialPageRoute(
+                        builder: (BuildContext context) => Main_screen()));
                   },
                 )
               ],

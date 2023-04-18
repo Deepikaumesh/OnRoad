@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 import '../main.dart';
 import 'Admin_Dashboard.dart';
 import 'Admin_SignUp.dart';
@@ -142,8 +141,8 @@ class _Admin_LoginState extends State<Admin_Login> {
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: ()
-                //async
-                  {
+                    //async
+                    {
                   // final SharedPreferences sharedpreferences =
                   //     await SharedPreferences.getInstance();
                   //
@@ -160,8 +159,6 @@ class _Admin_LoginState extends State<Admin_Login> {
                   // Get.back();
                   setState(() {
                     admin_Login();
-
-
                   });
 
                   if (formkey.currentState!.validate()) {

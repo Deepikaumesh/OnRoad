@@ -1,16 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Workshop_Login.dart';
 import 'Workshop_dashboard.dart';
-
-
-
-
 
 var Workshop_key;
 
@@ -19,19 +14,25 @@ class Workshop_Splashscreen extends StatefulWidget {
 }
 
 class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
-
   void initState() {
-    getValidationData().whenComplete(() async{
+    getValidationData().whenComplete(() async {
       // Timer(Duration(seconds: 2),() => Get.to(finalemail == null ?
       // login_page() : homepage()));
 
-      await Timer(Duration(seconds: 1),() {
-        Workshop_key == null ?  Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=>Work_shop_Login())):
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Workshop_Dashboard(data_passing_workshop: null,)));
+      await Timer(Duration(seconds: 1), () {
+        Workshop_key == null
+            ? Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Work_shop_Login()))
+            : Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Workshop_Dashboard(
+                          data_passing_workshop: null,
+                        )));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
-
       });
-
     });
 
     // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
@@ -44,12 +45,10 @@ class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
   //   super.didChangeDependencies();
   // }
 
-
   // Timer(
   //   Duration(seconds: 2),
   //       () => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyLogin())),
   // );
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +56,6 @@ class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
       color: Colors.white,
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -78,24 +75,27 @@ class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 20,),
-          CircularProgressIndicator(color: Colors.lightBlue,),
+          SizedBox(
+            height: 20,
+          ),
+          CircularProgressIndicator(
+            color: Colors.lightBlue,
+          ),
         ],
-
-
       ),
     );
   }
+
   // Future Merchant_gotoLogin() async {
   //   await Future.delayed(Duration(seconds: 1));
   //   Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Service_Login()));
   // }
-  Future getValidationData() async{
+  Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await  sharedprefs.getString('workshop_email');
+    var obtainedemail = await sharedprefs.getString('workshop_email');
     //value = obtainedemail;
     setState(() {
-      Workshop_key= obtainedemail;
+      Workshop_key = obtainedemail;
     });
     print('thisis workshop  value $Workshop_key');
   }
@@ -112,6 +112,4 @@ class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
 //   }
 //
 // }
-
-
 }

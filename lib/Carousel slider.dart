@@ -18,9 +18,6 @@ class Carousel_slider extends StatelessWidget {
           ),
         ),
 
-
-
-
         Container(
           margin: EdgeInsets.all(6.0),
           decoration: BoxDecoration(

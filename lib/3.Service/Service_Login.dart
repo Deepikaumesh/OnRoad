@@ -6,14 +6,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 import '../main.dart';
 import 'Service_Dashboard.dart';
 import 'Service_SignUp.dart';
 import 'package:http/http.dart' as http;
-
-
 
 class Service_Login extends StatefulWidget {
   @override
@@ -21,7 +17,6 @@ class Service_Login extends StatefulWidget {
 }
 
 class _Service_LoginState extends State<Service_Login> {
-
   TextEditingController service_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -63,13 +58,15 @@ class _Service_LoginState extends State<Service_Login> {
   // }
   //
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("servicelogin",style: TextStyle(color: Colors.blueGrey),),
+        title: Text(
+          "servicelogin",
+          style: TextStyle(color: Colors.blueGrey),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -88,7 +85,7 @@ class _Service_LoginState extends State<Service_Login> {
             Form(
               key: formkey,
               child: Column(
-                children:[
+                children: [
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 15.0, right: 15.0, top: 15, bottom: 0),
@@ -104,7 +101,7 @@ class _Service_LoginState extends State<Service_Login> {
                       onSaved: (username) {},
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                         // labelText: 'Email',
+                          // labelText: 'Email',
                           hintText: 'username'),
                     ),
                   ),
@@ -114,7 +111,6 @@ class _Service_LoginState extends State<Service_Login> {
                     //padding: EdgeInsets.symmetric(horizontal: 15),
                     child: TextFormField(
                       controller: password,
-
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -131,21 +127,22 @@ class _Service_LoginState extends State<Service_Login> {
                           hintText: 'Enter secure password'),
                     ),
                   ),
-                ], ),
+                ],
+              ),
             ),
-
-            SizedBox(height: 30,),
-
             SizedBox(
-              height: MediaQuery.of(context).size.height/15,
-              width: MediaQuery.of(context).size.width/1.3,
+              height: 30,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 15,
+              width: MediaQuery.of(context).size.width / 1.3,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: ()
-                //async
-                {
+                    //async
+                    {
                   // final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
                   //
                   // sharedpreferences.setString('service_email', service_email.text);
@@ -156,8 +153,6 @@ class _Service_LoginState extends State<Service_Login> {
                   // Get.back();
                   setState(() {
                     service_Login();
-
-
                   });
 
                   if (formkey.currentState!.validate()) {
@@ -165,7 +160,6 @@ class _Service_LoginState extends State<Service_Login> {
                     // email.clear();
                     // password.clear();
                   }
-
                 },
                 child: Text(
                   'Login',
@@ -178,20 +172,25 @@ class _Service_LoginState extends State<Service_Login> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-
-                Text('New User?',style: TextStyle(color: Colors.black87,fontSize: 15),),
-                TextButton(onPressed: (){
-                  Get.to(Service_SignupPage());
-                }, child: Text("Create Account"))
-              ],)
+              children: [
+                Text(
+                  'New User?',
+                  style: TextStyle(color: Colors.black87, fontSize: 15),
+                ),
+                TextButton(
+                    onPressed: () {
+                      Get.to(Service_SignupPage());
+                    },
+                    child: Text("Create Account"))
+              ],
+            )
           ],
         ),
       ),
     );
   }
-  Future service_Login() async {
 
+  Future service_Login() async {
     var url = "http://$ip/MySampleApp/ORBVA/Service_center/login.php";
     var response = await http.post(Uri.parse(url), headers: {
       'Accept': 'application/json'
@@ -205,13 +204,10 @@ class _Service_LoginState extends State<Service_Login> {
       //var responseData = json.decode(response.body);
 
       for (var singleUser in data) {
-        final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
+        final SharedPreferences sharedpreferences =
+            await SharedPreferences.getInstance();
 
         await sharedpreferences.setString('service_email', singleUser["email"]);
-
-
-
-
       }
 
       final snackBar = SnackBar(
@@ -236,11 +232,9 @@ class _Service_LoginState extends State<Service_Login> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Service_Dashboard(data_passing_service: null,
-              )));
-
-
-
+              builder: (BuildContext context) => Service_Dashboard(
+                    data_passing_service: null,
+                  )));
     } else {
       final snackBar = SnackBar(
         content: Text('Username and password invalid'),
