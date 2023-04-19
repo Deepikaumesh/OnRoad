@@ -179,18 +179,17 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
                                                           color: Colors
                                                               .brown.shade900),
                                                     ),
+                                                    //
+                                                    // snapshot.data[index].status == 'Rejected' ?
+                                                    // // Text("hai")
+                                                    // Icon(Icons.delete)
+                                                    //     :SizedBox(height: 1,),
                                                   ],
                                                 ),
-                                                subtitle: InkWell(
-                                                  onTap: (){
-                                                    Navigator.push(context,
-                                                        MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
 
-                                                  },
-                                                  child: Text("Approve or Reject",style: TextStyle(
-                                                    color: Colors.red.shade900
-                                                  ),),
-                                                ),
+                                               subtitle: Text(snapshot.data[index].status == 'pending' ?
+
+                                               'Pending..'  : snapshot.data[index].status ,style: TextStyle(color: Colors.deepOrange),),
 
 
                                                 trailing:  InkWell(
