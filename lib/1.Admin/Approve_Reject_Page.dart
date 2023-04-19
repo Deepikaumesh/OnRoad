@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/main.dart';
+import 'package:http/http.dart' as http;
+
+import 'Display_Workshops.dart';
 
 class Approve_Reject_Workshop extends StatefulWidget {
   final data_pass;
@@ -13,15 +17,21 @@ class Approve_Reject_Workshop extends StatefulWidget {
 }
 
 class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
-  TextEditingController Owner_name = TextEditingController();
+  TextEditingController status = TextEditingController();
 
   @override
   void initState() {
-    //controllername= new TextEditingController(text: widget.list[widget.index]['name'] );
-    Owner_name = TextEditingController();
+    status = TextEditingController(text: widget.data_pass.status);
 
     super.initState();
   }
+
+  var status_item = [
+    // 'Pending',
+    'Approved',
+    'Rejected',
+  ];
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,98 +47,170 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: ListView(
+      body: SingleChildScrollView(
+        child: Stack(
           children: <Widget>[
-            new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text("Workshop"),
-                    Text('${widget.data_pass.name}'),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              // color: Colors.green,
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              right: 10,
+              child: Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  //color: Colors.red,
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/workshop1.jpg"),
+                      fit: BoxFit.fill),
+                  //Image.asset("assets/images/workshop.png"),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 270,
+              left: 20,
+              right: 20,
+              child: Data_Box(widget.data_pass.name),
+            ),
+            Positioned(
+              top: 340,
+              left: 20,
+              right: 20,
+              child: Data_Box(widget.data_pass.email_id),
+            ),
+            Positioned(
+              top: 410,
+              left: 20,
+              right: 20,
+              child: Data_Box(widget.data_pass.contact_no),
+            ),
+            Positioned(
+              top: 480,
+              left: 20,
+              right: 20,
+              child: Data_Box(widget.data_pass.address),
+            ),
+            Positioned(
+              top: 550,
+              left: 20,
+              right: 20,
+              child: Data_Box(widget.data_pass.license_no),
+            ),
+            Positioned(
+              top: 620,
+              left: 20,
+              right: 20,
+              child: Form(
+                key: _formkey,
+                child: Row(
+                  children: <Widget>[
+                    new Expanded(
+                        child: new TextFormField(
+                      controller: status,
+                      decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          hintText: "Please select option",
+                          label: Text('status'),
+                          hintStyle: TextStyle(color: Colors.grey),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                    )),
+                    new PopupMenuButton<String>(
+                      icon: const Icon(Icons.arrow_drop_down),
+                      onSelected: (String value1) {
+                        status.text = value1;
+                      },
+                      itemBuilder: (BuildContext ctx) {
+                        return status_item
+                            .map<PopupMenuItem<String>>((String value1) {
+                          return new PopupMenuItem(
+                              child: new Text(value1), value: value1);
+                        }).toList();
+                      },
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                  child: new TextFormField(
-                    controller: Owner_name,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Please enter Owner_name";
-                      }
-                      return null;
-                    },
-                    onSaved: (name) {},
-                    textCapitalization: TextCapitalization.words,
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
-                        hintText: "Enter Owner_name",
-                        label: Text('Owner_name'),
-                        hintStyle: TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )),
-                  ),
-                ),
-                new Padding(
-                  padding: const EdgeInsets.all(10.0),
-                ),
-                ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.red.shade900),
-                        padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(horizontal: 50, vertical: 15)),
-                        textStyle:
-                            MaterialStateProperty.all(TextStyle(fontSize: 20))),
-                    onPressed: () {
-                      setState(() {
-                        // UpdateData();
-                        // Navigator.of(context).pushReplacement(
-                        //     new MaterialPageRoute(
-                        //         builder: (BuildContext context) =>
-                        //             Workshop_Dashboard(
-                        //                 data_passing_workshop: null)));
-                      });
-                    },
-                    child: Text("Submit")),
-                SizedBox(
-                  height: 20,
-                ),
-                Text('${widget.data_pass.name}'),
-              ],
+              ),
             ),
+            Positioned(
+                top: 700,
+                left: 20,
+                right: 20,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(
+                        Size(MediaQuery.of(context).size.width, 50)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.red.shade900),
+                  ),
+                  onPressed: () {
+                    setState(() {});
+                    UpdateData();
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Display_Workshops()));
+
+                  },
+                  child: Text(
+                    "Submit",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ))
           ],
         ),
       ),
     );
   }
 
-  Box(
+  Data_Box(
     String data,
   ) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30),
-      height: 50,
-      color: Colors.pink.shade50,
+      padding: EdgeInsets.only(left: 10, top: 10),
+      //  padding: EdgeInsets.all(7),
       child: Text(
         data,
-        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+        style: TextStyle(fontSize: 20),
+      ),
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0), //(x,y)
+            blurRadius: 6.0,
+          ),
+        ],
       ),
     );
+  }
+  void UpdateData() {
+    var url = "http://$ip/MySampleApp/ORBVA/Admin/Update_Workers.php";
+    http.post(Uri.parse(url), body: {
+      "id": widget.data_pass.id,
+      'status': status.text,
+    });
   }
 }

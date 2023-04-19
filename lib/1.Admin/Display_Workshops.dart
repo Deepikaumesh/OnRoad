@@ -143,52 +143,64 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
                                             BorderRadius.circular(10),
                                           ),
 
-                                          child: Container(
-                                            // color: Colors.red,
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .height /
-                                                10,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width /
-                                                1.2,
-                                            //padding: EdgeInsets.fromLTRB(10, 15, 50, 15),
-                                            child: ListTile(
-                                             // minVerticalPadding:20,
-                                              contentPadding:
-                                              EdgeInsets.symmetric(horizontal: 15),
-                                              title: Row(
-                                                children: [
-                                                  Text("Name:"),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    snapshot.data[index].name,
-                                                    overflow:
-                                                    TextOverflow.ellipsis,
-                                                    style: GoogleFonts.lora(
-                                                        fontSize: 15,
-                                                        color: Colors
-                                                            .brown.shade900),
-                                                  ),
-                                                ],
+                                          child: GestureDetector(
+                                            onTap: (){
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
+
+                                            },
+                                            child: Container(
+                                              // color: Colors.red,
+                                              height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                                  10,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                                  1.2,
+                                              //padding: EdgeInsets.fromLTRB(10, 15, 50, 15),
+                                              child: ListTile(
+                                               // minVerticalPadding:20,
+                                                contentPadding:
+                                                EdgeInsets.symmetric(horizontal: 15),
+                                                title: Row(
+                                                  children: [
+                                                    Text("Name:"),
+                                                    SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      snapshot.data[index].name,
+                                                      overflow:
+                                                      TextOverflow.ellipsis,
+                                                      style: GoogleFonts.lora(
+                                                          fontSize: 15,
+                                                          color: Colors
+                                                              .brown.shade900),
+                                                    ),
+                                                  ],
+                                                ),
+                                                subtitle: InkWell(
+                                                  onTap: (){
+                                                    Navigator.push(context,
+                                                        MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
+
+                                                  },
+                                                  child: Text("Approve or Reject",style: TextStyle(
+                                                    color: Colors.red.shade900
+                                                  ),),
+                                                ),
+
+
+                                                trailing:  InkWell(
+                                                    onTap: (){
+                                                      Navigator.push(context,
+                                                          MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
+                                                    },
+                                                    child: Icon(Icons.arrow_forward_ios_rounded)),
+
                                               ),
-                                              subtitle: InkWell(
-                                                onTap: (){
-                                                  Navigator.push(context,
-                                                      MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
-
-                                                },
-                                                child: Text("Approve or Reject",style: TextStyle(
-                                                  color: Colors.red.shade900
-                                                ),),
-                                              ),
-
-
-                                              trailing:  Icon(Icons.arrow_forward_ios_rounded),
-
                                             ),
                                           ),
                                         ),
