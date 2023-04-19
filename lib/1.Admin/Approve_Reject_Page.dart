@@ -210,6 +210,12 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
     var url = "http://$ip/MySampleApp/ORBVA/Admin/Update_Workers.php";
     http.post(Uri.parse(url), body: {
       "id": widget.data_pass.id,
+      "name":widget.data_pass.name,
+      "contact_no":widget.data_pass.contact_no,
+          "email_id":widget.data_pass.email_id,
+          "location":widget.data_pass.location,
+        "address":widget.data_pass.address,
+        "license_no":widget.data_pass.license_no,
       'status': status.text,
     });
   }
