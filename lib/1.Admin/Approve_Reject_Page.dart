@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +32,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
     // 'Pending',
     'Approved',
     'Rejected',
+    'Pending'
   ];
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -40,7 +43,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          "Approver or Reject Workshop",
+          "Approve or Reject Workshop",
           style: GoogleFonts.prompt(color: Colors.red.shade900),
         ),
         backgroundColor: Colors.white,
@@ -51,7 +54,8 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
         child: Stack(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height,
+             // color: Colors.red,
+              height: 1000,
               // color: Colors.green,
             ),
             Positioned(
@@ -156,25 +160,53 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
-                        Size(MediaQuery.of(context).size.width, 50)),
+                        Size(MediaQuery.of(context).size.width, 50)
+                    ),
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.red.shade900),
+                        MaterialStateProperty.all(Colors.teal.shade900),
                   ),
                   onPressed: () {
                     setState(() {});
                     UpdateData();
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                Display_Workshops()));
+                    // Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (BuildContext context) =>
+                    //             Display_Workshops()));
 
                   },
                   child: Text(
                     "Submit",
                     style: TextStyle(fontSize: 20),
                   ),
-                ))
+                )),
+      Positioned(
+        top: 770,
+        left: 20,
+        right: 20,
+        child:
+            widget.data_pass.status == 'Rejected' ?
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.all(20),
+                //  side: BorderSide(width:3, color:Colors.brown,), //border width and color
+                  elevation: 3,
+                  shadowColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                  backgroundColor: Colors.red.shade900, // background (button) color
+                  foregroundColor: Colors.white, // foreground (text) color
+                ),
+                onPressed: (){
+                  setState(() {
+                    delrecord(widget.data_pass.id);
+                  });
+                  // Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Display_Workshops()));
+                }, child: Text("Remove Workshop",style: TextStyle(fontSize: 20),)):
+            SizedBox(height: 1,),
+      ),
+
+
+
           ],
         ),
       ),
@@ -218,5 +250,34 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
         "license_no":widget.data_pass.license_no,
       'status': status.text,
     });
+    setState(() {
+
+    });
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) =>
+                Display_Workshops()));
   }
+
+  Future<void> delrecord(String id) async {
+    String url =
+        "http://$ip/MySampleApp/ORBVA/Admin/delete_workshop.php";
+    var res = await http.post(Uri.parse(url), body: {
+      "id": id,
+    });
+    var resoponse = jsonDecode(res.body);
+    if (resoponse["success"] == "true") {
+      // Navigator.push(context,MaterialPageRoute(builder: (context)=>Display_Workshops()));
+      print(id);
+
+    } else {
+      print("some issue");
+    }
+    setState(() {
+
+    });
+    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Display_Workshops()));
+  }
+
 }

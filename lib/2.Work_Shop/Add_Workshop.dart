@@ -82,7 +82,7 @@ class _Add_WorkshopState extends State<Add_Workshop> {
     license_no = TextEditingController();
     address = TextEditingController();
     location = TextEditingController();
-    status = TextEditingController(text: 'pending');
+    status = TextEditingController(text: 'Pending');
 
     sta = false;
     message = "";

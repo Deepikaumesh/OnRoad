@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import '../../main.dart';
 import 'Approve_Reject_Page.dart';
 
-
 //Creating a class user to store the data;
 class workers_model {
   final String id;
@@ -19,7 +18,7 @@ class workers_model {
   final String license_no;
   final String status;
 
-  workers_model( {
+  workers_model({
     required this.id,
     required this.name,
     required this.contact_no,
@@ -41,8 +40,8 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
   Future<List<workers_model>> getRequest() async {
     //replace your restFull API here.
 
-    final response = await http.get(Uri.parse(
-        "http://$ip/MySampleApp/ORBVA/Admin/Display_workshops.php"));
+    final response = await http.get(
+        Uri.parse("http://$ip/MySampleApp/ORBVA/Admin/Display_workshops.php"));
 
     var responseData = json.decode(response.body);
 
@@ -60,8 +59,6 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
         address: singleUser["address"].toString(),
         license_no: singleUser["license_no"].toString(),
         status: singleUser["status"].toString(),
-
-
       );
 
       //Adding user to the list.
@@ -86,7 +83,7 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
         centerTitle: true,
         title: Text(
           "Workshop",
-          style: GoogleFonts.prompt(fontSize: 22,color: Colors.brown.shade900),
+          style: GoogleFonts.prompt(fontSize: 22, color: Colors.brown.shade900),
         ),
       ),
       body: Container(
@@ -140,30 +137,36 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
                                           clipBehavior: Clip.antiAlias,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                           ),
 
                                           child: GestureDetector(
-                                            onTap: (){
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
-
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Approve_Reject_Workshop(
+                                                              data_pass:
+                                                                  snapshot.data[
+                                                                      index])));
                                             },
                                             child: Container(
                                               // color: Colors.red,
                                               height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
+                                                      .size
+                                                      .height /
                                                   10,
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width /
+                                                      .size
+                                                      .width /
                                                   1.2,
                                               //padding: EdgeInsets.fromLTRB(10, 15, 50, 15),
                                               child: ListTile(
-                                               // minVerticalPadding:20,
+                                                // minVerticalPadding:20,
                                                 contentPadding:
-                                                EdgeInsets.symmetric(horizontal: 15),
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 15),
                                                 title: Row(
                                                   children: [
                                                     Text("Name:"),
@@ -173,7 +176,7 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
                                                     Text(
                                                       snapshot.data[index].name,
                                                       overflow:
-                                                      TextOverflow.ellipsis,
+                                                          TextOverflow.ellipsis,
                                                       style: GoogleFonts.lora(
                                                           fontSize: 15,
                                                           color: Colors
@@ -187,18 +190,48 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
                                                   ],
                                                 ),
 
-                                               subtitle: Text(snapshot.data[index].status == 'pending' ?
+                                                subtitle: RichText(
+                                                  text: snapshot.data[index]
+                                                              .status ==
+                                                          'Pending'
+                                                      ? TextSpan(
+                                                          text: 'Pending',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .orange
+                                                                  .shade600))
+                                                      : snapshot.data[index]
+                                                                  .status ==
+                                                              'Rejected'
+                                                          ? TextSpan(
+                                                              text: 'Rejected',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .red
+                                                                      .shade900))
+                                                          : TextSpan(
+                                                              text: snapshot
+                                                                  .data[index]
+                                                                  .status,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .green
+                                                                      .shade900)),
+                                                ),
 
-                                               'Pending..'  : snapshot.data[index].status ,style: TextStyle(color: Colors.deepOrange),),
-
-
-                                                trailing:  InkWell(
-                                                    onTap: (){
-                                                      Navigator.push(context,
-                                                          MaterialPageRoute(builder: (context)=>Approve_Reject_Workshop(data_pass: snapshot.data[index])));
+                                                trailing: InkWell(
+                                                    onTap: () {
+                                                      Navigator.pushReplacement(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext context) =>
+                                                                  Approve_Reject_Workshop(
+                                                                      data_pass:
+                                                                          snapshot
+                                                                              .data[index])));
                                                     },
-                                                    child: Icon(Icons.arrow_forward_ios_rounded)),
-
+                                                    child: Icon(Icons
+                                                        .arrow_forward_ios_rounded)),
                                               ),
                                             ),
                                           ),
@@ -218,10 +251,10 @@ class _Display_WorkshopsState extends State<Display_Workshops> {
                 }
               },
             ),
-
           ],
         ),
       ),
     );
   }
+
 }
