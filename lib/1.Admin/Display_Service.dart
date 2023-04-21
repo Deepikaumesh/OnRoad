@@ -8,84 +8,70 @@ import '../../main.dart';
 import 'Approve_Reject_Page.dart';
 
 //Creating a class user to store the data;
-class workers_model {
+class Service_model {
   final String id;
-  final String name;
-  final String contact_no;
-  final String email_id;
-  final String location;
+  final String service_name;
+  final String mech_name;
+  final String services;
+  final String available;
   final String address;
-  final String license_no;
+  final String city;
+  final String location;
+  final String mobile;
   final String status;
 
-  workers_model({
+  Service_model({
     required this.id,
-    required this.name,
-    required this.contact_no,
-    required this.email_id,
-    required this.location,
+    required this.service_name,
+    required this.mech_name,
+    required this.services,
+    required this.available,
     required this.address,
-    required this.license_no,
+    required this.city,
+    required this.location,
+    required this.mobile,
     required this.status,
   });
 }
 
-class Display_Workshops extends StatefulWidget {
+class Display_Service extends StatefulWidget {
   @override
-  _Display_WorkshopsState createState() => _Display_WorkshopsState();
+  _Display_ServiceState createState() => _Display_ServiceState();
 }
 
-class _Display_WorkshopsState extends State<Display_Workshops> {
-
-  var load_status_first;
-
-
-
+class _Display_ServiceState extends State<Display_Service> {
   //Applying get request.
-  Future<List<workers_model>> getRequest() async {
+  Future<List<Service_model>> getRequest() async {
     //replace your restFull API here.
 
     final response = await http.get(
-        Uri.parse("http://$ip/MySampleApp/ORBVA/Admin/Display_workshops.php"));
+        Uri.parse("http://$ip/MySampleApp/ORBVA/Admin/Display_Service.php"));
 
     var responseData = json.decode(response.body);
 
     //Creating a list to store input data;
-    List<workers_model> users = [];
+    List<Service_model> users = [];
     for (var singleUser in responseData) {
-      workers_model user = workers_model(
+      Service_model user = Service_model(
         // productqty: singleUser["productqty"].toString(),
 
-        name: singleUser["name"].toString(),
         id: singleUser["id"].toString(),
-        contact_no: singleUser["contact_no"].toString(),
-        email_id: singleUser["email_id"].toString(),
         location: singleUser["location"].toString(),
         address: singleUser["address"].toString(),
-        license_no: singleUser["license_no"].toString(),
         status: singleUser["status"].toString(),
+        service_name: singleUser["service_name"].toString(),
+        mech_name: singleUser["mech_name"].toString(),
+        services: singleUser["services"].toString(),
+        available: singleUser["available"].toString(),
+        city: singleUser["city"].toString(),
+        mobile: singleUser["mobile"].toString(),
       );
 
       //Adding user to the list.
       users.add(user);
-
     }
-
-
     return users;
   }
-
-
-@override
-void initState() {
-    // TODO: implement initState
-
-  load_status_first;
-
-    super.initState();
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +88,7 @@ void initState() {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Workshop",
+          "Services",
           style: GoogleFonts.prompt(fontSize: 22, color: Colors.brown.shade900),
         ),
       ),
@@ -143,9 +129,6 @@ void initState() {
                               shrinkWrap: true,
                               itemCount: snapshot.data.length,
                               itemBuilder: (ctx, index) {
-
-                                load_status_first = snapshot.data[index].status;
-
                                 return SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Column(
@@ -154,7 +137,7 @@ void initState() {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 10, vertical: 1),
                                         child: Card(
-                                          color: Colors.brown.shade100,
+                                          color: Colors.blueGrey.shade100,
                                           //shadowColor: Colors.red,
                                           elevation: 8,
                                           clipBehavior: Clip.antiAlias,
@@ -165,14 +148,14 @@ void initState() {
 
                                           child: GestureDetector(
                                             onTap: () {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Approve_Reject_Workshop(
-                                                              data_pass:
-                                                                  snapshot.data[
-                                                                      index])));
+                                              // Navigator.push(
+                                              //     context,
+                                              //     MaterialPageRoute(
+                                              //         builder: (context) =>
+                                              //             Approve_Reject_Workshop(
+                                              //                 data_pass:
+                                              //                     snapshot.data[
+                                              //                         index])));
                                             },
                                             child: Container(
                                               // color: Colors.red,
@@ -185,20 +168,19 @@ void initState() {
                                                       .width /
                                                   1.2,
                                               //padding: EdgeInsets.fromLTRB(10, 15, 50, 15),
-                                              child:
-                                              ListTile(
+                                              child: ListTile(
                                                 // minVerticalPadding:20,
                                                 contentPadding:
                                                     EdgeInsets.symmetric(
                                                         horizontal: 15),
                                                 title: Row(
                                                   children: [
-                                                    Text("Name:"),
+                                                    Text("Service:"),
                                                     SizedBox(
                                                       width: 10,
                                                     ),
                                                     Text(
-                                                      snapshot.data[index].name,
+                                                      snapshot.data[index].services,
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       style: GoogleFonts.lora(
@@ -245,14 +227,6 @@ void initState() {
 
                                                 trailing: InkWell(
                                                     onTap: () {
-                                                      Navigator.pushReplacement(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  Approve_Reject_Workshop(
-                                                                      data_pass:
-                                                                          snapshot
-                                                                              .data[index])));
                                                       // Navigator.pushReplacement(
                                                       //     context,
                                                       //     MaterialPageRoute(
@@ -288,4 +262,5 @@ void initState() {
       ),
     );
   }
+
 }

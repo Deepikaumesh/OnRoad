@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:untitled/1.Admin/Display_Workshops.dart';
+import 'package:untitled/test/Listview.dart';
+import 'package:untitled/test/addition.dart';
 import 'package:untitled/test/login_page.dart';
 import 'package:untitled/test/splashscreen.dart';
 
@@ -16,8 +19,9 @@ var ip = '192.168.29.64';
 void main() async {
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Main_screen(),
+      home:Main_screen(),
       routes: {
+        'Display_WOrkshops':(context) => Display_Workshops(),
         'Display_Edit_Profile_Page': (context) => Display_Edit_Profile_Page(),
       }));
 }

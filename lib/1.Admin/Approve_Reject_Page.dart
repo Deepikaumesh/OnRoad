@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/main.dart';
 import 'package:http/http.dart' as http;
 
+import 'Admin_Dashboard.dart';
 import 'Display_Workshops.dart';
 
 class Approve_Reject_Workshop extends StatefulWidget {
@@ -54,7 +56,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
         child: Stack(
           children: <Widget>[
             Container(
-             // color: Colors.red,
+              // color: Colors.red,
               height: 1000,
               // color: Colors.green,
             ),
@@ -160,53 +162,78 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                 child: ElevatedButton(
                   style: ButtonStyle(
                     minimumSize: MaterialStateProperty.all(
-                        Size(MediaQuery.of(context).size.width, 50)
-                    ),
+                        Size(MediaQuery.of(context).size.width, 50)),
                     backgroundColor:
                         MaterialStateProperty.all(Colors.teal.shade900),
                   ),
                   onPressed: () {
-                    setState(() {});
-                    UpdateData();
-                    // Navigator.pushReplacement(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (BuildContext context) =>
-                    //             Display_Workshops()));
+                    setState(() {
+                      UpdateData();
+                      Navigator.pushReplacement(
+                          context, MaterialPageRoute(builder: (context) => Display_Workshops()));
 
+
+                    });
+
+                    Fluttertoast.showToast(
+                        msg: 'status changed to ${status.text}',
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        textColor: Colors.white,
+                        webPosition: 1,
+                        backgroundColor: Colors.blueGrey);
                   },
                   child: Text(
                     "Submit",
                     style: TextStyle(fontSize: 20),
                   ),
                 )),
-      Positioned(
-        top: 770,
-        left: 20,
-        right: 20,
-        child:
-            widget.data_pass.status == 'Rejected' ?
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.all(20),
-                //  side: BorderSide(width:3, color:Colors.brown,), //border width and color
-                  elevation: 3,
-                  shadowColor: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                  backgroundColor: Colors.red.shade900, // background (button) color
-                  foregroundColor: Colors.white, // foreground (text) color
-                ),
-                onPressed: (){
-                  setState(() {
-                    delrecord(widget.data_pass.id);
-                  });
-                  // Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Display_Workshops()));
-                }, child: Text("Remove Workshop",style: TextStyle(fontSize: 20),)):
-            SizedBox(height: 1,),
-      ),
+            Positioned(
+              top: 770,
+              left: 20,
+              right: 20,
+              child: widget.data_pass.status == 'Rejected'
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(20),
+                        //  side: BorderSide(width:3, color:Colors.brown,), //border width and color
+                        elevation: 3,
+                        shadowColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        backgroundColor: Colors.red.shade900,
+                        // background (button) color
+                        foregroundColor:
+                            Colors.white, // foreground (text) color
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          delrecord(widget.data_pass.id);
+                          Navigator.pushReplacement(
+                              context, MaterialPageRoute(builder: (context) => Display_Workshops()));
 
 
 
+                        });
+                        Fluttertoast.showToast(
+                            msg: 'Removed ${widget.data_pass.name}',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            textColor: Colors.white,
+                            webPosition: 1,
+                            backgroundColor: Colors.blueGrey);
+                        // Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Display_Workshops()));
+                      },
+                      child: Text(
+                        "Remove Workshop",
+                        style: TextStyle(fontSize: 20),
+                      ))
+                  : SizedBox(
+                      height: 1,
+                    ),
+            ),
           ],
         ),
       ),
@@ -238,31 +265,26 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
       ),
     );
   }
+
   void UpdateData() {
     var url = "http://$ip/MySampleApp/ORBVA/Admin/Update_Workers.php";
     http.post(Uri.parse(url), body: {
       "id": widget.data_pass.id,
-      "name":widget.data_pass.name,
-      "contact_no":widget.data_pass.contact_no,
-          "email_id":widget.data_pass.email_id,
-          "location":widget.data_pass.location,
-        "address":widget.data_pass.address,
-        "license_no":widget.data_pass.license_no,
+      "name": widget.data_pass.name,
+      "contact_no": widget.data_pass.contact_no,
+      "email_id": widget.data_pass.email_id,
+      "location": widget.data_pass.location,
+      "address": widget.data_pass.address,
+      "license_no": widget.data_pass.license_no,
       'status': status.text,
     });
     setState(() {
 
     });
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (BuildContext context) =>
-                Display_Workshops()));
   }
 
   Future<void> delrecord(String id) async {
-    String url =
-        "http://$ip/MySampleApp/ORBVA/Admin/delete_workshop.php";
+    String url = "http://$ip/MySampleApp/ORBVA/Admin/delete_workshop.php";
     var res = await http.post(Uri.parse(url), body: {
       "id": id,
     });
@@ -270,14 +292,9 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
     if (resoponse["success"] == "true") {
       // Navigator.push(context,MaterialPageRoute(builder: (context)=>Display_Workshops()));
       print(id);
-
     } else {
       print("some issue");
     }
-    setState(() {
-
-    });
-    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Display_Workshops()));
+    setState(() {});
   }
-
 }

@@ -91,6 +91,11 @@ class _Edit_ServiceState extends State<Edit_Service> {
       'mobile': mobile.text,
       'status': status.text,
     });
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) =>
+                Display_Edit_Profile_Page()));
   }
 
   @override
@@ -469,11 +474,11 @@ class _Edit_ServiceState extends State<Edit_Service> {
                 onPressed: () {
                   setState(() {});
                   UpdateData();
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              Display_Edit_Profile_Page()));
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) =>
+                  //             Display_Edit_Profile_Page()));
                   // Navigator.pushNamed(context, 'Display_Edit_Profile_Page');
                   service_name.clear();
                   mech_name.clear();

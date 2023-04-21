@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 import 'Admin_splashscreen.dart';
+import 'Display_Service.dart';
 import 'Display_Workshops.dart';
 import 'Drawer_Admin.dart';
 
@@ -90,11 +91,11 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (BuildContext context) =>
-                    //             Workshop_data_Page()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Display_Service()));
                   },
                   child: Service_Center__Container(),
                 ),
@@ -147,7 +148,11 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                    // Get.to(Display_Workshops());
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              Display_Service()));
                 },
                 child: Text(
                   "Service Center",
@@ -184,7 +189,9 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(Display_Workshops());
+                 // Get.to(Display_Workshops());
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Display_Workshops()));
                 },
                 child: Text(
                   "Workshop",

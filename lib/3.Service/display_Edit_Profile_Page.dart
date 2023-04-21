@@ -316,10 +316,14 @@ class _ItemListState extends State<ItemList> {
               ),
               trailing: GestureDetector(
                   onTap: () {
-                    Get.to(Edit_Service(
-                      list: widget.list,
-                      index: i,
-                    ));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Edit_Service(list:widget.list, index: i,)),
+                    );
+
+                    // ));
                   },
                   child: Icon(
                     Icons.edit,
