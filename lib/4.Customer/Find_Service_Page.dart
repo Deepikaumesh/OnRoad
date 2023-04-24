@@ -7,20 +7,20 @@ import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
 import 'package:http/http.dart' as http;
 
-class Customer_Workshop_searchbar extends StatefulWidget {
-  const Customer_Workshop_searchbar({Key? key}) : super(key: key);
+class Customer_Service_searchbar extends StatefulWidget {
+  const Customer_Service_searchbar({Key? key}) : super(key: key);
 
   @override
-  _Customer_Workshop_searchbarState createState() => _Customer_Workshop_searchbarState();
+  _Customer_Service_searchbarState createState() => _Customer_Service_searchbarState();
 }
 
-class _Customer_Workshop_searchbarState extends State<Customer_Workshop_searchbar> {
+class _Customer_Service_searchbarState extends State<Customer_Service_searchbar> {
 
 
   List<Note> _notes = [];
   List<Note> _notesForDisplay =[];
   Future <List<Note>> fetchNotes() async{
-    var url ="http://$ip/MySampleApp/ORBVA/Customer/Display_workshops.php";
+    var url ="http://$ip/MySampleApp/ORBVA/Customer/Display_Service_Center.php";
     var response = await http.get(Uri.parse(url));
 
 
@@ -52,7 +52,7 @@ class _Customer_Workshop_searchbarState extends State<Customer_Workshop_searchba
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-        appBar: AppBar(title: Text("Search Workshop",style: GoogleFonts.prompt(color: Colors.blueGrey.shade900),),
+        appBar: AppBar(title: Text("Search Services",style: GoogleFonts.prompt(color: Colors.blueGrey.shade900),),
          automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           elevation: 0,
@@ -90,8 +90,8 @@ class _Customer_Workshop_searchbarState extends State<Customer_Workshop_searchba
           text= text.toLowerCase();
           setState(() {
             _notesForDisplay = _notes.where((note) {
-              var address =note.address.toLowerCase();
-              return address.contains(text);
+              var city =note.city.toLowerCase();
+              return city.contains(text);
             }).toList();
           });
         },
@@ -119,18 +119,18 @@ class _Customer_Workshop_searchbarState extends State<Customer_Workshop_searchba
                 shape: BoxShape.circle,
                 //border: Border.all(color: Colors.blueGrey.shade900),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/workshop.png',),
+                  image: AssetImage('assets/images/customer-service.png',),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             title: Text(
-              _notesForDisplay[index].name,
+              _notesForDisplay[index].services,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.lora(
                   fontSize: 15, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
             ),
-            subtitle: Text(_notesForDisplay[index].address,
+            subtitle: Text(_notesForDisplay[index].city,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.lora(
                   fontSize: 10, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
@@ -160,45 +160,54 @@ String userModelToJson(List<Note> data) => json.encode(List<dynamic>.from(data.m
 
 class Note {
   Note({
-    required this.name,
-    required this.contact_no,
-    required this.email_id,
-    required this.location,
+    required this.service_name,
+    required this.mech_name,
+    required this.services,
+    required this.available,
     required this.address,
-    required this.license_no,
+    required this.city,
+    required this.location,
+    required this.mobile,
     required this.status,
 
   });
 
 
-  String name;
-  String contact_no;
-  String email_id;
-  String location;
+  String service_name;
+  String mech_name;
+  String services;
+  String available;
   String address;
-  String license_no;
   String status;
+  String city;
+  String location;
+  String mobile;
+
 
 
   factory Note.fromJson(Map<String, dynamic> json) => Note(
-    name: json["name"],
-    contact_no: json["contact_no"],
-    email_id: json["email_id"],
-    location: json["location"],
+    service_name: json["service_name"],
+    mech_name: json["mech_name"],
+    services: json["services"],
+    available: json["available"],
     address:  json["address"],
-    license_no:  json["license_no"],
+    city:  json["city"],
     status:  json["status"],
+    location:  json["location"],
+    mobile:  json["mobile"],
 
   );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "contact_no":contact_no,
-    "email_id":email_id,
-    "location": location,
+    "service_name": service_name,
+    "mech_name":mech_name,
+    "services":services,
+    "available": available,
     "address":address,
-    "license_no":license_no,
+    "city":city,
     "status": status,
+    "location":location,
+    "mobile": mobile,
 
 
   };}

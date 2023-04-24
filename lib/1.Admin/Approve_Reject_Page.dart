@@ -170,8 +170,8 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                     setState(() {
 
                       UpdateData();
-                      Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) => Display_Workshops()));
+                      // Navigator.pushReplacement(
+                      //     context, MaterialPageRoute(builder: (context) => Display_Workshops()));
 
 
 
@@ -213,8 +213,8 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                       onPressed: () {
                         setState(() {
                           delrecord(widget.data_pass.id);
-                          Navigator.pushReplacement(
-                              context, MaterialPageRoute(builder: (context) => Display_Workshops()));
+                          // Navigator.pushReplacement(
+                          //     context, MaterialPageRoute(builder: (context) => Display_Workshops()));
 
 
 
@@ -227,7 +227,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                             textColor: Colors.white,
                             webPosition: 1,
                             backgroundColor: Colors.blueGrey);
-                        // Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Display_Workshops()));
+
                       },
                       child: Text(
                         "Remove Workshop",
@@ -282,7 +282,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
       'status': status.text,
     });
     setState(() {
-      Display_Workshops();
+  //    Display_Workshops();
 
     });
 
@@ -301,7 +301,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
       print("some issue");
     }
     setState(() {
-      Display_Workshops();
+      //Display_Workshops();
     });
   }
 }

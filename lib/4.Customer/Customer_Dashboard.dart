@@ -8,6 +8,7 @@ import 'package:untitled/Main_Screen/Main_Screen.dart';
 
 import 'Customer_splashscreen.dart';
 import 'Drawer_Customer.dart';
+import 'Find_Service_Page.dart';
 import 'Find_Workshop_Page.dart';
 
 class Customer_Dashboard extends StatefulWidget {
@@ -123,9 +124,9 @@ class _Customer_DashboardState extends State<Customer_Dashboard> {
                       context,
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              Customer_Workshop_searchbar()));
+                              Customer_Service_searchbar()));
                 },
-                child: Workshop__Container(),
+                child: Service__Container(),
               ),
             ),
 
@@ -175,7 +176,46 @@ class _Customer_DashboardState extends State<Customer_Dashboard> {
                   "Find Workshop",
                   style: GoogleFonts.quicksand(
                       fontSize: 25,
-                      color: Colors.brown.shade600,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  Service__Container() {
+    return Container(
+      decoration: BoxDecoration(
+        //color: Color(0xfffad4d4),
+          color:  Colors.blueGrey.shade500,
+          borderRadius: BorderRadius.circular(10)),
+      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+      height: 100,
+      width: 340,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                'assets/images/customer-service.png',
+                height: 75.0,
+                width: 75.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Get.to(Display_Workshops());
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) =>Customer_Service_searchbar ()));
+                },
+                child: Text(
+                  "Find Service",
+                  style: GoogleFonts.quicksand(
+                      fontSize: 25,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
               )

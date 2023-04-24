@@ -170,8 +170,8 @@ class _Approve_Reject_ServiceState extends State<Approve_Reject_Service> {
                   onPressed: () {
                     setState(() {
                       UpdateData();
-                      Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) => Display_Service()));
+                      // Navigator.pushReplacement(
+                      //     context, MaterialPageRoute(builder: (context) => Display_Service()));
 
 
                     });
@@ -212,9 +212,9 @@ class _Approve_Reject_ServiceState extends State<Approve_Reject_Service> {
                         setState(() {
                           delrecord(widget.data_pass.id);
                           setState(() {
-                            Navigator.pushReplacement(
-                                context, MaterialPageRoute(builder: (context) =>
-                                Display_Service()));
+                            // Navigator.pushReplacement(
+                            //     context, MaterialPageRoute(builder: (context) =>
+                            //     Display_Service()));
                           });
 
 
