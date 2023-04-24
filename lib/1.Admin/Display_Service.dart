@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../../main.dart';
 import 'Approve_Reject_Page.dart';
+import 'Service_Approve_Reject_Page.dart';
 
 //Creating a class user to store the data;
 class Service_model {
@@ -148,14 +149,14 @@ class _Display_ServiceState extends State<Display_Service> {
 
                                           child: GestureDetector(
                                             onTap: () {
-                                              // Navigator.push(
-                                              //     context,
-                                              //     MaterialPageRoute(
-                                              //         builder: (context) =>
-                                              //             Approve_Reject_Workshop(
-                                              //                 data_pass:
-                                              //                     snapshot.data[
-                                              //                         index])));
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          Approve_Reject_Service(
+                                                              data_pass:
+                                                                  snapshot.data[
+                                                                      index])));
                                             },
                                             child: Container(
                                               // color: Colors.red,
@@ -227,14 +228,14 @@ class _Display_ServiceState extends State<Display_Service> {
 
                                                 trailing: InkWell(
                                                     onTap: () {
-                                                      // Navigator.pushReplacement(
-                                                      //     context,
-                                                      //     MaterialPageRoute(
-                                                      //         builder: (BuildContext context) =>
-                                                      //             Approve_Reject_Workshop(
-                                                      //                 data_pass:
-                                                      //                     snapshot
-                                                      //                         .data[index])));
+                                                      Navigator.pushReplacement(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext context) =>
+                                                                  Approve_Reject_Service(
+                                                                      data_pass:
+                                                                          snapshot
+                                                                              .data[index])));
                                                     },
                                                     child: Icon(Icons
                                                         .arrow_forward_ios_rounded)),

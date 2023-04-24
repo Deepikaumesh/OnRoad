@@ -8,8 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 import 'Admin_Dashboard.dart';
+import 'Admin_Main_Dashboard.dart';
 import 'Admin_SignUp.dart';
 import 'package:http/http.dart' as http;
+
+import 'Admin_splashscreen.dart';
 
 class Admin_Login extends StatefulWidget {
   @override
@@ -163,6 +166,9 @@ class _Admin_LoginState extends State<Admin_Login> {
 
                   if (formkey.currentState!.validate()) {
                     print("Successfully  logged admin");
+                    print(Admin_key);
+
+
                     // email.clear();
                     // password.clear();
                   }
@@ -204,6 +210,9 @@ class _Admin_LoginState extends State<Admin_Login> {
       "username": admin_email.text,
       "password": password.text,
     });
+
+
+
     var data = json.decode(response.body);
     // if (data.toString() == "Success") {
     if (data != null) {
@@ -238,9 +247,10 @@ class _Admin_LoginState extends State<Admin_Login> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Admin_Dashboard(
-                    data_passing_admin: null,
-                  )));
+              builder: (BuildContext context) =>
+                //  Admin_Dashboard(data_passing_admin: null,)
+              Admin_Main_dashboard()
+          ));
     } else {
       final snackBar = SnackBar(
         content: Text('Username and password invalid'),

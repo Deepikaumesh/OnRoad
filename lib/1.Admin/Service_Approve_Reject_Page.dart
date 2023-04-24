@@ -4,23 +4,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/1.Admin/Display_Service.dart';
 import 'package:untitled/main.dart';
 import 'package:http/http.dart' as http;
 
 import 'Admin_Dashboard.dart';
 import 'Display_Workshops.dart';
 
-class Approve_Reject_Workshop extends StatefulWidget {
+class Approve_Reject_Service extends StatefulWidget {
   final data_pass;
 
-  const Approve_Reject_Workshop({required this.data_pass});
+  const Approve_Reject_Service({required this.data_pass});
 
   @override
-  _Approve_Reject_WorkshopState createState() =>
-      _Approve_Reject_WorkshopState();
+  _Approve_Reject_ServiceState createState() =>
+      _Approve_Reject_ServiceState();
 }
 
-class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
+class _Approve_Reject_ServiceState extends State<Approve_Reject_Service> {
   TextEditingController status = TextEditingController();
 
   @override
@@ -81,19 +82,19 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
               top: 270,
               left: 20,
               right: 20,
-              child: Data_Box(widget.data_pass.name),
+              child: Data_Box(widget.data_pass.service_name),
             ),
             Positioned(
               top: 340,
               left: 20,
               right: 20,
-              child: Data_Box(widget.data_pass.email_id),
+              child: Data_Box(widget.data_pass.mech_name),
             ),
             Positioned(
               top: 410,
               left: 20,
               right: 20,
-              child: Data_Box(widget.data_pass.contact_no),
+              child: Data_Box(widget.data_pass.services),
             ),
             Positioned(
               top: 480,
@@ -105,7 +106,7 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
               top: 550,
               left: 20,
               right: 20,
-              child: Data_Box(widget.data_pass.license_no),
+              child: Data_Box(widget.data_pass.available),
             ),
             Positioned(
               top: 620,
@@ -168,15 +169,12 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                   ),
                   onPressed: () {
                     setState(() {
-
                       UpdateData();
                       Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) => Display_Workshops()));
-
+                          context, MaterialPageRoute(builder: (context) => Display_Service()));
 
 
                     });
-
 
                     Fluttertoast.showToast(
                         msg: 'status changed to ${status.text}',
@@ -213,14 +211,18 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
                       onPressed: () {
                         setState(() {
                           delrecord(widget.data_pass.id);
-                          Navigator.pushReplacement(
-                              context, MaterialPageRoute(builder: (context) => Display_Workshops()));
+                          setState(() {
+                            Navigator.pushReplacement(
+                                context, MaterialPageRoute(builder: (context) =>
+                                Display_Service()));
+                          });
+
 
 
 
                         });
                         Fluttertoast.showToast(
-                            msg: 'Removed ${widget.data_pass.name}',
+                            msg: 'Removed ${widget.data_pass.service_name}',
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
@@ -270,26 +272,26 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
   }
 
   void UpdateData() {
-    var url = "http://$ip/MySampleApp/ORBVA/Admin/Update_Workers.php";
+    var url = "http://$ip/MySampleApp/ORBVA/Admin/Update_Service_center.php";
     http.post(Uri.parse(url), body: {
       "id": widget.data_pass.id,
-      "name": widget.data_pass.name,
-      "contact_no": widget.data_pass.contact_no,
-      "email_id": widget.data_pass.email_id,
-      "location": widget.data_pass.location,
+      "service_name": widget.data_pass.service_name,
+      "mech_name": widget.data_pass.mech_name,
+      "services": widget.data_pass.services,
+      "available": widget.data_pass.available,
       "address": widget.data_pass.address,
-      "license_no": widget.data_pass.license_no,
+      "city": widget.data_pass.city,
+      "location":widget.data_pass.location,
+      "mobile":widget.data_pass.mobile,
       'status': status.text,
     });
     setState(() {
-      Display_Workshops();
 
     });
-
   }
 
   Future<void> delrecord(String id) async {
-    String url = "http://$ip/MySampleApp/ORBVA/Admin/delete_workshop.php";
+    String url = "http://$ip/MySampleApp/ORBVA/Admin/delete_Service_center.php";
     var res = await http.post(Uri.parse(url), body: {
       "id": id,
     });
@@ -300,8 +302,6 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
     } else {
       print("some issue");
     }
-    setState(() {
-      Display_Workshops();
-    });
+    setState(() {});
   }
 }

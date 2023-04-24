@@ -5,7 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
+import '../test/searchbar.dart';
 import 'Admin_splashscreen.dart';
+import 'Display_Customers.dart';
 import 'Display_Service.dart';
 import 'Display_Workshops.dart';
 import 'Drawer_Admin.dart';
@@ -58,6 +60,7 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
             "Admin",
             style: GoogleFonts.hind(fontWeight: FontWeight.bold, fontSize: 30),
           ),
+          Admin_key == null ? SizedBox(height: 1,) :
           Text('${Admin_key}', style: GoogleFonts.hind(fontSize: 15)),
         ]),
       ),
@@ -100,29 +103,22 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
                   child: Service_Center__Container(),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Display_Customers()));
+                  },
+                  child: Customer__Container(),
+                ),
+              ),
             ]),
-        // body: Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   crossAxisAlignment: CrossAxisAlignment.center,
-        //   children: [
-        //     // Center(
-        //     //   child: emai == null ? Text('') : Text(em)),
-        //     SizedBox(
-        //       height: 20,
-        //     ),
-        //     // Text("hai"+widget.data_passing_service.toString()),
-        //     Text('welcome${Admin_key}'),
-        //     MaterialButton(
-        //         color: Colors.lightBlueAccent,
-        //         child: Text('remove credentials admin'),
-        //         onPressed: () async {
-        //           final SharedPreferences sharedpreferences =
-        //               await SharedPreferences.getInstance();
-        //           sharedpreferences.remove('admin_email');
-        //           Get.to(Main_screen());
-        //         })
-        //   ],
-        // ),
       ),
     );
   }
@@ -203,6 +199,47 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
               )
             ],
           ),
+        ],
+      ),
+    );
+  }
+  Customer__Container() {
+    return Container(
+      decoration: BoxDecoration(
+        //color: Color(0xfffad4d4),
+          color:   Colors.cyan.shade300,
+          borderRadius: BorderRadius.circular(10)),
+      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+      height: 100,
+      width: 340,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                'assets/images/user (2).png',
+                height: 75.0,
+                width: 75.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Get.to(Display_Workshops());
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Display_Customers()));
+                },
+                child: Text(
+                  "View Customer",
+                  style: GoogleFonts.quicksand(
+                      fontSize: 25,
+                      color: Colors.brown.shade600,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+
+
         ],
       ),
     );
