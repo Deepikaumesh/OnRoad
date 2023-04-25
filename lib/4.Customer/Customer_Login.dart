@@ -179,8 +179,13 @@ class _Customer_LoginState extends State<Customer_Login> {
         final SharedPreferences sharedpreferences =
             await SharedPreferences.getInstance();
 
+
         await sharedpreferences.setString('user_email', singleUser["email"]);
+        print("hello");
+        print('customer id ${singleUser["id"]}');
+        cust_id =singleUser["id"];
       }
+
 
       final snackBar = SnackBar(
         content: Text('Login Successfull'),

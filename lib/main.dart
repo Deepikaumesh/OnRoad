@@ -16,6 +16,9 @@ var email_text1 = '';
 var email_text2 = '';
 var ip = '192.168.29.64';
 
+var cust_id;
+
+
 void main() async {
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,

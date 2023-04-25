@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
+import 'package:untitled/main.dart';
 
 import 'Customer_splashscreen.dart';
 import 'Drawer_Customer.dart';
@@ -79,13 +80,16 @@ class _Customer_DashboardState extends State<Customer_Dashboard> {
         //  backgroundColor:  Color(0xF5951B),
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // Text('Welcome,',style: GoogleFonts.hind(fontSize: 15),),
-
+          cust_id == null ? SizedBox(height: 1,) : Text(cust_id),
           Text(
             "Customer",
             style: GoogleFonts.hind(fontWeight: FontWeight.bold, fontSize: 30),
           ),
           Customer_key == null ? SizedBox(height: 1,) :
+           //   Text(check_mail_cust),
           Text('${Customer_key}', style: GoogleFonts.hind(fontSize: 15)),
+
+
         ]),
       ),
       drawer: Drawer(

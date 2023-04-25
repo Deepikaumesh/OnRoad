@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/4.Customer/service_detailPage.dart';
 
 import '../main.dart';
 import 'package:http/http.dart' as http;
@@ -135,11 +136,12 @@ class _Customer_Service_searchbarState extends State<Customer_Service_searchbar>
               style: GoogleFonts.lora(
                   fontSize: 10, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
             ),
-            onTap: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) {
-              //       return Vie_More_Detail(_notesForDisplay[index]);
-            },
+          trailing: InkWell(
+              onTap: (){
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=>service_Detail_Page(data_pass: _notesForDisplay[index],)));
+              },
+              child: Icon(Icons.arrow_forward_ios_rounded)),
 
         )
     );

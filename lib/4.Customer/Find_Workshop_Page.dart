@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/4.Customer/workshop_detailPage.dart';
 
 import '../main.dart';
 import 'package:http/http.dart' as http;
@@ -102,46 +103,46 @@ class _Customer_Workshop_searchbarState extends State<Customer_Workshop_searchba
 
   _listitem(index){
 
-    return   Card(
-        elevation: 5,
-        color: Colors.grey.shade200,
-        margin: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: ListTile(
-            contentPadding: EdgeInsets.all(4.0),
-            leading: Container(
-              height: 50,
-              width: 50,
-             // child: Text( _notesForDisplay[index].contact_no),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                //border: Border.all(color: Colors.blueGrey.shade900),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/workshop.png',),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            title: Text(
-              _notesForDisplay[index].name,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.lora(
-                  fontSize: 15, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(_notesForDisplay[index].address,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.lora(
-                  fontSize: 10, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
-            ),
-            onTap: () {
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) {
-              //       return Vie_More_Detail(_notesForDisplay[index]);
-            },
+    return   InkWell(
+      onTap: (){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>Workshop_Detail_Page(data_pass: _notesForDisplay[index],)));
+      },
+      child: Card(
+          elevation: 5,
+          color: Colors.grey.shade200,
+          margin: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: ListTile(
+              contentPadding: EdgeInsets.all(4.0),
+              leading:CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.orange.shade200,
+                child: Image.asset('assets/images/workshop.png',height: 40,width: 40,),
 
-        )
+              ),
+              title: Text(
+                _notesForDisplay[index].name,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.lora(
+                    fontSize: 15, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(_notesForDisplay[index].address,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.lora(
+                    fontSize: 10, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
+              ),
+            trailing: InkWell(
+                onTap: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>Workshop_Detail_Page(data_pass: _notesForDisplay[index],)));
+                },
+                child: Icon(Icons.arrow_forward_ios_rounded)),
+
+          ),
+      ),
     );
   }
 
