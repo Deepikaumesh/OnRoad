@@ -17,21 +17,15 @@ class service_Detail_Page extends StatefulWidget {
 }
 
 class _service_Detail_PageState extends State<service_Detail_Page> {
-  TextEditingController status = TextEditingController();
+  TextEditingController request = TextEditingController();
 
   @override
   void initState() {
-    status = TextEditingController(text: widget.data_pass.status);
+    request = TextEditingController();
 
     super.initState();
   }
 
-  var status_item = [
-    // 'Pending',
-    'Approved',
-    'Rejected',
-    'Pending'
-  ];
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
@@ -61,70 +55,154 @@ class _service_Detail_PageState extends State<service_Detail_Page> {
               left: 10,
               right: 10,
               child: Container(
-                height: MediaQuery.of(context).size.height / 2.5,
+                height: MediaQuery.of(context).size.height / 2.4,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   //color: Colors.red,
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
-                      image: AssetImage("assets/images/w.jpg"),
-                      fit: BoxFit.fill),
+                      image: AssetImage("assets/images/service_.jpg"),
+                      fit: BoxFit.cover),
                   //Image.asset("assets/images/workshop.png"),
                 ),
               ),
             ),
             Positioned(
-              top: 290,
-              left: 20,
-              right: 200,
-              child: Column(
-                children: [
-                  Text("Available"),
-                  SizedBox(height: 8,),
-                  Data_Box(widget.data_pass.available),
-                ],
-              )
-
-
-            ),
+                // for masking one label on the image
+                top: 290,
+                left: 10,
+                right: 10,
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.white,
+                )),
             Positioned(
-              top: 290,
-              left: 200,
-              right: 20,
+                top: 290,
+                left: 20,
+                right: 200,
                 child: Column(
                   children: [
-                    Text("Mobile No"),
-                    SizedBox(height: 8,),
+                    Data_Box(widget.data_pass.available),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    text('Available'),
+                  ],
+                )),
+            Positioned(
+                top: 290,
+                left: 200,
+                right: 20,
+                child: Column(
+                  children: [
                     Data_Box(widget.data_pass.mobile),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    text('Mobile No'),
                   ],
-                )
-            ),
+                )),
             Positioned(
-              top: 390,
-              left: 20,
-              right: 200,
+                top: 390,
+                left: 20,
+                right: 200,
                 child: Column(
                   children: [
-                    Text("Service name"),
-                    SizedBox(height: 8,),
                     Data_Box(widget.data_pass.service_name),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    text('Service name'),
                   ],
-                )
-            ),
+                )),
             Positioned(
-              top: 390,
-              left: 200,
-              right: 20,
+                top: 390,
+                left: 200,
+                right: 20,
                 child: Column(
                   children: [
-                    Text("Mech Name"),
-                    SizedBox(height: 8,),
                     Data_Box(widget.data_pass.mech_name),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    text('Mech Name'),
                   ],
-                )
+                )),
+            Positioned(
+                top: 490,
+                left: 20,
+                right: 200,
+                child: Column(
+                  children: [
+                    Data_Box(widget.data_pass.address),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    text('Address')
+                  ],
+                )),
+            Positioned(
+                top: 490,
+                left: 200,
+                right: 20,
+                child: Column(
+                  children: [
+                    Data_Box(widget.data_pass.city),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    text('City'),
+                  ],
+                )),
+            Positioned(
+              top: 590,
+              left: 2,
+              right: 2,
+              child:Form(
+                key: _formkey,
+                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Request subject should not be empty!";
+                          }
+                          return null;
+                        },
+                        onSaved: (request) {},
+                        controller: request,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                color: Colors.grey.shade500,
+                              ),
+                            ),
+                            hintText: "Enter your request ",
+                            label: Text('request'),
+                            hintStyle: TextStyle(color: Colors.grey),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                      ),
+                    ),
+                  ],),
+              ),
+
+
             ),
             Positioned(
-                top: 500,
+                top: 700,
                 left: 20,
                 right: 20,
                 child: ElevatedButton(
@@ -135,9 +213,10 @@ class _service_Detail_PageState extends State<service_Detail_Page> {
                         MaterialStateProperty.all(Colors.teal.shade900),
                   ),
                   onPressed: () {
+                    if (_formkey.currentState!.validate()){
                     setState(() {
                       Send();
-                    });
+                    });}
                   },
                   child: Text(
                     "Send Request",
@@ -146,6 +225,15 @@ class _service_Detail_PageState extends State<service_Detail_Page> {
                 )),
           ],
         ),
+      ),
+    );
+  }
+
+  text(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: Colors.amber.shade600,
       ),
     );
   }
@@ -160,15 +248,10 @@ class _service_Detail_PageState extends State<service_Detail_Page> {
         right: 15,
       ),
       //  padding: EdgeInsets.all(7),
-      child: Row(
-        children: [
-          Text(''),
-          Text(
-            data,
-            style: TextStyle(fontSize: 15, color: Colors.black87),
-            overflow: TextOverflow.clip,
-          ),
-        ],
+      child: Text(
+        data,
+        style: TextStyle(fontSize: 15, color: Colors.black87),
+        overflow: TextOverflow.clip,
       ),
       height: 60,
       width: MediaQuery.of(context).size.width,
@@ -192,6 +275,7 @@ class _service_Detail_PageState extends State<service_Detail_Page> {
 
     Map mapeddate = {
       'customer_id': cust_id,
+      'request': request.text,
     };
     //send  data using http post to our php code
     http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);

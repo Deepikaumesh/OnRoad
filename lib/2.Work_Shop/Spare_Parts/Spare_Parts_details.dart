@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/2.Work_Shop/Worker/View_workers.dart';
 import '../../main.dart';
+import '../Workshop_Dash.dart';
 import '../Workshop_dashboard.dart';
 import 'Edit_Spare_Parts.dart';
 
@@ -45,8 +45,8 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Workshop_Dashboard(
-                          data_passing_workshop: null,
+                    builder: (BuildContext context) => Workshop_Dash(
+
                         )));
             // Navigator.of(context).pushReplacement(MaterialPageRoute(
             //   builder: (BuildContext context) => View_Workers(),

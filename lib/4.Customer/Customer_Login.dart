@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../main.dart';
-import 'Customer_Dashboard.dart';
+import 'Customer_Dash.dart';
 import 'Customer_SignUp.dart';
 
 class Customer_Login extends StatefulWidget {
@@ -15,7 +15,18 @@ class Customer_Login extends StatefulWidget {
   _Customer_LoginState createState() => _Customer_LoginState();
 }
 
-class _Customer_LoginState extends State<Customer_Login> {
+class _Customer_LoginState extends State<Customer_Login> {  getId() async {
+  final _CustomersharedPrefs = await SharedPreferences.getInstance();
+  await _CustomersharedPrefs.setString("userid", cust_id);
+}
+
+getemail() async {
+  final _CustomersharedPrefs = await SharedPreferences.getInstance();
+  await _CustomersharedPrefs.setString("email_cust", email_text_customer);
+}
+
+
+
   TextEditingController user_email = TextEditingController();
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -102,34 +113,10 @@ class _Customer_LoginState extends State<Customer_Login> {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.cyan.shade400,
                 ),
-                onPressed: ()
-                    //async
-                    {
+                onPressed: () {
                   user_Login();
-                  // final SharedPreferences sharedpreferences =
-                  //     await SharedPreferences.getInstance();
-                  //
-                  // sharedpreferences.setString('user_email', user_email.text);
-                  //email_text2 = user_email.text;
-                  //Get.to(Service_Dashboard());
-                  // Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (BuildContext context) => User_Dashboard(
-                  //               data_passing_user: email_text2,
-                  //             )));
-
-                  // Get.back();
-                  // setState(() {
-                  //  // checkLogin();
-                  //
-                  //
-                  // });
-
                   if (formkey.currentState!.validate()) {
                     print("Successfully  logged user");
-                    // email.clear();
-                    // password.clear();
                   }
                 },
                 child: Text(
@@ -162,7 +149,6 @@ class _Customer_LoginState extends State<Customer_Login> {
   }
 
   Future user_Login() async {
-    //var url ="https://anthracitic-pecks.000webhostapp.com/Hope_Charity_Project/Admin/Hope_Admin_Login.php"; //intego wifi password
     var url = "http://$ip/MySampleApp/ORBVA/Customer/login.php";
     var response = await http.post(Uri.parse(url), headers: {
       'Accept': 'application/json'
@@ -171,21 +157,24 @@ class _Customer_LoginState extends State<Customer_Login> {
       "password": password.text,
     });
     var data = json.decode(response.body);
-    // if (data.toString() == "Success") {
     if (data != null) {
-      //var responseData = json.decode(response.body);
-
       for (var singleUser in data) {
         final SharedPreferences sharedpreferences =
             await SharedPreferences.getInstance();
 
+       // await sharedpreferences.setString('customer_email', singleUser['email']);
+        await sharedpreferences.setString('user_id', singleUser['customer_id']);
 
-        await sharedpreferences.setString('user_email', singleUser["email"]);
-        print("hello");
-        print('customer id ${singleUser["id"]}');
-        cust_id =singleUser["id"];
+        cust_id = singleUser["customer_id"];
+
+        email_text_customer = singleUser["email"];
+        print('hello click ${email_text_customer}');
+
+        getid = singleUser["customer_id"];
+
+        getId();
+        getemail();
       }
-
 
       final snackBar = SnackBar(
         content: Text('Login Successfull'),
@@ -197,34 +186,28 @@ class _Customer_LoginState extends State<Customer_Login> {
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-      // final _CustomersharedPrefs = await SharedPreferences.getInstance();
-      // // await _CustomersharedPrefs.setBool(Customer_Key, true);
-      // await _CustomersharedPrefs.setInt("userid", data["id"]);
-
-      //
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Customer_Dashboard(
-                    data_passing_user: email_text2,
-                  )));
+              builder: (BuildContext context) => Customer_Dash(
+              )));
+
+      // Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (BuildContext context) => Customer_Dashboard(
+      //              data_passing_user: null,
+      //             )));
     } else {
       final snackBar = SnackBar(
         content: Text('Username and password invalid'),
         action: SnackBarAction(
           label: 'Undo',
-          onPressed: () {
-            // Some code to undo the change.
-          },
+          onPressed: () {},
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

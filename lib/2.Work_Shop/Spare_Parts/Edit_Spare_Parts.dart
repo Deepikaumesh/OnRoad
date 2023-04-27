@@ -467,6 +467,7 @@ import 'package:untitled/2.Work_Shop/workshop_Dashboard.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 
 import '../../main.dart';
+import '../Workshop_Dash.dart';
 
 class Edit_Spare_Parts extends StatefulWidget {
   final List list;
@@ -605,8 +606,8 @@ class _Edit_Spare_PartsState extends State<Edit_Spare_Parts> {
                         Navigator.of(context).pushReplacement(
                             new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Workshop_Dashboard(
-                                        data_passing_workshop: null)));
+                                    Workshop_Dash(
+                                        )));
                       });
                     },
                     child: Text("Submit")),

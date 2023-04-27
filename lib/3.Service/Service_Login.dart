@@ -21,42 +21,7 @@ class _Service_LoginState extends State<Service_Login> {
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  // Future checkLogin() async {
-  //   if (service_email.text ==  password.text ) {
-  //
-  //     final _sharedPrefs = await SharedPreferences.getInstance();
-  //     await _sharedPrefs.setBool(Merchant_Key, true);
-  //
-  //
-  //
-  //
-  //
-  //
-  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
-  //     // em1 =service_preferences.setString('email_service', service_email.text);
-  //
-  //
-  //
-  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
-  //     email_text1 = service_email.text;
-  //      print("availability of email.text service login" + email_text1);
-  //     Fluttertoast.showToast(
-  //         msg: 'Login successfull',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //   }else{
-  //     Fluttertoast.showToast(
-  //         msg: 'invalid email & password ',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //
-  //   }
-  // }
-  //
+
 
   @override
   Widget build(BuildContext context) {

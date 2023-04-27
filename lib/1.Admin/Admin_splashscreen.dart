@@ -4,6 +4,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../main.dart';
+import 'Admin_Dash.dart';
+import 'Admin_Dashboard.dart';
 import 'Admin_Login.dart';
 import 'Admin_Main_Dashboard.dart';
 
@@ -27,8 +30,12 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
                         //Admin_Dashboard(data_passing_admin: null,)
-                        Admin_Main_dashboard()));
+                    Admin_Dash()));
       });
+    });
+    setState(() {
+      get_id_admin();
+      getmail_admin();
     });
 
     super.initState();
@@ -64,11 +71,27 @@ class _Admin_SplashscreenState extends State<Admin_Splashscreen> {
 
   Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await sharedprefs.getString('admin_email');
-    //value = obtainedemail;
+    var obtainedemail = await sharedprefs.getString('admin_id');
     setState(() {
       Admin_key = obtainedemail;
     });
     print('thisis service  value $Admin_key');
+  }
+
+  get_id_admin() async {
+    final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    var obtainedide = await sharedprefs.getString('adminid');
+
+    setState(() {
+      admin_id = obtainedide;
+    });
+  }
+
+  getmail_admin() async {
+    final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    var obtain_admin = await sharedprefs.getString('email');
+
+    setState(() {});
+    email_text_admin = obtain_admin;
   }
 }

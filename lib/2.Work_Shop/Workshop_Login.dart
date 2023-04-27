@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
 import 'package:http/http.dart' as http;
 
+import 'Workshop_Dash.dart';
 import 'Workshop_SignUp.dart';
 import 'Workshop_dashboard.dart';
 
@@ -22,42 +23,15 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  // Future checkLogin() async {
-  //   if (service_email.text ==  password.text ) {
-  //
-  //     final _sharedPrefs = await SharedPreferences.getInstance();
-  //     await _sharedPrefs.setBool(Merchant_Key, true);
-  //
-  //
-  //
-  //
-  //
-  //
-  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
-  //     // em1 =service_preferences.setString('email_service', service_email.text);
-  //
-  //
-  //
-  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
-  //     email_text1 = service_email.text;
-  //      print("availability of email.text service login" + email_text1);
-  //     Fluttertoast.showToast(
-  //         msg: 'Login successfull',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //   }else{
-  //     Fluttertoast.showToast(
-  //         msg: 'invalid email & password ',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //
-  //   }
-  // }
-  //
+  get_email_workshop() async {
+    final _CustomersharedPrefs = await SharedPreferences.getInstance();
+    await _CustomersharedPrefs.setString("workemail", email_text_workshop);
+  }
+
+  get_id_workshop() async {
+    final _CustomersharedPrefs = await SharedPreferences.getInstance();
+    await _CustomersharedPrefs.setString("workid", work_id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -216,6 +190,12 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
 
         await sharedpreferences.setString(
             'workshop_email', singleUser["email"]);
+
+        email_text_workshop = singleUser["email"];
+        work_id = singleUser["id"];
+        get_email_workshop();
+        get_id_workshop();
+
       }
 
       final snackBar = SnackBar(
@@ -228,20 +208,15 @@ class _Work_shop_LoginState extends State<Work_shop_Login> {
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
+
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-      // final _CustomersharedPrefs = await SharedPreferences.getInstance();
-      // // await _CustomersharedPrefs.setBool(Customer_Key, true);
-      // await _CustomersharedPrefs.setInt("userid", data["id"]);
 
       //
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Workshop_Dashboard(
-                    data_passing_workshop: null,
+              builder: (BuildContext context) => Workshop_Dash(
                   )));
     } else {
       final snackBar = SnackBar(

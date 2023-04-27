@@ -7,6 +7,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
+
+import 'Admin_Dash.dart';
 import 'Admin_Dashboard.dart';
 import 'Admin_Main_Dashboard.dart';
 import 'Admin_SignUp.dart';
@@ -24,42 +26,16 @@ class _Admin_LoginState extends State<Admin_Login> {
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  // Future checkLogin() async {
-  //   if (service_email.text ==  password.text ) {
-  //
-  //     final _sharedPrefs = await SharedPreferences.getInstance();
-  //     await _sharedPrefs.setBool(Merchant_Key, true);
-  //
-  //
-  //
-  //
-  //
-  //
-  //     // SharedPreferences service_preferences = await SharedPreferences.getInstance();
-  //     // em1 =service_preferences.setString('email_service', service_email.text);
-  //
-  //
-  //
-  //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service: '',)));
-  //     email_text1 = service_email.text;
-  //      print("availability of email.text service login" + email_text1);
-  //     Fluttertoast.showToast(
-  //         msg: 'Login successfull',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //   }else{
-  //     Fluttertoast.showToast(
-  //         msg: 'invalid email & password ',
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: Colors.green);
-  //
-  //   }
-  // }
-  //
+  getId() async {
+    final _CustomersharedPrefs = await SharedPreferences.getInstance();
+    await _CustomersharedPrefs.setString("adminid", admin_id);
+  }
+
+  getemail() async {
+    final _CustomersharedPrefs = await SharedPreferences.getInstance();
+    await _CustomersharedPrefs.setString("email", email_text_admin);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +144,6 @@ class _Admin_LoginState extends State<Admin_Login> {
                     print("Successfully  logged admin");
                     print(Admin_key);
 
-
                     // email.clear();
                     // password.clear();
                   }
@@ -211,8 +186,6 @@ class _Admin_LoginState extends State<Admin_Login> {
       "password": password.text,
     });
 
-
-
     var data = json.decode(response.body);
     // if (data.toString() == "Success") {
     if (data != null) {
@@ -222,7 +195,17 @@ class _Admin_LoginState extends State<Admin_Login> {
         final SharedPreferences sharedpreferences =
             await SharedPreferences.getInstance();
 
-        await sharedpreferences.setString('admin_email', singleUser["email"]);
+        await sharedpreferences.setString('admin_id', singleUser["id"]);
+
+        admin_id = singleUser["id"];
+
+        email_text_admin = singleUser["email"];
+        print('hello click ${email_text_admin}');
+
+        getid = singleUser["id"];
+
+        getId();
+        getemail();
       }
 
       final snackBar = SnackBar(
@@ -235,22 +218,13 @@ class _Admin_LoginState extends State<Admin_Login> {
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-      // final _CustomersharedPrefs = await SharedPreferences.getInstance();
-      // // await _CustomersharedPrefs.setBool(Customer_Key, true);
-      // await _CustomersharedPrefs.setInt("userid", data["id"]);
-
-      //
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (BuildContext context) =>
-                //  Admin_Dashboard(data_passing_admin: null,)
-              Admin_Main_dashboard()
-          ));
+                  Admin_Dash()));
     } else {
       final snackBar = SnackBar(
         content: Text('Username and password invalid'),
@@ -262,8 +236,6 @@ class _Admin_LoginState extends State<Admin_Login> {
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

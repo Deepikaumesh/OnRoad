@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../test/test_page_searchnbar.dart';
+import 'Admin_Dash.dart';
 import 'Admin_Dashboard.dart';
 
 class Admin_Main_dashboard extends StatefulWidget {
@@ -14,11 +15,10 @@ class Admin_Main_dashboard extends StatefulWidget {
 class _Admin_Main_dashboardState extends State<Admin_Main_dashboard> {
   int currentIndex = 0;
   final screens = [
-    Admin_Dashboard(  data_passing_admin: null,),
+    Admin_Dash(),
     testpagesearchbar(),
-    Admin_Dashboard(  data_passing_admin: null,),
-    Admin_Dashboard(  data_passing_admin: null,),
-    // Hope_Admin_event_Display(),
+    Admin_Dash(),
+    Admin_Dash(),
     // donation_Display(),
     // Admin_View_Craftitem_(),
   ];

@@ -103,47 +103,53 @@ class _Customer_Service_searchbarState extends State<Customer_Service_searchbar>
 
   _listitem(index){
 
-    return   Card(
-        elevation: 5,
-        color: Colors.grey.shade200,
-        margin: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: ListTile(
-            contentPadding: EdgeInsets.all(4.0),
-            leading: Container(
-              height: 50,
-              width: 50,
-             // child: Text( _notesForDisplay[index].contact_no),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                //border: Border.all(color: Colors.blueGrey.shade900),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/customer-service.png',),
-                  fit: BoxFit.cover,
+    return   InkWell(
+      onTap: (){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context)=>service_Detail_Page(data_pass: _notesForDisplay[index],)));
+      },
+      child: Card(
+          elevation: 5,
+          color: Colors.grey.shade200,
+          margin: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: ListTile(
+              contentPadding: EdgeInsets.all(4.0),
+              leading: Container(
+                height: 50,
+                width: 50,
+               // child: Text( _notesForDisplay[index].contact_no),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  //border: Border.all(color: Colors.blueGrey.shade900),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/customer-service.png',),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            title: Text(
-              _notesForDisplay[index].services,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.lora(
-                  fontSize: 15, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(_notesForDisplay[index].city,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.lora(
-                  fontSize: 10, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
-            ),
-          trailing: InkWell(
-              onTap: (){
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context)=>service_Detail_Page(data_pass: _notesForDisplay[index],)));
-              },
-              child: Icon(Icons.arrow_forward_ios_rounded)),
+              title: Text(
+                _notesForDisplay[index].services,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.lora(
+                    fontSize: 15, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(_notesForDisplay[index].city,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.lora(
+                    fontSize: 10, color: Colors.blueGrey.shade900,fontWeight: FontWeight.bold),
+              ),
+            trailing: InkWell(
+                onTap: (){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context)=>service_Detail_Page(data_pass: _notesForDisplay[index],)));
+                },
+                child: Icon(Icons.arrow_forward_ios_rounded)),
 
-        )
+          )
+      ),
     );
   }
 

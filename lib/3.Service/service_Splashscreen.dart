@@ -28,7 +28,7 @@ class _service_SplashscreenState extends State<service_Splashscreen> {
                 context,
                 MaterialPageRoute(
                     builder: (BuildContext context) => Service_Dashboard(
-                          data_passing_service: email_text1,
+                          data_passing_service: getemailservice,
                         )));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
       });

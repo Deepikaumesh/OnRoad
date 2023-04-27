@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../main.dart';
-import 'Customer_Dashboard.dart';
+import 'Customer_Dash.dart';
 import 'Customer_Login.dart';
 
 var Customer_key;
@@ -28,27 +26,17 @@ class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
             : Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Customer_Dashboard(
-                          data_passing_user: email_text2,
-                        )));
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
+                    builder: (BuildContext context) => Customer_Dash()));
       });
     });
 
-    // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
-    // TODO: implement initState
+    setState(() {
+      get();
+      getmail();
+    });
+
     super.initState();
   }
-
-  // @override
-  // void didChangeDependencies(){
-  //   super.didChangeDependencies();
-  // }
-
-  // Timer(
-  //   Duration(seconds: 2),
-  //       () => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyLogin())),
-  // );
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +47,6 @@ class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Image.asset(
-          //   "assets/nileswram.png",
-          //   height: 45,
-          //   width: 45,
-          // ),
-          // SizedBox(
-          //   height: 10,
-          // ),
           Text(
             "Loading......",
             style: GoogleFonts.aclonica(
@@ -86,30 +66,29 @@ class _Customer_SplashscreenState extends State<Customer_Splashscreen> {
     );
   }
 
-  // Future Merchant_gotoLogin() async {
-  //   await Future.delayed(Duration(seconds: 1));
-  //   Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Service_Login()));
-  // }
   Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
-    var obtainedemail = await sharedprefs.getString('user_email');
-    //value = obtainedemail;
+    var obtainedid = await sharedprefs.getString('user_id');
+
     setState(() {
-      Customer_key = obtainedemail;
+      Customer_key = obtainedid;
     });
-    print('thisis user  value $Customer_key');
   }
 
-// Future<void> checkMerchantLoogedIn() async{
-//   final _MerchanrsharedPrefs =await SharedPreferences.getInstance();
-//   print(Merchant_Key);
-//   final _merchantLoggedIn=_MerchanrsharedPrefs.getBool(Merchant_Key);
-//   if(_merchantLoggedIn == null || _merchantLoggedIn == false){
-//     Merchant_gotoLogin();
-//   }
-//   else{
-//     Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1)));
-//   }
-//
-// }
+  get() async {
+    final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    var obtainedide = await sharedprefs.getString('userid');
+
+    setState(() {
+      cust_id = obtainedide;
+    });
+  }
+
+  getmail() async {
+    final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    var obtaineemail = await sharedprefs.getString('email_cust');
+
+    setState(() {});
+    email_text_customer = obtaineemail!;
+  }
 }

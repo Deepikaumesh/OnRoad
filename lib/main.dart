@@ -11,12 +11,26 @@ import '3.Service/Edit_Service.dart';
 import '3.Service/display_Edit_Profile_Page.dart';
 import 'Main_Screen/Main_Screen.dart';
 
-var email_text = '';
-var email_text1 = '';
-var email_text2 = '';
+var email_text_customer = '';
+ var email_text_admin;
+ var email_text_workshop = '';
+ //var email_text_service = '';
+
 var ip = '192.168.29.64';
 
 var cust_id;
+var getid;
+
+var admin_id;
+var work_id;
+
+
+
+
+// var getemailadmin;
+ var getemailservice;
+// var getemaiworkshop;
+
 
 
 void main() async {

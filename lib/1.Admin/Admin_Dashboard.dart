@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
+import '../main.dart';
 import '../test/searchbar.dart';
 import 'Admin_splashscreen.dart';
 import 'Display_Customers.dart';
@@ -38,7 +39,7 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
                   onPressed: () async {
                     final SharedPreferences sharedpreferences =
                         await SharedPreferences.getInstance();
-                    sharedpreferences.remove('admin_email');
+                    sharedpreferences.remove('admin_id');
                     Get.to(Main_screen());
                   },
                   icon: Icon(Icons.exit_to_app)),
@@ -60,8 +61,15 @@ class _Admin_DashboardState extends State<Admin_Dashboard> {
             "Admin",
             style: GoogleFonts.hind(fontWeight: FontWeight.bold, fontSize: 30),
           ),
-          Admin_key == null ? SizedBox(height: 1,) :
-          Text('${Admin_key}', style: GoogleFonts.hind(fontSize: 15)),
+          email_text_admin == null
+              ? SizedBox(
+            height: 1,
+          )
+              : Text('${email_text_admin
+          }', style: GoogleFonts.hind(fontSize: 15)),
+
+          // Admin_key == null ? SizedBox(height: 1,) :
+          // Text('${Admin_key}', style: GoogleFonts.hind(fontSize: 15)),
         ]),
       ),
       drawer: Drawer(child: AdminDrawer()),

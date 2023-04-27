@@ -467,6 +467,7 @@ import 'package:untitled/2.Work_Shop/workshop_Dashboard.dart';
 import 'package:untitled/Main_Screen/Main_Screen.dart';
 
 import '../../main.dart';
+import '../Workshop_Dash.dart';
 
 class Edit_Worker extends StatefulWidget {
   final List list;
@@ -937,8 +938,8 @@ class _Edit_WorkerState extends State<Edit_Worker> {
                         Navigator.of(context).pushReplacement(
                             new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Workshop_Dashboard(
-                                        data_passing_workshop: null)));
+                                    Workshop_Dash(
+                                        )));
                       });
                     },
                     child: Text("Submit")),

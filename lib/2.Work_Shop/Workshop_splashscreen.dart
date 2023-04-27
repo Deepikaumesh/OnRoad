@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../main.dart';
+import 'Workshop_Dash.dart';
 import 'Workshop_Login.dart';
 import 'Workshop_dashboard.dart';
 
@@ -28,27 +30,20 @@ class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
             : Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Workshop_Dashboard(
-                          data_passing_workshop: null,
+                    builder: (BuildContext context) => Workshop_Dash(
+
                         )));
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
       });
     });
 
-    // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
-    // TODO: implement initState
+   setState(() {
+     get_work_id();
+     get_work_email();
+   });
     super.initState();
   }
 
-  // @override
-  // void didChangeDependencies(){
-  //   super.didChangeDependencies();
-  // }
-
-  // Timer(
-  //   Duration(seconds: 2),
-  //       () => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyLogin())),
-  // );
 
   @override
   Widget build(BuildContext context) {
@@ -86,30 +81,34 @@ class _Workshop_SplashscreenState extends State<Workshop_Splashscreen> {
     );
   }
 
-  // Future Merchant_gotoLogin() async {
-  //   await Future.delayed(Duration(seconds: 1));
-  //   Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Service_Login()));
-  // }
   Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
     var obtainedemail = await sharedprefs.getString('workshop_email');
-    //value = obtainedemail;
+
     setState(() {
       Workshop_key = obtainedemail;
     });
     print('thisis workshop  value $Workshop_key');
   }
 
-// Future<void> checkMerchantLoogedIn() async{
-//   final _MerchanrsharedPrefs =await SharedPreferences.getInstance();
-//   print(Merchant_Key);
-//   final _merchantLoggedIn=_MerchanrsharedPrefs.getBool(Merchant_Key);
-//   if(_merchantLoggedIn == null || _merchantLoggedIn == false){
-//     Merchant_gotoLogin();
-//   }
-//   else{
-//     Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1)));
-//   }
-//
-// }
+
+  Future get_work_id()async {
+    final SharedPreferences sharedPreferences =await SharedPreferences.getInstance();
+    var obain_workid =await sharedPreferences.getString('workid');
+
+    setState(() {
+      work_id = obain_workid;
+    });
+
+  }
+  Future get_work_email()async {
+    final SharedPreferences sharedPreferences =await SharedPreferences.getInstance();
+    var obain_workemail =await sharedPreferences.getString('workemail');
+
+    setState(() {
+      email_text_workshop = obain_workemail!;
+    });
+
+  }
+
 }
