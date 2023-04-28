@@ -281,10 +281,11 @@ class _Approve_Reject_WorkshopState extends State<Approve_Reject_Workshop> {
       "license_no": widget.data_pass.license_no,
       'status': status.text,
     });
-    setState(() {
-  //    Display_Workshops();
-
-    });
+    // Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (BuildContext context) =>
+    //             Display_Workshops()));
 
   }
 

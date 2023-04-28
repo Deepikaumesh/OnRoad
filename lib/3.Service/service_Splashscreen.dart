@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../main.dart';
-import 'Service_Dashboard.dart';
+import 'Service_Dash.dart';
 import 'Service_Login.dart';
 
 var service_key;
@@ -27,27 +27,19 @@ class _service_SplashscreenState extends State<service_Splashscreen> {
             : Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (BuildContext context) => Service_Dashboard(
-                          data_passing_service: getemailservice,
+                    builder: (BuildContext context) => Service_dash(
+
                         )));
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Service_Dashboard()));
       });
     });
 
-    // Timer(Duration(seconds: 2),()=>Get.to(login_page()));
-    // TODO: implement initState
+    setState(() {
+      get();
+      getmail();
+    });
+
     super.initState();
   }
-
-  // @override
-  // void didChangeDependencies(){
-  //   super.didChangeDependencies();
-  // }
-
-  // Timer(
-  //   Duration(seconds: 2),
-  //       () => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MyLogin())),
-  // );
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +50,6 @@ class _service_SplashscreenState extends State<service_Splashscreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Image.asset(
-          //   "assets/nileswram.png",
-          //   height: 45,
-          //   width: 45,
-          // ),
-          // SizedBox(
-          //   height: 10,
-          // ),
           Text(
             "Loading......",
             style: GoogleFonts.aclonica(
@@ -85,10 +69,6 @@ class _service_SplashscreenState extends State<service_Splashscreen> {
     );
   }
 
-  // Future Merchant_gotoLogin() async {
-  //   await Future.delayed(Duration(seconds: 1));
-  //   Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => Service_Login()));
-  // }
   Future getValidationData() async {
     final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
     var obtainedemail = await sharedprefs.getString('service_email');
@@ -99,16 +79,20 @@ class _service_SplashscreenState extends State<service_Splashscreen> {
     print('thisis service  value $service_key');
   }
 
-// Future<void> checkMerchantLoogedIn() async{
-//   final _MerchanrsharedPrefs =await SharedPreferences.getInstance();
-//   print(Merchant_Key);
-//   final _merchantLoggedIn=_MerchanrsharedPrefs.getBool(Merchant_Key);
-//   if(_merchantLoggedIn == null || _merchantLoggedIn == false){
-//     Merchant_gotoLogin();
-//   }
-//   else{
-//     Navigator.push(context, MaterialPageRoute(builder: (context)=>Service_Dashboard(email_passing: email_text1)));
-//   }
-//
-// }
+  get() async {
+    final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    var obtainedide = await sharedprefs.getString('serviceid');
+
+    setState(() {
+      service_id = obtainedide;
+    });
+  }
+
+  getmail() async {
+    final SharedPreferences sharedprefs = await SharedPreferences.getInstance();
+    var obtaineemail = await sharedprefs.getString('email_service');
+
+    setState(() {});
+    email_text_service = obtaineemail!;
+  }
 }

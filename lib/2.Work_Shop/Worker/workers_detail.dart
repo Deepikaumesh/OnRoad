@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:untitled/2.Work_Shop/Worker/View_workers.dart';
 import '../../main.dart';
 import '../Workshop_Dash.dart';
 import 'Edit_worker.dart';
-import '../Workshop_dashboard.dart';
-import '../Workshop_data.dart';
+
 
 class Workers_detail extends StatefulWidget {
   List list;

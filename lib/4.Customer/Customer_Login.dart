@@ -15,7 +15,11 @@ class Customer_Login extends StatefulWidget {
   _Customer_LoginState createState() => _Customer_LoginState();
 }
 
-class _Customer_LoginState extends State<Customer_Login> {  getId() async {
+class _Customer_LoginState extends State<Customer_Login> {
+
+
+
+  getId() async {
   final _CustomersharedPrefs = await SharedPreferences.getInstance();
   await _CustomersharedPrefs.setString("userid", cust_id);
 }
@@ -170,7 +174,7 @@ getemail() async {
         email_text_customer = singleUser["email"];
         print('hello click ${email_text_customer}');
 
-        getid = singleUser["customer_id"];
+
 
         getId();
         getemail();

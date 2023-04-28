@@ -202,7 +202,7 @@ class _Admin_LoginState extends State<Admin_Login> {
         email_text_admin = singleUser["email"];
         print('hello click ${email_text_admin}');
 
-        getid = singleUser["id"];
+       // getid = singleUser["id"];
 
         getId();
         getemail();

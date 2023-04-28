@@ -189,7 +189,7 @@ class _service_Detail_PageState extends State<service_Detail_Page> {
                               ),
                             ),
                             hintText: "Enter your request ",
-                            label: Text('request'),
+                            label: Text('Enter request'),
                             hintStyle: TextStyle(color: Colors.grey),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),

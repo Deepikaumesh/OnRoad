@@ -4,24 +4,21 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:untitled/3.Service/service_Splashscreen.dart';
-import 'package:untitled/Main_Screen/Main_Screen.dart';
 
-import 'create_service.dart';
+import '../Main_Screen/Main_Screen.dart';
+import '../main.dart';
 import 'Drawer_Service.dart';
+import 'create_service.dart';
 import 'display_Edit_Profile_Page.dart';
 
-class Service_Dashboard extends StatefulWidget {
-  //
-  var data_passing_service;
-
-  Service_Dashboard({required this.data_passing_service});
+class Service_dash extends StatefulWidget {
+  const Service_dash({Key? key}) : super(key: key);
 
   @override
-  _Service_DashboardState createState() => _Service_DashboardState();
+  _Service_dashState createState() => _Service_dashState();
 }
 
-class _Service_DashboardState extends State<Service_Dashboard> {
+class _Service_dashState extends State<Service_dash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,13 +55,19 @@ class _Service_DashboardState extends State<Service_Dashboard> {
             "Onroad Service",
             style: GoogleFonts.hind(fontWeight: FontWeight.bold, fontSize: 30),
           ),
-          Text('${service_key}', style: GoogleFonts.hind(fontSize: 15)),
+          email_text_service == null ? SizedBox(height: 1,):
+
+          Text('${email_text_service}', style: GoogleFonts.hind(fontSize: 15)),
+
+          service_id == null ? SizedBox(height: 1,):
+
+          Text('${service_id}', style: GoogleFonts.hind(fontSize: 15)),
         ]),
       ),
-      drawer: Drawer(
-        child: ServiceDrawer(),
-      ),
-      body: SingleChildScrollView(
+    drawer: Drawer(
+         child: ServiceDrawer(),
+       ),
+    body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
@@ -285,5 +288,6 @@ Rating() {
         ),
       ],
     ),
-  );
-}
+    );
+  }
+

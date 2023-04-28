@@ -21,6 +21,7 @@ class Workshop_Detail_Page extends StatefulWidget {
 class _Workshop_Detail_PageState extends State<Workshop_Detail_Page> {
   TextEditingController status = TextEditingController();
   TextEditingController request = TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -36,7 +37,7 @@ class _Workshop_Detail_PageState extends State<Workshop_Detail_Page> {
     'Autorikshaw Breakdown please help..',
     'Van Breakdown please help..',
   ];
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -106,52 +107,67 @@ class _Workshop_Detail_PageState extends State<Workshop_Detail_Page> {
               left: 2,
               right: 2,
 
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                child: Row(
-                  children: <Widget>[
-                    new Expanded(
-                        child: new TextFormField(
-                          controller: request,
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Colors.grey.shade500,
-                                ),
-                              ),
-                              hintText: "Please select the request info",
-                              label: Text('Select request'),
-                              hintStyle: TextStyle(color: Colors.grey),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+              child: Form(
+                key: _formkey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                      child: Row(
+                        children: <Widget>[
+                          new Expanded(
+                              child: new TextFormField(
+                                controller: request,
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return "Request subject should not be empty!";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (request) {},
+                                decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey.shade500,
+                                      ),
+                                    ),
+                                    hintText: "Please select the request info",
+                                    label: Text('Select request'),
+                                    hintStyle: TextStyle(color: Colors.grey),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    )),
                               )),
-                        )),
-                    new PopupMenuButton<String>(
-                      icon: const Icon(Icons.arrow_drop_down),
-                      onSelected: (String value1) {
-                        request.text = value1;
-                      },
-                      itemBuilder: (BuildContext ctx) {
-                        return request_item
-                            .map<PopupMenuItem<String>>((String value1) {
-                          return new PopupMenuItem(
-                              child: new Text(value1), value: value1);
-                        }).toList();
-                      },
+                          new PopupMenuButton<String>(
+                            icon: const Icon(Icons.arrow_drop_down),
+                            onSelected: (String value1) {
+                              request.text = value1;
+                            },
+                            itemBuilder: (BuildContext ctx) {
+                              return request_item
+                                  .map<PopupMenuItem<String>>((String value1) {
+                                return new PopupMenuItem(
+                                    child: new Text(value1), value: value1);
+                              }).toList();
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
             Positioned(
-                top: 580,
+                top: 620,
                 left: 20,
                 right: 20,
                 child: ElevatedButton(
@@ -162,10 +178,10 @@ class _Workshop_Detail_PageState extends State<Workshop_Detail_Page> {
                         MaterialStateProperty.all(Colors.teal.shade900),
                   ),
                   onPressed: () {
-                    print(request.text);
-                    setState(() {
-                      Send();
-                    });
+                    if (_formkey.currentState!.validate()){
+                      setState(() {
+                        Send();
+                      });}
                   },
                   child: Text(
                     "Send Request",

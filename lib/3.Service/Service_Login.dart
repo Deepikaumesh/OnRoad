@@ -7,7 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
-import 'Service_Dashboard.dart';
+import 'Service_Dash.dart';
 import 'Service_SignUp.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,6 +21,16 @@ class _Service_LoginState extends State<Service_Login> {
   TextEditingController password = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+
+  getId() async {
+    final _CustomersharedPrefs = await SharedPreferences.getInstance();
+    await _CustomersharedPrefs.setString("serviceid", service_id);
+  }
+
+  getemail() async {
+    final _CustomersharedPrefs = await SharedPreferences.getInstance();
+    await _CustomersharedPrefs.setString("email_service", email_text_service);
+  }
 
 
   @override
@@ -106,16 +116,7 @@ class _Service_LoginState extends State<Service_Login> {
                   primary: Colors.cyan.shade400,
                 ),
                 onPressed: ()
-                    //async
                     {
-                  // final SharedPreferences sharedpreferences = await SharedPreferences.getInstance();
-                  //
-                  // sharedpreferences.setString('service_email', service_email.text);
-                  // email_text1 = service_email.text;
-                  // //Get.to(Service_Dashboard());
-                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Service_Dashboard(data_passing_service:email_text1 ,)));
-
-                  // Get.back();
                   setState(() {
                     service_Login();
                   });
@@ -173,6 +174,22 @@ class _Service_LoginState extends State<Service_Login> {
             await SharedPreferences.getInstance();
 
         await sharedpreferences.setString('service_email', singleUser["email"]);
+
+        service_id = singleUser["id"];
+
+        email_text_service = singleUser["email"];
+
+
+
+
+        getId();
+        getemail();
+
+
+
+
+
+
       }
 
       final snackBar = SnackBar(
@@ -185,20 +202,13 @@ class _Service_LoginState extends State<Service_Login> {
         ),
       );
 
-      // Find the ScaffoldMessenger in the widget tree
-      // and use it to show a SnackBar.
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-      // final _CustomersharedPrefs = await SharedPreferences.getInstance();
-      // // await _CustomersharedPrefs.setBool(Customer_Key, true);
-      // await _CustomersharedPrefs.setInt("userid", data["id"]);
-
-      //
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => Service_Dashboard(
-                    data_passing_service: null,
+              builder: (BuildContext context) => Service_dash(
+
                   )));
     } else {
       final snackBar = SnackBar(

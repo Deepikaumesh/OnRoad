@@ -226,6 +226,8 @@ class Display_Edit_Profile_Page extends StatefulWidget {
 }
 
 class _Display_Edit_Profile_PageState extends State<Display_Edit_Profile_Page> {
+
+
   Future<List> getData() async {
     final response = await http.get(Uri.parse(
         "http://$ip/MySampleApp/ORBVA/Service_center/Service_display.php"));

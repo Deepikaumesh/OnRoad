@@ -9,6 +9,7 @@ import '../Main_Screen/Main_Screen.dart';
 import '../main.dart';
 import 'Add_Workshop.dart';
 import 'Drawer_Workshop.dart';
+import 'View_Customer_Request.dart';
 import 'Workshop_data.dart';
 
 class Workshop_Dash extends StatefulWidget {
@@ -228,7 +229,7 @@ class _Workshop_DashState extends State<Workshop_Dash> {
               ),
               GestureDetector(
                 onTap: () {
-                  //   Get.to(Workshop_view_request_Page());
+                     Get.to(View_Customer_Request());
                 },
                 child: Text(
                   "View Request",
