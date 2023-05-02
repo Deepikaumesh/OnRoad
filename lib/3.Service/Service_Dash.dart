@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Main_Screen/Main_Screen.dart';
 import '../main.dart';
 import 'Drawer_Service.dart';
+import 'View_Customer_Request.dart';
 import 'create_service.dart';
 import 'display_Edit_Profile_Page.dart';
 
@@ -216,39 +217,44 @@ feedback_container() {
 }
 
 Request_container() {
-  return Container(
-    decoration: BoxDecoration(
-        // color: Color(0xfffad4d5),
-        color: Colors.red.shade100,
-        borderRadius: BorderRadius.circular(10)),
-    padding: EdgeInsets.only(top: 10, left: 10, right: 10),
-    height: 100,
-    width: 340,
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Image.asset(
-              'assets/images/request.png',
-              height: 75.0,
-              width: 75.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                //  Get.to(Feedback_service());
-              },
-              child: Text(
-                "Customer Request",
-                style: GoogleFonts.quicksand(
-                    fontSize: 23,
-                    color: Colors.teal.shade900,
-                    fontWeight: FontWeight.bold),
+  return InkWell(
+    onTap: (){
+      Get.to(Customer_Request());
+    },
+    child: Container(
+      decoration: BoxDecoration(
+          // color: Color(0xfffad4d5),
+          color: Colors.red.shade100,
+          borderRadius: BorderRadius.circular(10)),
+      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+      height: 100,
+      width: 340,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                'assets/images/request.png',
+                height: 75.0,
+                width: 75.0,
               ),
-            )
-          ],
-        ),
-      ],
+              GestureDetector(
+                onTap: () {
+                    Get.to(Customer_Request());
+                },
+                child: Text(
+                  "Customer Request",
+                  style: GoogleFonts.quicksand(
+                      fontSize: 23,
+                      color: Colors.teal.shade900,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }

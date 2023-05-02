@@ -1,15 +1,20 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Main_Screen/Main_Screen.dart';
 import '../main.dart';
+import 'Display_Request_Page_Service.dart';
+import 'Display_Request_Page_Workshop.dart';
 import 'Drawer_Customer.dart';
 import 'Find_Service_Page.dart';
 import 'Find_Workshop_Page.dart';
+
 
 class Customer_Dash extends StatefulWidget {
   const Customer_Dash({Key? key}) : super(key: key);
@@ -33,7 +38,7 @@ class _Customer_DashState extends State<Customer_Dash> {
               IconButton(
                   onPressed: () async {
                     final SharedPreferences sharedpreferences =
-                    await SharedPreferences.getInstance();
+                        await SharedPreferences.getInstance();
                     sharedpreferences.remove('user_id');
                     Get.to(Main_screen());
                   },
@@ -58,21 +63,20 @@ class _Customer_DashState extends State<Customer_Dash> {
           ),
           cust_id == null
               ? SizedBox(
-            height: 1,
-          )
-              : Text('${cust_id}', style: GoogleFonts.hind(fontSize: 15,color: Colors.pink)),
+                  height: 1,
+                )
+              : Text('${cust_id}',
+                  style: GoogleFonts.hind(fontSize: 15, color: Colors.pink)),
           // Text('${Customer_key}', style: GoogleFonts.hind(fontSize: 15)),
-
-
 
           email_text_customer == null
               ? SizedBox(
-            height: 1,
-          )
-              : Text('${email_text_customer}', style: GoogleFonts.hind(fontSize: 15)),
+                  height: 1,
+                )
+              : Text('${email_text_customer}',
+                  style: GoogleFonts.hind(fontSize: 15)),
         ]),
       ),
-
       drawer: Drawer(
         child: CustomerDrawer(),
       ),
@@ -115,6 +119,115 @@ class _Customer_DashState extends State<Customer_Dash> {
                 child: Service__Container(),
               ),
             ),
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CircleAvatar(
+                      child: Image.asset(
+                        "assets/images/request.png",
+                        height: 80,
+                        width: 80,
+                      ),
+                      backgroundColor: Colors.transparent,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Get.to(bottom_sht());
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              //Scrolling given for content in Container()
+                              return SingleChildScrollView(
+                                child: Container(
+                                  padding: EdgeInsets.only(
+                                      bottom: MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom),
+                                  child: Container(
+                                    //Create a Column to display it's content
+                                    padding: const EdgeInsets.all(20),
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20),
+                                      ),
+                                    ),
+                                    //Create a Column to display it's content
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(height: 10.0),
+                                        // TextField for giving some Input
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                            minimumSize:
+                                                MaterialStateProperty.all(Size(
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                    50)),
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.grey.shade500),
+                                          ),
+                                          onPressed: () {
+                                            //Navigator.push(context, MaterialPageRoute(builder: (context)=>Display_Request_Page_workshop()));
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        Display_Request_Page_workshop()));
+                                          },
+                                          child: Text(
+                                            "Workshop",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10.0),
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                            minimumSize:
+                                                MaterialStateProperty.all(Size(
+                                                    MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                    50)),
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                                    Colors.grey.shade500),
+                                          ),
+                                          onPressed: () {
+
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                    context) =>
+                                                        Display_Request_Page_Service()));
+
+
+                                          },
+                                          child: Text(
+                                            "Service Center",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            });
+                      },
+                      child: Text(
+                        "Send Request",
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
@@ -163,7 +276,7 @@ class _Customer_DashState extends State<Customer_Dash> {
   Service__Container() {
     return Container(
       decoration: BoxDecoration(
-        //color: Color(0xfffad4d4),
+          //color: Color(0xfffad4d4),
           color: Colors.blueGrey.shade500,
           borderRadius: BorderRadius.circular(10)),
       padding: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -200,7 +313,5 @@ class _Customer_DashState extends State<Customer_Dash> {
         ],
       ),
     );
-
-
   }
 }

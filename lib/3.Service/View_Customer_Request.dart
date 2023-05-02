@@ -8,17 +8,17 @@ import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
 import 'package:http/http.dart' as http;
 
-class View_Customer_Request extends StatefulWidget {
-  const View_Customer_Request({Key? key}) : super(key: key);
+class Customer_Request extends StatefulWidget {
+  const Customer_Request({Key? key}) : super(key: key);
 
   @override
-  _View_Customer_RequestState createState() => _View_Customer_RequestState();
+  _Customer_RequestState createState() => _Customer_RequestState();
 }
 
-class _View_Customer_RequestState extends State<View_Customer_Request> {
+class _Customer_RequestState extends State<Customer_Request> {
   Future<List> getData() async {
     final response = await http.get(Uri.parse(
-        "http://$ip/MySampleApp/ORBVA/Work_shop/Display_Customer_request.php"));
+        "http://$ip/MySampleApp/ORBVA/Service_center/Display_Customer_request.php"));
     return json.decode(response.body);
   }
 

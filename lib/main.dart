@@ -16,7 +16,7 @@ var email_text_customer;
  var email_text_workshop;
  var email_text_service;
 
-var ip = '192.168.29.64';
+var ip = '192.168.29.65';
 
 var cust_id;
 var admin_id;
