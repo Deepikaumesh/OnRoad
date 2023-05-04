@@ -61,43 +61,12 @@ class _Customer_ComplaintsState extends State<Customer_Complaints> {
                       Padding(padding: const EdgeInsets.only(left: 30, right: 30),
                           child:
 
-                              // Column(
-                              //   crossAxisAlignment: CrossAxisAlignment.start,
-                              //   children: [
-                              //     Text(
-                              //       (snapshot.data![index]["username"]),
-                              //       style: GoogleFonts.lora(
-                              //           fontSize: 20, color: Colors.pink.shade700),
-                              //     ),
-                              //     SizedBox(
-                              //       height: 5,
-                              //     ),
-                              //     Text(snapshot.data![index]["email"]),
-                              //     SizedBox(
-                              //       height: 5,
-                              //     ),
-                              //     Text(snapshot.data![index]["phone"]),
-                              //     SizedBox(
-                              //       height: 5,
-                              //     ),
-                              //     Text(snapshot.data![index]["complaint"]),
-                              //     SizedBox(
-                              //       height: 5,
-                              //     ),
-                              //     Text(snapshot.data![index]["complaint_date"]),
-                              //     SizedBox(
-                              //       height: 5,
-                              //     ),
-                              //     Divider(
-                              //       thickness: 2,
-                              //       color: Colors.grey,
-                              //     )
-                              //   ],
-                              // ),
-
                               Column(
                                 children: [
-                                  Divider(),
+                                  Divider(color: Colors.amber,
+                                  thickness: 1,
+                               //   height: 5,
+                                  ),
                                   Row(
                              mainAxisAlignment: MainAxisAlignment.center,
                             children: [

@@ -18,7 +18,11 @@ class CustomerDrawer extends StatefulWidget {
 
 class _CustomerDrawerState extends State<CustomerDrawer> {
   TextEditingController complaint = TextEditingController();
+  var complaint_item = [
+    'Poor Service',
+    'Average Service',
 
+  ];
   @override
   void initState() {
     complaint = TextEditingController();
@@ -88,16 +92,48 @@ class _CustomerDrawerState extends State<CustomerDrawer> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
+
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: TextField(
-                            controller: complaint,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                //  labelText: 'Email',
-                                hintText: 'Enter your complaint'),
-                            keyboardType: TextInputType.multiline,
-                            maxLines: 3,
+                          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                          child: Row(
+                            children: <Widget>[
+                              new Expanded(
+                                  child: new TextFormField(
+                                    controller: complaint,
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        hintText: "Please select the service type",
+                                        label: Text('Service name'),
+                                        hintStyle: TextStyle(color: Colors.grey),
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        )),
+                                  )),
+                              new PopupMenuButton<String>(
+                                icon: const Icon(Icons.arrow_drop_down),
+                                onSelected: (String value) {
+                                  complaint.text = value;
+                                },
+                                itemBuilder: (BuildContext context) {
+                                  return complaint_item
+                                      .map<PopupMenuItem<String>>((String value) {
+                                    return new PopupMenuItem(
+                                        child: new Text(value), value: value);
+                                  }).toList();
+                                },
+                              ),
+                            ],
                           ),
                         ),
                        ElevatedButton(

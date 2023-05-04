@@ -290,6 +290,10 @@ class _Admin_DashState extends State<Admin_Dash> {
               ),
               GestureDetector(
                 onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Customer_Complaints()));
                 },
                 child: Text(
                   "Complaints",

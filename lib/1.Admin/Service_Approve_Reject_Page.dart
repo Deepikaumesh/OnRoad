@@ -8,8 +8,7 @@ import 'package:untitled/1.Admin/Display_Service.dart';
 import 'package:untitled/main.dart';
 import 'package:http/http.dart' as http;
 
-import 'Admin_Dashboard.dart';
-import 'Display_Workshops.dart';
+
 
 class Approve_Reject_Service extends StatefulWidget {
   final data_pass;

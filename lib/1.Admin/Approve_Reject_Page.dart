@@ -7,8 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/main.dart';
 import 'package:http/http.dart' as http;
 
-import 'Admin_Dashboard.dart';
-import 'Display_Workshops.dart';
 
 class Approve_Reject_Workshop extends StatefulWidget {
   final data_pass;
