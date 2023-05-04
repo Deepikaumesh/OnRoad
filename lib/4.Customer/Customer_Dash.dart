@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Carousel slider.dart';
 import '../Main_Screen/Main_Screen.dart';
 import '../main.dart';
 import 'Display_Request_Page_Service.dart';
@@ -228,6 +230,10 @@ class _Customer_DashState extends State<Customer_Dash> {
                     ),
                   ],
                 )),
+
+            SizedBox(height: 20,),
+            Carousel_slider_customer(),
+
           ],
         ),
       ),
@@ -314,4 +320,83 @@ class _Customer_DashState extends State<Customer_Dash> {
       ),
     );
   }
+}
+class Carousel_slider_customer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      items: [
+        //1st Image of Slider
+        Container(
+          margin: EdgeInsets.all(6.0),
+          decoration: BoxDecoration(
+            border: Border.all(width: 0.5,color: Colors.blueGrey),
+            borderRadius: BorderRadius.circular(8.0),
+            image: DecorationImage(
+              image: AssetImage("assets/images/crain.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+
+        // Container(
+        //   margin: EdgeInsets.all(6.0),
+        //   decoration: BoxDecoration(
+        //     border: Border.all(width: 2,color: Colors.red),
+        //     borderRadius: BorderRadius.circular(8.0),
+        //     image: DecorationImage(
+        //       image: AssetImage("assets/images/mech4.jpg"),
+        //       fit: BoxFit.cover,
+        //     ),
+        //   ),
+        // ),
+        Container(
+          margin: EdgeInsets.all(6.0),
+          decoration: BoxDecoration(
+            border: Border.all(width: 0.5,color: Colors.blueGrey),
+            borderRadius: BorderRadius.circular(8.0),
+            image: DecorationImage(
+              image: AssetImage("assets/images/parts2.jpg"),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.all(6.0),
+          decoration: BoxDecoration(
+            border: Border.all(width: 0.5,color: Colors.blueGrey),
+            borderRadius: BorderRadius.circular(8.0),
+            image: DecorationImage(
+              image: AssetImage("assets/images/spare.jpg"),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.all(6.0),
+          decoration: BoxDecoration(
+            border: Border.all(width: 0.5,color: Colors.blueGrey),
+            borderRadius: BorderRadius.circular(8.0),
+            image: DecorationImage(
+              image: AssetImage("assets/images/workshop1.jpg"),
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+      ],
+
+      //Slider Container properties
+      options: CarouselOptions(
+        height: 200.0,
+        enlargeCenterPage: true,
+        autoPlay: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: Duration(milliseconds: 100),
+        viewportFraction: 0.8,
+      ),
+    );
+  }
+
 }

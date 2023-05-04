@@ -11,6 +11,7 @@ import 'Display_Customers.dart';
 import 'Display_Service.dart';
 import 'Display_Workshops.dart';
 import 'Drawer_Admin.dart';
+import 'View_Customer_Complaints.dart';
 
 class Admin_Dash extends StatefulWidget {
   const Admin_Dash({Key? key}) : super(key: key);
@@ -121,6 +122,21 @@ class _Admin_DashState extends State<Admin_Dash> {
                                 Display_Customers()));
                   },
                   child: Customer__Container(),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30,vertical: 40,
+                ),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                Customer_Complaints()));
+                  },
+                  child: Complaint__Container(),
                 ),
               ),
             ]),
@@ -244,6 +260,42 @@ class _Admin_DashState extends State<Admin_Dash> {
                   style: GoogleFonts.quicksand(
                       fontSize: 25,
                       color: Colors.brown.shade600,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  Complaint__Container() {
+    return Container(
+      decoration: BoxDecoration(
+        //color: Color(0xfffad4d4),
+          color: Colors.black26,
+          borderRadius: BorderRadius.circular(10)),
+      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+      height: 100,
+      width: 340,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Image.asset(
+                'assets/images/complain.png',
+                height: 75.0,
+                width: 75.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                },
+                child: Text(
+                  "Complaints",
+                  style: GoogleFonts.quicksand(
+                      fontSize: 25,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
               )

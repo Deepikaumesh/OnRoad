@@ -42,12 +42,16 @@ void main() async {
       }));
 }
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return const GetMaterialApp(
-//       debugShowCheckedModeBanner: false,// -> changed the material app to GetMaterialApp for using Get keyword for navigation
-//       home: Main_screen(),
-//     );
-//   }
-// }
+Elavtedbttn(){
+  ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.teal, // background (button) color
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+        shadowColor: Colors.blueGrey,
+        elevation: 2,
+        minimumSize: Size(300, 50),// foreground (text) color
+      ),
+      onPressed: (){}, child: Text("Send",style: TextStyle(fontSize: 20),));
+
+}

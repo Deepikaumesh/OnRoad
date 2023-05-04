@@ -1,7 +1,30 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'dart:convert';
 
-class CustomerDrawer extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/4.Customer/Customer_Dash.dart';
+
+import '../main.dart';
+
+
+import 'package:http/http.dart' as http;
+
+class CustomerDrawer extends StatefulWidget {
+
+  @override
+  State<CustomerDrawer> createState() => _CustomerDrawerState();
+}
+
+class _CustomerDrawerState extends State<CustomerDrawer> {
+  TextEditingController complaint = TextEditingController();
+
+  @override
+  void initState() {
+    complaint = TextEditingController();
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -47,20 +70,71 @@ class CustomerDrawer extends StatelessWidget {
         //and let's copy that and modify it
 
         ListTile(
-          onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => Hope_Admin_event_registration()));
-          },
-          leading: Icon(
-            Icons.event,
+          onTap: () {},
+          trailing: Icon(
+            Icons.quick_contacts_mail_sharp,
             color: Colors.blueGrey.shade900,
           ),
-          title: Text("Add Events",
-              style: GoogleFonts.prompt(
-                fontSize: 15,
-              )),
+          leading: TextButton(
+            onPressed: () {
+              showModalBottomSheet(
+                elevation: 10,
+                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight:Radius.circular(20),
+                     topLeft: Radius.circular(20))),
+                  context: context,
+                  builder: (BuildContext context) {
+                return Container(
+                  height: 500,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: TextField(
+                            controller: complaint,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                //  labelText: 'Email',
+                                hintText: 'Enter your complaint'),
+                            keyboardType: TextInputType.multiline,
+                            maxLines: 3,
+                          ),
+                        ),
+                       ElevatedButton(
+                           style: ElevatedButton.styleFrom(
+                             backgroundColor: Colors.teal, // background (button) color
+                             foregroundColor: Colors.white,
+                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+                             shadowColor: Colors.blueGrey,
+                             elevation: 2,
+                             minimumSize: Size(300, 50),// foreground (text) color
+                           ),
+                           onPressed: (){
+
+                             setState(() {
+                               Send();
+
+                             });
+                             Navigator.pushReplacement(
+                                 context,
+                                 MaterialPageRoute(
+                                     builder: (BuildContext
+                                     context) =>
+                                         Customer_Dash()));
+
+                           }, child: Text("Send",style: TextStyle(fontSize: 20),))
+                      ],
+                    ),
+                  ),
+                );
+                  });
+
+            },
+            child: Text("Complaint Registration",
+                style: GoogleFonts.prompt(
+                  fontSize: 15,
+                )),
+          ),
         ),
         ListTile(
           onTap: () {
@@ -81,5 +155,38 @@ class CustomerDrawer extends StatelessWidget {
         ),
       ]),
     );
+  }
+
+  Future Send() async {
+    var APIURL =
+        "http://$ip/MySampleApp/ORBVA/Customer/send_complaints.php";
+
+    Map mapeddate = {
+      'customer_id': cust_id,
+      'complaint': complaint.text,
+    };
+    //send  data using http post to our php code
+    http.Response reponse = await http.post(Uri.parse(APIURL), body: mapeddate);
+
+    //getting response from php code, here
+    var data = jsonDecode(reponse.body);
+    var responseMessage = data["message"];
+    var responseError = data["error"];
+    print("DATA: ${data}");
+    if (responseError) {
+      Fluttertoast.showToast(
+          msg: 'error',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blueGrey);
+    } else {
+      Fluttertoast.showToast(
+          msg: 'Complaint send',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.SNACKBAR,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blueGrey);
+    }
   }
 }
