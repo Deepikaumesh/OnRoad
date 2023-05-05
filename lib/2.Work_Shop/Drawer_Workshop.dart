@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../About/About_Us.dart';
 import '../Main_Screen/Main_Screen.dart';
 import 'Crain/Add_Crain.dart';
+import 'Display_Workshops_Update.dart';
 import 'Spare_Parts/Add_Spare_parts.dart';
 import 'Worker/Add_Worker.dart';
 
@@ -108,6 +108,20 @@ class WorkshopDrawer extends StatelessWidget {
             color: Colors.blueGrey.shade900,
           ),
           title: Text("Add Spare parts",
+              style: GoogleFonts.prompt(
+                fontSize: 15,
+              )),
+        ),
+        ListTile(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Display_Workshops_Update()));
+          },
+          leading: Icon(
+            Icons.update,
+            color: Colors.blueGrey.shade900,
+          ),
+          title: Text("Update Workshop",
               style: GoogleFonts.prompt(
                 fontSize: 15,
               )),

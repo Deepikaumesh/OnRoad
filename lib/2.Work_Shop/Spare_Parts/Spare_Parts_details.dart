@@ -81,42 +81,6 @@ class _Spare_Parts_detailState extends State<Spare_Parts_detail> {
         elevation: 0,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.cyan.shade50,
-        // centerTitle: true,
-        // title: Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Text(
-        //       "${widget.list[widget.index]['Owner_name']}",
-        //       style: TextStyle(color: Colors.orange.shade900, fontSize: 17),
-        //     ),
-        //     Text(
-        //       "${widget.list[widget.index]['email']}",
-        //       style: TextStyle(color: Colors.indigo, fontSize: 12),
-        //     ),
-        //   ],
-        // ),
-
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.delete),
-        //     onPressed: () {
-        //       confirm();
-        //     },
-        //   ),
-        //   IconButton(
-        //     icon: Icon(Icons.edit),
-        //     onPressed: () {
-        //       Navigator.of(context).push(
-        //         new MaterialPageRoute(
-        //           builder: (BuildContext context) =>  Edit_Worker(
-        //             list: widget.list,
-        //             index: widget.index,
-        //           ),
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // ],
       ),
 
       body: SingleChildScrollView(
